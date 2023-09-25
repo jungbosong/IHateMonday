@@ -9,9 +9,10 @@ public abstract class BurstGun : Gun
     [SerializeField] protected bool _isShooting;
     [SerializeField] protected float _shootingDelay;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
-        _gunType = GunType.Auto;
+        base.Awake();
+        _gunType = GunType.Burst;
     }
 }
 

@@ -11,8 +11,9 @@ public abstract class CharzingGun : Gun
     [SerializeField] protected float _minCharzingValaue;
     [SerializeField] protected float _maxCharzingValaue;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _gunType = GunType.Charzing;
     }
 }
