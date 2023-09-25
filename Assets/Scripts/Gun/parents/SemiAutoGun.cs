@@ -4,10 +4,13 @@ using UnityEngine;
 
 public abstract class SemiAutoGun : Gun
 {
+    [Header ("SemiGunStats")]
     [SerializeField] protected float _manualFireDelay;
 
-    protected virtual void Awake()
+    [HideInInspector]public bool isManualFireReady = true;
+    protected override void Awake()
     {
+        base.Awake ();
         _gunType = GunType.SemiAuto;
     }
 }

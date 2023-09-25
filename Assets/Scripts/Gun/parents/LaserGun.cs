@@ -6,8 +6,9 @@ public abstract class LaserGun : Gun
 {
     [SerializeField] protected float _isShooting;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _gunType = GunType.Laser;
     }
 }

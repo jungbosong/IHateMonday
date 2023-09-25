@@ -36,6 +36,17 @@ public class ResourceManager
 
         return Instantiate(prefab, parent);
     }
+    public GameObject Instantiate(string path, Vector3 position, Quaternion q)
+    {
+        GameObject prefab = Load<GameObject>($"Prefabs/{path}");
+        if (prefab == null)
+        {
+            Debug.Log($"Failed to load prefab : {path}");
+            return null;
+        }
+
+        return Instantiate(prefab, position, q);
+    }
 
     public GameObject Instantiate(GameObject prefab, Transform parent = null)
     {
@@ -50,6 +61,8 @@ public class ResourceManager
         go.name = prefab.name;
         return go;
     }
+
+
 
     public void Destroy(GameObject go)
     {

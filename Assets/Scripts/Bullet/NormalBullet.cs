@@ -5,10 +5,10 @@ using UnityEngine;
 public class NormalBullet : Bullet
 {
     private Rigidbody2D _rigidbody;
-
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        transform.position += transform.right * GetComponent<BoxCollider2D>().size.x * 0.5f;
     }
 
     private void LateUpdate()
@@ -20,8 +20,8 @@ public class NormalBullet : Bullet
     }
     private void FixedUpdate()
     {
-        _rigidbody.velocity = transform.up * _bulletSpeed * Time.deltaTime;
-        _nowMoveDistance += _rigidbody.velocity.magnitude;
+        _rigidbody.velocity = transform.right * _bulletSpeed;
+        _nowMoveDistance += (_rigidbody.velocity * Time.fixedDeltaTime).magnitude;
     }
     
     private void OnDisable()
