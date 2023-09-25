@@ -44,11 +44,27 @@ public class ResourceManager
         return go;
     }
 
+    public GameObject Instantiate(GameObject prefab , Vector3 position, Quaternion q)
+    {
+        GameObject go = Object.Instantiate(prefab , position, q);
+        go.name = prefab.name;
+        return go;
+    }
+
     public void Destroy(GameObject go)
     {
         if (go == null)
             return;
 
         Object.Destroy(go);
+    }
+
+    public void Destroy(MonoBehaviour mob)
+    {
+        if (mob == null)
+            return;
+
+        Destroy(mob.gameObject);
+        mob = null;
     }
 }
