@@ -8,6 +8,10 @@ public class NormalBullet : Bullet
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    private void OnEnable()
+    {
         transform.position += transform.right * GetComponent<BoxCollider2D>().size.x * 0.5f;
     }
 
@@ -51,7 +55,7 @@ public class NormalBullet : Bullet
             */
             Managers.Resource.Destroy(this);
         }
-        else if(0 != ( _EnvCollisionLayer.value & ( 1 << collision.gameObject.layer ) ))
+        else if(0 != (_envCollisionLayer.value & ( 1 << collision.gameObject.layer ) ))
         {
             //Env오브젝트를 받아와서 그에 맞는 효과 (책이 총에 맞으면 펑 터지더라고요)
             Managers.Resource.Destroy(this);
