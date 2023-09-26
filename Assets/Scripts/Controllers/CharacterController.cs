@@ -8,9 +8,11 @@ public class CharacterController : MonoBehaviour
 {
     public event Action<Vector2> OnMoveEvent;  
     public event Action<Vector2> OnLookEvent;
+    public event Action OnAttackEvent;
 
-    /*private float _timeSinceLastAttack = float.MaxValue;
     protected bool IsAttacking { get; set; }
+    /*private float _timeSinceLastAttack = float.MaxValue;
+    
     protected CharacterStatsHandler Stats { get; private set; }
 
     protected virtual void Awake()
@@ -49,9 +51,9 @@ public class CharacterController : MonoBehaviour
     {
         OnLookEvent?.Invoke(direction);
     }
-    /*public void CallAttackEvent(AttackSO attackSO)
+    public void CallAttackEvent()
     {
-        OnAttackEvent?.Invoke(attackSO);
-    }*/
+        OnAttackEvent?.Invoke();
+    }
 
 }

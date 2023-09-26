@@ -19,11 +19,6 @@ public class TopDownAimRotation : MonoBehaviour
         _controller.OnLookEvent += OnAim;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void OnAim(Vector2 newAimDirection)
     {
