@@ -18,13 +18,14 @@ public class WaveSystem : MonoBehaviour
         _wavePrefab = Resources.Load<GameObject>(_dataPath);
     }
 
-    public void StartWave(bool isBossRoom)
+    public void StartWave(bool isBossRoom, float x, float y, float limit)
     {
         //if (isBossRoom)
         //{
         //      
         //} else
         //{
+        //  _wavePrefab.GetComponent<Wave>().SetSpawnPositionInfo(x, y, limit);
         //  Instantiate(_wavePrefab);
         //}
     }
