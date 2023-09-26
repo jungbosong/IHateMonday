@@ -178,13 +178,13 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 16
+    height: 9
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 30
+  orthographic size: 16
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -232,12 +232,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2101316961514705807, guid: 8ce7218a215c9434bb535364a57caa93, type: 3}
     - target: {fileID: 3226820637244374734, guid: ecd408de9ae1ef745935df38bdb50e1e, type: 3}
+      propertyPath: _maxDepth
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3226820637244374734, guid: ecd408de9ae1ef745935df38bdb50e1e, type: 3}
+      propertyPath: _roomLine
+      value: 
+      objectReference: {fileID: 2497313264408300638, guid: 3006ecdcf9102424094234a76e1c6dd0, type: 3}
+    - target: {fileID: 3226820637244374734, guid: ecd408de9ae1ef745935df38bdb50e1e, type: 3}
       propertyPath: _mapSize.x
-      value: 100
+      value: 192
       objectReference: {fileID: 0}
     - target: {fileID: 3226820637244374734, guid: ecd408de9ae1ef745935df38bdb50e1e, type: 3}
       propertyPath: _mapSize.y
-      value: 100
+      value: 108
       objectReference: {fileID: 0}
     - target: {fileID: 4866728532043763422, guid: ecd408de9ae1ef745935df38bdb50e1e, type: 3}
       propertyPath: m_RootOrder
@@ -245,11 +253,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4866728532043763422, guid: ecd408de9ae1ef745935df38bdb50e1e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 960
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4866728532043763422, guid: ecd408de9ae1ef745935df38bdb50e1e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 540
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4866728532043763422, guid: ecd408de9ae1ef745935df38bdb50e1e, type: 3}
       propertyPath: m_LocalPosition.z

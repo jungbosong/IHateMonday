@@ -16,8 +16,9 @@ public class MapGenerator : MonoBehaviour
     #endregion
 
     #region lineRenderer
-    [SerializeField] private GameObject _line;          // 나뉜 영역을 선으로 보여주기 위함
-    [SerializeField] private GameObject _map;           // line renderer로 표시되는 root 영역
+    [SerializeField] private GameObject _line;          // 각 영역의 경계선을 표시하기 위한 line renderer
+    [SerializeField] private GameObject _map;           // root 영역을 표시하기 위한 line renderer
+    [SerializeField] private GameObject _roomLine;      // 방을 표시하기 위한 line renderer
     #endregion
 
     void Start()
@@ -25,8 +26,10 @@ public class MapGenerator : MonoBehaviour
         SpaceNode root = new SpaceNode(new RectInt(0, 0, _mapSize.x, _mapSize.y));
         DrawMap(0, 0);
         Divide(root, 0);
+        GenerateRoom(root, 0);
     }
 
+    #region GenerateMap
     // 방을 n만큼의 깊이로 이진 분할
     private void Divide(SpaceNode tree, int n)
     {
@@ -52,6 +55,32 @@ public class MapGenerator : MonoBehaviour
         Divide(tree.rightSpace, n + 1);
     }
 
+    // 리프영역에 해당 영역 보다 작은 사이즈의 방 제작
+    private RectInt GenerateRoom(SpaceNode tree, int n)
+    {
+        RectInt rect;
+        if (n == _maxDepth)
+        {
+            rect = tree.spaceRect;
+            int width = Random.Range(rect.width / 2, rect.width - 1);
+            int height = Random.Range(rect.height / 2, rect.height - 1);
+
+            int x = rect.x + Random.Range(1, rect.width - width);
+            int y = rect.y + Random.Range(1, rect.height - height);
+            rect = new RectInt(x, y, width, height);
+            DrawRectangle(rect);
+        }
+        else
+        {
+            tree.leftSpace.roomRect = GenerateRoom(tree.leftSpace, n + 1);
+            tree.rightSpace.roomRect = GenerateRoom(tree.rightSpace, n + 1);
+            rect = tree.leftSpace.roomRect;
+        }
+        return rect;
+    }
+    #endregion
+
+    #region Draw
     // lineRender로 제작할 맵을 그리는 함수
     private void DrawMap(int x, int y)
     {
@@ -69,4 +98,16 @@ public class MapGenerator : MonoBehaviour
         lineRenderer.SetPosition(0, from - _mapSize / 2);
         lineRenderer.SetPosition(1, to - _mapSize / 2);
     }
+    
+    // lineRender로 방을 그리는 함수
+    private void DrawRectangle(RectInt rect)
+    {
+        LineRenderer lineRenderer = Instantiate(_roomLine).GetComponent<LineRenderer>();
+        lineRenderer.SetPosition(0, new Vector2(rect.x, rect.y) - _mapSize / 2);
+        lineRenderer.SetPosition(1, new Vector2(rect.x + rect.width, rect.y) - _mapSize / 2);
+        lineRenderer.SetPosition(2, new Vector2(rect.x + rect.width, rect.y + rect.height) - _mapSize / 2);
+        lineRenderer.SetPosition(3, new Vector2(rect.x, rect.y + rect.height) - _mapSize / 2);
+        lineRenderer.SetColors(Color.white, Color.white);
+    }
+    #endregion
 }
