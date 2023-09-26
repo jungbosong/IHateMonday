@@ -10,25 +10,96 @@ public class PlayerHandler : MonoBehaviour
     private const float MAX_ATTACK_SPEED = 200f;
     private const float MAX_MOVE_SPEED = 200f;
 
-    private Camera _mainCamera;
+    
     private int currentHp = 5;
     private int currentMaxHp = 5;
     private int shieldCount = 0;
-    private float attackPoweCoefficientr = 100f;
+    private float attackPowerCoefficient = 100f;
     private float attackSpeedCoefiicient = 100f;
     private float moveSpeed = 5f;
     private float moveSpeedCoefficient = 100f;
     private bool isInvincible = false;
-    private float invincibilityTime;
+    private float invincibilityTime = 2f;
 
 
-    private void Awake()
+   
+    public int GetCurrentHp()
     {
-        _mainCamera = Camera.main;
+        return currentHp;
+    }
+    public void SetCurrentHp()
+    {
+
+    }
+
+    public int GetCurrentMaxHp()
+    {
+        return currentMaxHp;
+    }
+    public void SetCurrentMaxHp()
+    {
+
+    }
+
+    public int GetShieldCount()
+    {
+        return shieldCount;
+    }
+    public void SetShieldCount()
+    {
+
+    }
+
+    public float GetAttackPowerCoefficient()
+    {
+        return attackPowerCoefficient;
+    }
+    public void SetAttackPowerCoefficient()
+    {
+
+    }
+    public float GetAttackSpeedCoefiicient()
+    {
+        return attackSpeedCoefiicient;
+    }
+    public void SetAttackSpeedCoefiicient()
+    {
+
     }
 
     public float GetMoveSpeed()
     {
         return moveSpeed;
+    }
+    public void SetMoveSpeed()
+    {
+
+    }
+
+    public float GetMoveSpeedCoefficient()
+    {
+        return moveSpeedCoefficient;
+    }
+    public void SetMoveSpeedCoefficient()
+    {
+
+    }
+
+    public bool GetIsInvincible()
+    {
+        return isInvincible;
+    }
+    public void SetIsInvincible()
+    {
+
+    }
+
+    public float GetInvincibilityTime()
+    {
+        return invincibilityTime;
+    }
+    public void SetInvincibilityTime()
+    {
+
     }
 }
