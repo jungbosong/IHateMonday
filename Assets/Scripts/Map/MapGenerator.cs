@@ -27,6 +27,7 @@ public class MapGenerator : MonoBehaviour
         DrawMap(0, 0);
         Divide(root, 0);
         GenerateRoom(root, 0);
+        GenerateLoad(root, 0);
     }
 
     #region GenerateMap
@@ -41,13 +42,13 @@ public class MapGenerator : MonoBehaviour
         {
             tree.leftSpace = new SpaceNode(new RectInt(tree.spaceRect.x, tree.spaceRect.y, split, tree.spaceRect.height));
             tree.rightSpace = new SpaceNode(new RectInt(tree.spaceRect.x + split, tree.spaceRect.y, tree.spaceRect.width - split, tree.spaceRect.height));
-            DrawLine(new Vector2(tree.spaceRect.x + split, tree.spaceRect.y), new Vector2(tree.spaceRect.x + split, tree.spaceRect.y + tree.spaceRect.height));
+            //DrawLine(new Vector2(tree.spaceRect.x + split, tree.spaceRect.y), new Vector2(tree.spaceRect.x + split, tree.spaceRect.y + tree.spaceRect.height));
         }
         else
         {
             tree.leftSpace = new SpaceNode(new RectInt(tree.spaceRect.x, tree.spaceRect.y, tree.spaceRect.width, split));
             tree.rightSpace = new SpaceNode(new RectInt(tree.spaceRect.x, tree.spaceRect.y + split, tree.spaceRect.width, tree.spaceRect.height - split));
-            DrawLine(new Vector2(tree.spaceRect.x , tree.spaceRect.y+ split), new Vector2(tree.spaceRect.x + tree.spaceRect.width, tree.spaceRect.y  + split));
+            //DrawLine(new Vector2(tree.spaceRect.x , tree.spaceRect.y+ split), new Vector2(tree.spaceRect.x + tree.spaceRect.width, tree.spaceRect.y  + split));
         }
         tree.leftSpace.parentSpace = tree;
         tree.rightSpace.parentSpace = tree;
@@ -78,6 +79,22 @@ public class MapGenerator : MonoBehaviour
         }
         return rect;
     }
+
+    // 각 방을 이어주는 길 생성
+    private void GenerateLoad(SpaceNode tree, int n)
+    {
+        if (n == _maxDepth)
+            return;
+
+        Vector2Int leftNodeCenter = tree.leftSpace.center;
+        Vector2Int rightNodeCenter = tree.rightSpace.center;
+
+        DrawLine(new Vector2(leftNodeCenter.x, leftNodeCenter.y), new Vector2(rightNodeCenter.x, leftNodeCenter.y));
+        DrawLine(new Vector2(rightNodeCenter.x, leftNodeCenter.y), new Vector2(rightNodeCenter.x, rightNodeCenter.y));
+
+        GenerateLoad(tree.leftSpace, n + 1);
+        GenerateLoad(tree.rightSpace, n + 1);
+    }
     #endregion
 
     #region Draw
@@ -85,9 +102,9 @@ public class MapGenerator : MonoBehaviour
     private void DrawMap(int x, int y)
     {
         LineRenderer lineRenderer = Instantiate(_map).GetComponent<LineRenderer>();
-        lineRenderer.SetPosition(0, new Vector2(x, y) - _mapSize / 2); //좌측 하단
-        lineRenderer.SetPosition(1, new Vector2(x + _mapSize.x, y) - _mapSize / 2); //우측 하단
-        lineRenderer.SetPosition(2, new Vector2(x + _mapSize.x, y + _mapSize.y) - _mapSize / 2);//우측 상단
+        lineRenderer.SetPosition(0, new Vector2(x, y) - _mapSize / 2);
+        lineRenderer.SetPosition(1, new Vector2(x + _mapSize.x, y) - _mapSize / 2);
+        lineRenderer.SetPosition(2, new Vector2(x + _mapSize.x, y + _mapSize.y) - _mapSize / 2);
         lineRenderer.SetPosition(3, new Vector2(x, y + _mapSize.y) - _mapSize / 2);
     }
 
