@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     protected float _knockBack;
     protected LayerMask _wallCollisionLayer;
     protected LayerMask _targetCollisionLayer;
-    protected LayerMask _EnvCollisionLayer;
+    protected LayerMask _envCollisionLayer;
     [SerializeField] protected GameObject _deadSpawnObject;
     public void Init(float damage, float bulletSpeed, float bulletDistance, float knockBack, bool isPlayerBullet)
     {
@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
         _bulletDistance = bulletDistance;
         _knockBack = knockBack;
         _wallCollisionLayer = LayerMask.GetMask("Wall");
-        //_EnvCollisionLayer = LayerMask.GetMask("Env");
+        //_envCollisionLayer = LayerMask.GetMask("Env");
         BulletTargetSetting(isPlayerBullet);
     }
 
