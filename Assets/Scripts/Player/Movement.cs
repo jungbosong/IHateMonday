@@ -5,7 +5,6 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     private CharacterController _controller;
-    //private CharacterStatsHandler _stats;
     private PlayerHandler _playerHandler;
     private Vector2 _movemetDirection = Vector2.zero;
     private Rigidbody2D _rigidbody;
@@ -17,7 +16,6 @@ public class Movement : MonoBehaviour
     {
         _controller = GetComponent<CharacterController>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        //_stats = GetComponent<CharacterStatsHandler>();
     }
     private void Start()
     {
@@ -46,7 +44,6 @@ public class Movement : MonoBehaviour
 
     private void ApplyMovement(Vector2 direction)
     {
-        //direction = direction * _stats.CurrentStats.speed;
         direction = direction * _playerHandler.GetMoveSpeed();
         if (knockbackDuration > 0.0f)
         {
