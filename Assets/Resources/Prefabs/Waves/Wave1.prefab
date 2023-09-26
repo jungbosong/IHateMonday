@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 292723597255240331}
   - component: {fileID: 3553602371365354772}
   m_Layer: 0
-  m_Name: WaveRoom1
+  m_Name: Wave1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
