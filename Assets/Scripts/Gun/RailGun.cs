@@ -109,7 +109,7 @@ public class RailGun : CharzingGun
     {
         if(_maxShotCharzing < _shotCharzing)
         {
-            GameObject go = Managers.Resource.Instantiate("Bullets/NormalBullet", _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
+            GameObject go = Managers.Resource.Instantiate("Bullets/RailBullet", _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
             NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
             bullet.Init(_damage, _bulletSpeed, _bulletDistance, _knockBack, true);
 

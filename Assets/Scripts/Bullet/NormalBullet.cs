@@ -28,19 +28,16 @@ public class NormalBullet : Bullet
         _nowMoveDistance += (_rigidbody.velocity * Time.fixedDeltaTime).magnitude;
     }
     
-    private void OnDisable()
-    {
-        //여기서 이펙트효과
-        if(_deadSpawnObject)
-        {
-            Managers.Resource.Instantiate(_deadSpawnObject , transform.position, transform.rotation);
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(0 != ( _wallCollisionLayer.value & (1 << collision.gameObject.layer)))
         {
+            if (_deadSpawnAnimatorController != null)
+            {
+                GameObject go = Managers.Resource.Instantiate("Effects/OneShotEffect");
+                go.GetComponent<OneShotEffect>().Init(collision.ClosestPoint(transform.position) , _deadSpawnAnimatorController);
+            }
             Managers.Resource.Destroy(this);
         }
         else if(0 != ( _targetCollisionLayer.value & ( 1 << collision.gameObject.layer ) ))

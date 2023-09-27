@@ -11,6 +11,7 @@ public class MoonScraperGun : LaserGun
     
     public override IEnumerator COFire()
     {
+        _animator.SetBool("Fire" , true);
         GameObject go = Managers.Resource.Instantiate("Bullets/MoonScraperBullet", _shotPoint.position, _shotPoint.rotation);
         _moonScraperBullet = go.GetOrAddComponent<MoonScraperBullet>();
         _moonScraperBullet.Init(_damage, _bulletSpeed, _bulletDistance, _knockBack, true);
@@ -21,6 +22,7 @@ public class MoonScraperGun : LaserGun
         {
             if (!_isShooting)
             {
+                _animator.SetBool("Fire" , false);
                 break;
             }
 
@@ -33,7 +35,7 @@ public class MoonScraperGun : LaserGun
 
     private void Update()
     {
-    
+        OnKeyDown();
         if (_isShooting)
         {
             if (_magazine == 0)
@@ -59,6 +61,7 @@ public class MoonScraperGun : LaserGun
 
     public override void OnKeyUp()
     {
+        _animator.SetBool("Fire" , false);
         _isShooting = false;
     }
 
@@ -112,6 +115,7 @@ public class MoonScraperGun : LaserGun
 
     public override void OnRoll()
     {
+        _animator.SetBool("Fire" , false);
         _isShooting = false;
     }
 
