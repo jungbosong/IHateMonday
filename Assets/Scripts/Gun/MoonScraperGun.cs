@@ -1,72 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class MagnumGun : SemiAutoGun
+public class MoonScraperGun : LaserGun
 {
-  
+    [Header("BulletDiscription")]
+    [SerializeField] private MoonScraperBullet _moonScraperBullet;
+    [SerializeField] private int _lineSize = 3;
+
+    
     public override IEnumerator COFire()
     {
-        isManualFireReady = false;
-        isAutoFireReady = false;
+        GameObject go = Managers.Resource.Instantiate("Bullets/MoonScraperBullet", _shotPoint.position, _shotPoint.rotation);
+        _moonScraperBullet = go.GetOrAddComponent<MoonScraperBullet>();
+        _moonScraperBullet.Init(_damage, _bulletSpeed, _bulletDistance, _knockBack, true);
+        _moonScraperBullet.LaserInit(_lineSize, _shotPoint);
+        _isShooting = true;
 
-        GameObject go = Managers.Resource.Instantiate("Bullets/NormalBullet", _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
-        NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
-        bullet.Init(_damage, _bulletSpeed, _bulletDistance, _knockBack, true);
+        while (true)
+        {
+            if (!_isShooting)
+            {
+                break;
+            }
 
-        //Managers.Sound.Play("?");
+            --_magazine;
+            --_ammunition;
 
-        --_magazine;
-
-        yield return new WaitForSeconds(_manualFireDelay);
-        isManualFireReady = true;
-        yield return new WaitForSeconds(_autoFireDelay - _manualFireDelay);
-        isAutoFireReady = true;
+            yield return new WaitForSeconds(_autoFireDelay);
+        }
     }
 
-    public override IEnumerator COReload()
+    private void Update()
     {
-        isReload = true;
-        yield return new WaitForSeconds(_reloadDelay);
-        isReload = false;
-        _magazine = _maxMagazine;
+    
+        if (_isShooting)
+        {
+            if (_magazine == 0)
+                _isShooting = false;
+        }
+        else if(_moonScraperBullet)
+        {
+            Managers.Resource.Destroy(_moonScraperBullet);
+        }
     }
 
     public override void OnKeyDown()
     {
-        if (_ammunition == 0)
+        if (_isShooting)
             return;
-
-        if (isReload || !isManualFireReady)
+        if (isReload)
             return;
-
         if (_magazine == 0)
-        {
-            StartCoroutine(COReload());
-        }
-        else if (isManualFireReady)
-        {
-            StopCoroutine(COFire());
-            StartCoroutine(COFire());
-        }
-    }
-
-    public override void OnKeyPress()
-    {
-        if (isReload || !isAutoFireReady || _magazine == 0)
             return;
-
-        StopCoroutine(COFire());
         StartCoroutine(COFire());
     }
 
+
     public override void OnKeyUp()
     {
-    }
-
-    public override void OnRoll()
-    {
+        _isShooting = false;
     }
 
     public override void OnLook(Vector2 worldPos)
@@ -82,6 +75,7 @@ public class MagnumGun : SemiAutoGun
 
         if ((playerPosition - worldPos).magnitude < (playerPosition - playerRightHandPosition).magnitude)
             return;
+
 
         leftdir = (worldPos - (Vector2)playerLeftHandPosition).normalized;
         rightdir = (worldPos - (Vector2)playerRightHandPosition).normalized;
@@ -115,4 +109,18 @@ public class MagnumGun : SemiAutoGun
 
         transform.rotation = Quaternion.Euler(0, rotY, rotZ);
     }
+
+    public override void OnRoll()
+    {
+        _isShooting = false;
+    }
+
+    public override IEnumerator COReload()
+    {
+        throw new System.NotImplementedException();
+    }
+    public override void OnKeyPress()
+    {
+    }
+
 }

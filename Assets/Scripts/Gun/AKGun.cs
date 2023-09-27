@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class MagnumGun : SemiAutoGun
+public class AKGun : AutoGun
 {
-  
     public override IEnumerator COFire()
     {
-        isManualFireReady = false;
         isAutoFireReady = false;
 
         GameObject go = Managers.Resource.Instantiate("Bullets/NormalBullet", _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
@@ -18,10 +15,10 @@ public class MagnumGun : SemiAutoGun
         //Managers.Sound.Play("?");
 
         --_magazine;
+        --_ammunition;
 
-        yield return new WaitForSeconds(_manualFireDelay);
-        isManualFireReady = true;
-        yield return new WaitForSeconds(_autoFireDelay - _manualFireDelay);
+        yield return new WaitForSeconds(_autoFireDelay);
+
         isAutoFireReady = true;
     }
 
@@ -30,7 +27,7 @@ public class MagnumGun : SemiAutoGun
         isReload = true;
         yield return new WaitForSeconds(_reloadDelay);
         isReload = false;
-        _magazine = _maxMagazine;
+        _magazine = Mathf.Min(_maxMagazine, _ammunition);
     }
 
     public override void OnKeyDown()
@@ -38,18 +35,12 @@ public class MagnumGun : SemiAutoGun
         if (_ammunition == 0)
             return;
 
-        if (isReload || !isManualFireReady)
+        if (isReload || !isAutoFireReady)
             return;
 
         if (_magazine == 0)
-        {
             StartCoroutine(COReload());
-        }
-        else if (isManualFireReady)
-        {
-            StopCoroutine(COFire());
-            StartCoroutine(COFire());
-        }
+
     }
 
     public override void OnKeyPress()
@@ -57,14 +48,12 @@ public class MagnumGun : SemiAutoGun
         if (isReload || !isAutoFireReady || _magazine == 0)
             return;
 
-        StopCoroutine(COFire());
         StartCoroutine(COFire());
     }
 
     public override void OnKeyUp()
     {
     }
-
     public override void OnRoll()
     {
     }
@@ -82,6 +71,7 @@ public class MagnumGun : SemiAutoGun
 
         if ((playerPosition - worldPos).magnitude < (playerPosition - playerRightHandPosition).magnitude)
             return;
+
 
         leftdir = (worldPos - (Vector2)playerLeftHandPosition).normalized;
         rightdir = (worldPos - (Vector2)playerRightHandPosition).normalized;
