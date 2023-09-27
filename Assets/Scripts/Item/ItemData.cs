@@ -16,6 +16,7 @@ public enum ConsumableType
     AttackSpeed,
     BulletAmount,
     MoveSpeed,
+    BulletGuide,
     IncreaseDamage,
     BulletDelete,
     Invincibility
@@ -36,6 +37,7 @@ public class ItemData : ScriptableObject
     //public string toolTip;
     public ItemType type;
     public Sprite icon;
+    public GameObject dropPrefab;
 
     [Header("Stacking")]
     public int stack;
