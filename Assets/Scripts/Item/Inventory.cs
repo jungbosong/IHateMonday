@@ -95,7 +95,7 @@ public class Inventory : MonoBehaviour
         //아이템 체인지 키 눌렀을때
         //inventoryUI Set 호출
         //itemsList[itemListIndex] 사용 -> index 값이 listLength 이상 => 0으로
-        _itemListIndex++;
+        _itemListIndex = (_itemListIndex + 1) % _itemsList.Count;
         _selectItem.item = _itemsList[_itemListIndex].itemData;
         _inventoryUI.Set(_selectItem);
     }

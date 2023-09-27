@@ -23,9 +23,9 @@ public class UseItem : MonoBehaviour
     {
         _bullet = GameObject.FindGameObjectsWithTag("Bullet");
         
-        foreach(GameObject thisBullet in _bullet)
+        foreach(GameObject currentAllBullet in _bullet)
         {
-            Managers.Resource.Destroy(thisBullet);
+            Managers.Resource.Destroy(currentAllBullet);
         }
     }
 

@@ -7,17 +7,17 @@ using UnityEngine;
 
 public class CoralBox : MonoBehaviour, IBox
 {
-    private ItemCreate create;
-    private bool needKey = true;
-    private int random;
+    private ItemCreate _create;
+    private bool _needKey = true;
+    private int _random;
 
 
     private void Awake()
     {
-        create = GetComponent<ItemCreate>();
-        random = Random.Range(0, 100);
-        if(random <= 30)    //키 필요 박스인지 설정
-            needKey = false;
+        _create = GetComponent<ItemCreate>();
+        _random = Random.Range(0, 100);
+        if(_random <= 30)    //키 필요 박스인지 설정
+            _needKey = false;
     }
 
 
@@ -25,7 +25,7 @@ public class CoralBox : MonoBehaviour, IBox
     {
         if(other.tag == "Player")
         {
-            if (needKey)
+            if (_needKey)
                 OnKeyUsePopUpUI();
             else
                 OnKeyUse();
@@ -41,6 +41,6 @@ public class CoralBox : MonoBehaviour, IBox
     public void OnKeyUse()  //박스 오픈
     {
         Managers.Destroy(this);
-        create.OnCreateItem();
+        _create.OnCreateItem();
     }
 }
