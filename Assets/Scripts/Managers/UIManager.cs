@@ -47,14 +47,15 @@ public class UIManager
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject prefab = Managers.Resource.Load<GameObject>($"Prefabs/UI/SubItem/{name}");
+        //GameObject prefab = Managers.Resource.Load<GameObject>($"Prefabs/UI/SubItem/{name}");
 
-        GameObject go = Managers.Resource.Instantiate(prefab);
+        GameObject go = Managers.Resource.Instantiate($"UI/SubItem/{name}");
         if (parent != null)
             go.transform.SetParent(parent);
 
         go.transform.localScale = Vector3.one;
-        go.transform.localPosition = prefab.transform.position;
+        //수정 Resource에는 프리팹의 로컬포지션을 넣은 Instantiate가 실행되니까.. 문제없을듯합니다
+        //go.transform.localPosition = prefab.transform.position;
 
         return Utils.GetOrAddComponent<T>(go);
     }
@@ -78,7 +79,7 @@ public class UIManager
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject prefab = Managers.Resource.Load<GameObject>($"Prefabs/UI/Popup/{name}");
+        //GameObject prefab = Managers.Resource.Load<GameObject>($"Prefabs/UI/Popup/{name}");
 
         GameObject go = Managers.Resource.Instantiate($"UI/Popup/{name}");
         T popup = Utils.GetOrAddComponent<T>(go);
@@ -92,7 +93,8 @@ public class UIManager
             go.transform.SetParent(Root.transform);
 
         go.transform.localScale = Vector3.one;
-        go.transform.localPosition = prefab.transform.position;
+        //수정 Resource에는 프리팹의 로컬포지션을 넣은 Instantiate가 실행되니까 문제없을듯합니다
+        //go.transform.localPosition = prefab.transform.position;
 
         return popup;
     }
