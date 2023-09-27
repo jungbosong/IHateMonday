@@ -1,27 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class MagnumGun : SemiAutoGun
+public class ColtGun : BurstGun
 {
-  
+
     public override IEnumerator COFire()
     {
-        isManualFireReady = false;
         isAutoFireReady = false;
+        _burstedBullet = 0;
 
-        GameObject go = Managers.Resource.Instantiate("Bullets/NormalBullet", _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
-        NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
-        bullet.Init(_damage, _bulletSpeed, _bulletDistance, _knockBack, true);
+        while (_burstedBullet != _maxBurstBullet && _magazine != 0)
+        {
+            GameObject go = Managers.Resource.Instantiate("Bullets/NormalBullet", _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
+            NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
+            bullet.Init(_damage, _bulletSpeed, _bulletDistance, _knockBack, true);
 
-        //Managers.Sound.Play("?");
+            //Managers.Sound.Play("?");
 
-        --_magazine;
+            --_magazine;
+            --_ammunition;
+            ++_burstedBullet;
 
-        yield return new WaitForSeconds(_manualFireDelay);
-        isManualFireReady = true;
-        yield return new WaitForSeconds(_autoFireDelay - _manualFireDelay);
+            yield return new WaitForSeconds(_shootingDelay);
+        }
+
+        yield return new WaitForSeconds(_autoFireDelay);
+
         isAutoFireReady = true;
     }
 
@@ -30,7 +35,7 @@ public class MagnumGun : SemiAutoGun
         isReload = true;
         yield return new WaitForSeconds(_reloadDelay);
         isReload = false;
-        _magazine = _maxMagazine;
+        _magazine = Mathf.Min(_maxMagazine, _ammunition);
     }
 
     public override void OnKeyDown()
@@ -38,35 +43,27 @@ public class MagnumGun : SemiAutoGun
         if (_ammunition == 0)
             return;
 
-        if (isReload || !isManualFireReady)
+        if (isReload || !isAutoFireReady)
             return;
 
         if (_magazine == 0)
-        {
             StartCoroutine(COReload());
-        }
-        else if (isManualFireReady)
-        {
-            StopCoroutine(COFire());
+        else
             StartCoroutine(COFire());
-        }
     }
 
     public override void OnKeyPress()
     {
-        if (isReload || !isAutoFireReady || _magazine == 0)
-            return;
-
-        StopCoroutine(COFire());
-        StartCoroutine(COFire());
     }
 
     public override void OnKeyUp()
     {
     }
-
     public override void OnRoll()
     {
+        StopCoroutine(COFire());
+        isAutoFireReady = true;
+        _burstedBullet = 0;
     }
 
     public override void OnLook(Vector2 worldPos)
