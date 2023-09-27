@@ -13,16 +13,17 @@ public class ItemCreate : MonoBehaviour
 
     public void OnCreateItem()
     {
-        itemType = Random.Range(0, 2);
-        index = Random.Range(0, items.Length);
+        itemType = Random.Range(0, 3);
 
         switch (itemType)
         {
             case 0:
-                Managers.Instantiate(items[index]);
+                index = Random.Range(0, weapons.Length);    // 한번 뽑은 무기는 제외
+                Managers.Resource.Instantiate(weapons[index]);
                 break;
-            case 1:
-                Managers.Instantiate(weapons[index]);
+            default:
+                index = Random.Range(0, items.Length);
+                Managers.Resource.Instantiate(items[index]);
                 break;
         }
     }

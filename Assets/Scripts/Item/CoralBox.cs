@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//상자 생성
+//위치값 받아서 생성
 
 public class CoralBox : MonoBehaviour, IBox
 {
@@ -33,7 +35,7 @@ public class CoralBox : MonoBehaviour, IBox
 
     public void OnKeyUsePopUpUI()
     {
-        //키사용 박스 팝업 호출
+        //키사용 박스 팝업 호출 , 게임정지
     }
 
     public void OnKeyUse()  //박스 오픈

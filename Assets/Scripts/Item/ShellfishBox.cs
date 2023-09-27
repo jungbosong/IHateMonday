@@ -32,7 +32,7 @@ public class ShellfishBox : MonoBehaviour, IBox
 
     public void OnKeyUsePopUpUI()
     {
-        //키사용 박스 팝업 호출
+        //키사용 박스 팝업 호출 , 게임정지
     }
 
     public void OnKeyUse()  //박스 오픈
