@@ -49,10 +49,10 @@ public abstract class Gun : MonoBehaviour
     [HideInInspector]public bool isAutoFireReady = true;
     [HideInInspector]public bool isReload = false;
     protected bool isLeftHand = true;
-    
 
     protected virtual void Awake()
     {
+       
         _magazine = _maxMagazine;
         _ammunition = _maxAmmunition;
         _camera = Camera.main;
@@ -62,9 +62,12 @@ public abstract class Gun : MonoBehaviour
         return _gunType;
     }
 
+    //장착 / 해제 시 플레이어쪽에서 불러야할 함수
     public void Equip(Action onKeyDown, Action onKeyPress, Action onKeyUp, Action onRoll, Action<Vector2> onLook)
     {
         isEquip = true;
+        isAutoFireReady = true;
+        isReload = false;
 
         onKeyDown -= OnKeyDown;
         onKeyPress -= OnKeyPress;

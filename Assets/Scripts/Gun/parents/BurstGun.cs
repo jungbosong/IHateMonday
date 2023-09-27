@@ -4,10 +4,11 @@ using UnityEngine;
 
 public abstract class BurstGun : Gun
 {
+    [Header ("BurstSetting")]
     [SerializeField] protected int _maxBurstBullet;
-    [SerializeField] protected int _burstedBullet;
-    [SerializeField] protected bool _isShooting;
+    protected int _burstedBullet = 0;
     [SerializeField] protected float _shootingDelay;
+
 
     protected override void Awake()
     {
