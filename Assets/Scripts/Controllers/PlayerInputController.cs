@@ -10,6 +10,28 @@ public class PlayerInputController : CharacterController
     {
         _camera = Camera.main;
     }
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            // 마우스 왼쪽 버튼을 눌렀을 때의 처리
+            Debug.Log("down");
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            // 마우스 왼쪽 버튼을 누르고 있는 도중의 처리
+            Debug.Log("press");
+
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            // 마우스 왼쪽 버튼을 뗄 때의 처리
+            Debug.Log("up");
+
+        }
+    }
 
     public void OnMove(InputValue value)
     {
@@ -33,5 +55,22 @@ public class PlayerInputController : CharacterController
     public void OnFire(InputValue value)
     {
         IsAttacking = value.isPressed;
+    }
+
+    public void OnChangeActive()
+    {
+        CallChangeActiveEvent();
+    }
+    public void OnUseActive( )
+    {
+        CallUseActiveEvent();
+    }
+    public void OnThrowWeapon()
+    {
+        CallThrowWeaponEvent();
+    }
+    public void OnChangeWeapon()
+    {
+        CallChangeWeaponEvent();
     }
 }

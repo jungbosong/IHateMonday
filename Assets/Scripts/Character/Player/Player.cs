@@ -38,6 +38,8 @@ public class Player : MonoBehaviour
         _playerRenderer.color = Color.white;
     }
 
+    
+
     void GameOver()
     {
         _endPanel.SetActive(true);
