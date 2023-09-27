@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TopDownAimRotation : MonoBehaviour
+public class CharacterAimRotation : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer armRenderer;
     [SerializeField] private Transform armPovot;

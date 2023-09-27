@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5664306978412711203}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.766, y: 0.032, z: 0}
+  m_LocalPosition: {x: 0.782, y: 0.056, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9127659053746328225}
   - component: {fileID: 939241136619865081}
+  - component: {fileID: -3482659211059403103}
   m_Layer: 0
   m_Name: AKGun
   m_TagString: Untagged
@@ -63,7 +64,7 @@ Transform:
   - {fileID: 1919456651170616852}
   - {fileID: 9121394062772172816}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &939241136619865081
 MonoBehaviour:
@@ -92,6 +93,27 @@ MonoBehaviour:
   isEquip: 0
   isAutoFireReady: 1
   isReload: 0
+--- !u!95 &-3482659211059403103
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8076397242550700698}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7db4d70e98a4c0946a637b0717f32953, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8662027069841328550
 GameObject:
   m_ObjectHideFlags: 0

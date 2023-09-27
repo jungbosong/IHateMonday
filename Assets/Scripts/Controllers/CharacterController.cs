@@ -9,39 +9,13 @@ public class CharacterController : MonoBehaviour
     public event Action<Vector2> OnMoveEvent;  
     public event Action<Vector2> OnLookEvent;
     public event Action OnAttackEvent;
+    public event Action OnChangeActiveEven;
+    public event Action OnUseActiveEven;
+    public event Action OnThrowWeaponEven;
+    public event Action OnChangeWeaponEven;
+
 
     protected bool IsAttacking { get; set; }
-    /*private float _timeSinceLastAttack = float.MaxValue;
-    
-    protected CharacterStatsHandler Stats { get; private set; }
-
-    protected virtual void Awake()
-    {
-        Stats = GetComponent<CharacterStatsHandler>();
-    }
-
-    protected virtual void Update()
-    {
-        HandleAttackDelay();
-    }
-
-    private void HandleAttackDelay()
-    {
-        if (Stats.CurrentStats.attackSO == null)
-        {
-            return;
-        }
-        if (_timeSinceLastAttack <= Stats.CurrentStats.attackSO.delay)
-        {
-            _timeSinceLastAttack += Time.deltaTime;
-        }
-
-        if (IsAttacking && _timeSinceLastAttack > Stats.CurrentStats.attackSO.delay)
-        {
-            _timeSinceLastAttack = 0;
-            CallAttackEvent(Stats.CurrentStats.attackSO);
-        }
-    }*/
 
     public void CallMoveEvent(Vector2 direction)
     {
@@ -51,9 +25,29 @@ public class CharacterController : MonoBehaviour
     {
         OnLookEvent?.Invoke(direction);
     }
-    public void CallAttackEvent()
+    /*public void CallAttackEvent()
     {
         OnAttackEvent?.Invoke();
+    }*/
+    public void CallChangeActiveEvent()
+    {
+        OnChangeActiveEven?.Invoke();
+
+    }
+    public void CallUseActiveEvent()
+    {
+        OnUseActiveEven?.Invoke();
+
+    }
+    public void CallThrowWeaponEvent()
+    {
+        OnThrowWeaponEven?.Invoke();
+
+    }
+    public void CallChangeWeaponEvent()
+    {
+        OnChangeWeaponEven?.Invoke();
+
     }
 
 }

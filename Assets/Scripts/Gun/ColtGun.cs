@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class ColtGun : BurstGun
 {
-
+    public void Update()
+    {
+        OnKeyDown();
+    }
     public override IEnumerator COFire()
     {
         isAutoFireReady = false;
@@ -12,10 +15,12 @@ public class ColtGun : BurstGun
 
         while (_burstedBullet != _maxBurstBullet && _magazine != 0)
         {
-            GameObject go = Managers.Resource.Instantiate("Bullets/NormalBullet", _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
+            GameObject go = Managers.Resource.Instantiate("Bullets/ColtBullet" , _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
             NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
             bullet.Init(_damage, _bulletSpeed, _bulletDistance, _knockBack, true);
 
+
+            _animator.Play("ColtGun_Fire" , -1 , 0f);
             //Managers.Sound.Play("?");
 
             --_magazine;
@@ -33,7 +38,10 @@ public class ColtGun : BurstGun
     public override IEnumerator COReload()
     {
         isReload = true;
+        _animator.SetBool("Reload" , true);
         yield return new WaitForSeconds(_reloadDelay);
+
+        _animator.SetBool("Reload" , false);
         isReload = false;
         _magazine = Mathf.Min(_maxMagazine, _ammunition);
     }

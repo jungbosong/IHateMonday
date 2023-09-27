@@ -7,8 +7,10 @@ using UnityEngine.Events;
 public class HealthSystem : MonoBehaviour
 {
     [SerializeField] private float healthChangeDelay = .5f;
+    private CharacterStatsHandler _characterStatsHandler;
+    //[SerializeField] public PlayerHandler baseStats;
 
-    private PlayerHandler _playerHandler;
+    //private CharacterStats _playerHandler;
     private float _timeSinceLastChange = float.MaxValue;    
 
     public event Action OnDamage;
@@ -17,15 +19,16 @@ public class HealthSystem : MonoBehaviour
     public event Action OnInvincibilityEnd;
 
     public int CurrentHealth { get; private set; }  
-    public int MaxHealth => _playerHandler.GetCurrentMaxHp();
+    public int MaxHealth => _characterStatsHandler._playerStat.GetCurrentMaxHp();
 
     private void Awake()
     {
-        _playerHandler = GetComponent<PlayerHandler>();
+        _characterStatsHandler = GetComponent<CharacterStatsHandler>();
     }
     void Start()
     {
-        CurrentHealth = _playerHandler.GetCurrentHp();
+        CharacterStats player = new CharacterStats();
+        CurrentHealth = _characterStatsHandler._playerStat.GetCurrentHp();
     }
 
     void Update()

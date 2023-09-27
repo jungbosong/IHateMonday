@@ -27,7 +27,8 @@ public class MoonScraperBullet : Bullet
         Vector2 pos = _parentTransform.position;
         float length = _bulletDistance;
         _lineRenderer.SetPosition(0, pos);
-        
+        _lineRenderer.startWidth = transform.localScale.x;
+        _lineRenderer.endWidth = transform.localScale.x;
         //레이를 쏠겁니다 포지션카운트만큼
         for (int i = 1; i < _lineRenderer.positionCount; ++i)
         {
