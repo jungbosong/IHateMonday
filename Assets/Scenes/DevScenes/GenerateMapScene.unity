@@ -398,7 +398,7 @@ PrefabInstance:
       objectReference: {fileID: 2101316961514705807, guid: 8ce7218a215c9434bb535364a57caa93, type: 3}
     - target: {fileID: 3226820637244374734, guid: ecd408de9ae1ef745935df38bdb50e1e, type: 3}
       propertyPath: _maxDepth
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3226820637244374734, guid: ecd408de9ae1ef745935df38bdb50e1e, type: 3}
       propertyPath: _roomLine
