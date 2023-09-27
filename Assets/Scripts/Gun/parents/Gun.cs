@@ -49,11 +49,11 @@ public abstract class Gun : MonoBehaviour
     [HideInInspector]public bool isAutoFireReady = true;
     [HideInInspector]public bool isReload = false;
     protected bool isLeftHand = true;
-
+    protected Animator _animator;
     protected virtual void Awake()
     {
-       
-        _magazine = _maxMagazine;
+        TryGetComponent<Animator>(out _animator);
+         _magazine = _maxMagazine;
         _ammunition = _maxAmmunition;
         _camera = Camera.main;
     }
@@ -91,6 +91,10 @@ public abstract class Gun : MonoBehaviour
         onRoll -= OnRoll;
         onLook -= OnLook;
 
+        if(_animator != null)
+        {
+            _animator.SetBool("Reload" , false);
+        }
         StopAllCoroutines();
         gameObject.SetActive(false);
     }

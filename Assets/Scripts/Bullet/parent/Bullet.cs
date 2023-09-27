@@ -13,12 +13,13 @@ public class Bullet : MonoBehaviour
     protected LayerMask _wallCollisionLayer;
     protected LayerMask _targetCollisionLayer;
     protected LayerMask _envCollisionLayer;
-    [SerializeField] protected GameObject _deadSpawnObject;
+    [SerializeField] protected RuntimeAnimatorController _deadSpawnAnimatorController;
     public void Init(float damage, float bulletSpeed, float bulletDistance, float knockBack, bool isPlayerBullet)
     {
         _damage = damage;
         _bulletSpeed = bulletSpeed;
         _bulletDistance = bulletDistance;
+        _nowMoveDistance = 0;
         _knockBack = knockBack;
         _wallCollisionLayer = LayerMask.GetMask("Wall");
         //_envCollisionLayer = LayerMask.GetMask("Env");

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BaseScene : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class BaseScene : MonoBehaviour
             return false;
 
         _init = true;
-        GameObject go = GameObject.Find("EventSystem");
+        Object go = GameObject.FindObjectOfType(typeof(EventSystem));
         if (go == null)
             Managers.Resource.Instantiate("UI/EventSystem").name = "@EventSystem";
 

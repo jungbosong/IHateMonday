@@ -17,6 +17,7 @@ public class Define
         Unknown,
         LobbyScene,
         DungeonScene,
+        PoolTestScene,
     }
 
     public enum Sound
