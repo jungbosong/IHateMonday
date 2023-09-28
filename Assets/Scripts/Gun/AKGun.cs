@@ -4,11 +4,22 @@ using UnityEngine;
 
 public class AKGun : AutoGun
 {
+    Animator animator;
+
+    public void Update()
+    {
+        OnKeyPress();
+
+        if (_magazine == 0)
+            OnKeyDown();
+    }
     public override IEnumerator COFire()
     {
         isAutoFireReady = false;
 
-        GameObject go = Managers.Resource.Instantiate("Bullets/NormalBullet", _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
+        _animator.Play("AKGun_Fire" , -1 , 0f);
+        
+        GameObject go = Managers.Resource.Instantiate("Bullets/AKBullet", _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
         NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
         bullet.Init(_damage, _bulletSpeed, _bulletDistance, _knockBack, true);
 
@@ -25,7 +36,11 @@ public class AKGun : AutoGun
     public override IEnumerator COReload()
     {
         isReload = true;
+        _animator.SetBool("Reload", true);
+        
         yield return new WaitForSeconds(_reloadDelay);
+
+        _animator.SetBool("Reload" , false);
         isReload = false;
         _magazine = Mathf.Min(_maxMagazine, _ammunition);
     }

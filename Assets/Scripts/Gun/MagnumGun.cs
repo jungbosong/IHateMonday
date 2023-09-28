@@ -5,16 +5,23 @@ using UnityEngine.InputSystem;
 
 public class MagnumGun : SemiAutoGun
 {
-  
+    public void Update()
+    {
+        OnKeyPress();
+
+        if (_magazine == 0)
+            OnKeyDown();
+    }
     public override IEnumerator COFire()
     {
         isManualFireReady = false;
         isAutoFireReady = false;
 
-        GameObject go = Managers.Resource.Instantiate("Bullets/NormalBullet", _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
+        GameObject go = Managers.Resource.Instantiate("Bullets/MagnumBullet" , _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
         NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
         bullet.Init(_damage, _bulletSpeed, _bulletDistance, _knockBack, true);
 
+        _animator.Play("MagnumGun_Fire" , -1 , 0f);
         //Managers.Sound.Play("?");
 
         --_magazine;
@@ -28,7 +35,10 @@ public class MagnumGun : SemiAutoGun
     public override IEnumerator COReload()
     {
         isReload = true;
+        _animator.SetBool("Reload" , true);
         yield return new WaitForSeconds(_reloadDelay);
+
+        _animator.SetBool("Reload" , false);
         isReload = false;
         _magazine = _maxMagazine;
     }
