@@ -26,12 +26,11 @@ public class CharacterController : MonoBehaviour
 
     private void HandleAttackDelay()
     {
-        if (_timeSinceLastAttack <= 0.2f)  // 현재 공격 딜레이보다 시간이 적으면
+        if (_timeSinceLastAttack <= 0.2f) 
         {
-            _timeSinceLastAttack += Time.deltaTime;     // 시간 증가
+            _timeSinceLastAttack += Time.deltaTime;   
         }
 
-        // 마우스가 눌리는 동안 딜레이보다 마지막으로 공격한 시간이 커지면 
         if (IsAttacking && _timeSinceLastAttack > 0.2f)
         {
             _timeSinceLastAttack = 0;

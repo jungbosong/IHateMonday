@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 816534739285101838}
   - component: {fileID: 926866694408053490}
   - component: {fileID: 464893178127099759}
+  - component: {fileID: 2739145188867563841}
   - component: {fileID: 5261972831869092500}
   - component: {fileID: 3997783509517066494}
   m_Layer: 0
@@ -37,7 +38,7 @@ Transform:
   m_Children:
   - {fileID: 5673143481290541883}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8382675621352834694
 MonoBehaviour:
@@ -63,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732657f8cd9482c4f812c0517f809394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _characterSpriteRenderer: {fileID: 1069303807203864652}
   followRange: 15
   shootRange: 10
 --- !u!114 &816534739285101838
@@ -112,6 +114,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74164ee3273dd314fb617bd57c2b5e05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2739145188867563841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3036663290664900722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcba29c7e22b28f489e9c478fd31bd1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!50 &5261972831869092500

@@ -47,12 +47,12 @@ public class HealthSystem : MonoBehaviour
         if (change == 0 || _timeSinceLastChange < healthChangeDelay)
         {
             return false;
-        }
+        }        
 
         _timeSinceLastChange = 0f;
         CurrentHealth += change;
         CurrentHealth = Mathf.Min(CurrentHealth, MaxHealth);
-        CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;
+        CurrentHealth = Mathf.Max(CurrentHealth, 0);
 
         if (change > 0)
         {

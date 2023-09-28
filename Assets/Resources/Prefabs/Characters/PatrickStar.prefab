@@ -144,7 +144,7 @@ Transform:
   m_Children:
   - {fileID: 8375623829105086680}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3412912468738706634
 MonoBehaviour:
@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732657f8cd9482c4f812c0517f809394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _characterSpriteRenderer: {fileID: 6667551076041312936}
   followRange: 15
   shootRange: 10
 --- !u!114 &6180438749668999760

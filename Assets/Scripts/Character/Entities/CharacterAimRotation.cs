@@ -8,7 +8,6 @@ public class CharacterAimRotation : MonoBehaviour
     [SerializeField] private Transform armPovot;
     [SerializeField] private SpriteRenderer characterRenderer;
     private CharacterController _controller;
-    // Start is called before the first frame update
 
     private void Awake()
     {
@@ -18,7 +17,6 @@ public class CharacterAimRotation : MonoBehaviour
     {
         _controller.OnLookEvent += OnAim;
     }
-
 
     public void OnAim(Vector2 newAimDirection)
     {

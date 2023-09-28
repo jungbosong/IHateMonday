@@ -8,6 +8,8 @@ public class EnemyController : CharacterController
     //GameManager gamemanager;
     protected Transform ClosestTarget { get; private set; }
 
+    [SerializeField] private SpriteRenderer _characterSpriteRenderer;
+
     //protected override void Awake()
     //{
     //    base.Awake();
@@ -35,5 +37,12 @@ public class EnemyController : CharacterController
     protected Vector2 DirectionToTarget()
     {
         return (ClosestTarget.position - transform.position).normalized;
+    }
+
+    // 움직이는 방향인 direction에 따라서 Enemy의 Sprite가 뒤집히도록
+    protected void Rotate(Vector2 direction)
+    {
+        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        _characterSpriteRenderer.flipX = Mathf.Abs(rotZ) > 90f;
     }
 }

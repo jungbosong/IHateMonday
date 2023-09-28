@@ -9,8 +9,6 @@ public class ContactEnemyController : EnemyController
     [SerializeField] private string targetTag = "Player";
     private bool _isCollidingWithTarget;
 
-    [SerializeField] private SpriteRenderer _characterSpriteRenderer;
-
     private HealthSystem _healthSystem;
     private HealthSystem _collidingTargetHealthSystem;
     private CharacterMovement _collidingMovement;
@@ -58,13 +56,6 @@ public class ContactEnemyController : EnemyController
         //      // 부딪힌 대상에 넉백 효과 적용
         //      _collidingMovement.ApplyKnockback(transform, attackSO.knockbackPower, attackSO.knockbackTime);
         //}
-    }
-
-    // 움직이는 방향인 direction에 따라서 Enemy의 Sprite가 뒤집히도록
-    private void Rotate(Vector2 direction)
-    {
-        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        _characterSpriteRenderer.flipX = Mathf.Abs(rotZ) > 90f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
