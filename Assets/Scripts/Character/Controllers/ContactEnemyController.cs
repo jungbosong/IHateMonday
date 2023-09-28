@@ -46,7 +46,7 @@ public class ContactEnemyController : EnemyController
             direction = DirectionToTarget();
         }
 
-        // CallMoveEvent(direction);    // direction 방향으로 움직이도록 MoveEvent 호출
+        CallMoveEvent(direction);    // direction 방향으로 움직이도록 MoveEvent 호출
         Rotate(direction);
     }
 

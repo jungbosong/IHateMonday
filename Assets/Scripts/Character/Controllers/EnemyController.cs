@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO CharacterController 상속받도록 수정
 // TODO GameManager 추가 및 역할 논의 -> Player를 GameManager가 들고 있게 할 것인지
-public class EnemyController : MonoBehaviour
+public class EnemyController : CharacterController
 {
     //GameManager gamemanager;
     protected Transform ClosestTarget { get; private set; }
@@ -16,6 +15,7 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void Start()
     {
+        ClosestTarget = GameObject.FindWithTag("Player").transform;
         //gameManager = GameManager.instance;
         //ClosestTarget = gameManager.Player;
     }
