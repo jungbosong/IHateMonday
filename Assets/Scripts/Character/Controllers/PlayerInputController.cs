@@ -15,20 +15,20 @@ public class PlayerInputController : CharacterController
         if (Input.GetMouseButtonDown(0))
         {
             // 마우스 왼쪽 버튼을 눌렀을 때의 처리
-            Debug.Log("down");
+            //Debug.Log("down");
         }
 
         if (Input.GetMouseButton(0))
         {
             // 마우스 왼쪽 버튼을 누르고 있는 도중의 처리
-            Debug.Log("press");
+            //Debug.Log("press");
 
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             // 마우스 왼쪽 버튼을 뗄 때의 처리
-            Debug.Log("up");
+            //Debug.Log("up");
 
         }
     }

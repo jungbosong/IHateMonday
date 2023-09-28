@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
 
     void OnDamage()
     {
-        _characterStatsHandler.ChangeStat(-1f, 1);  //체력 1감소
+        //_characterStatsHandler.ChangeStat(-1f, 1);  //체력 1감소
         _playerRenderer.color = new Color32(200, 100, 100, 255);
         StartCoroutine(nameof(HitCo));
     }

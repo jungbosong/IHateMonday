@@ -18,15 +18,16 @@ public class HealthSystem : MonoBehaviour
     public event Action OnInvincibilityEnd;
 
     public int CurrentHealth { get; private set; }  
-    public int MaxHealth => _characterStatsHandler._playerStat.GetCurrentMaxHp();
+    public int MaxHealth => _characterStatsHandler.CurrentStats.currentMaxHp;
 
     private void Awake()
     {
         _characterStatsHandler = GetComponent<CharacterStatsHandler>();
     }
+
     void Start()
     {
-        CurrentHealth = _characterStatsHandler._playerStat.GetCurrentHp();
+        CurrentHealth = _characterStatsHandler.CurrentStats.currentHp;
     }
 
     void Update()
@@ -50,7 +51,7 @@ public class HealthSystem : MonoBehaviour
 
         _timeSinceLastChange = 0f;
         CurrentHealth += change;
-        CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth;
+        CurrentHealth = Mathf.Min(CurrentHealth, MaxHealth);
         CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;
 
         if (change > 0)
