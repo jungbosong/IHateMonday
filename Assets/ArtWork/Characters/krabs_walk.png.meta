@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e8a720b8329e5f3409ee74c56c29a273
+guid: aabee061f4ec2a14b8dfef5299168ef2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 618e6789d8270fa48aaa701c6fd4c697
-      internalID: -1030562395
+      spriteID: 1d5f551ea70ea134a9b953893bc4a56c
+      internalID: -1660981602
       vertices: []
       indices: 
       edges: []
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1b9b0904f3a94346b505d5af345b642
-      internalID: 47657843
+      spriteID: b312db106a9ab064baa576061b303bc7
+      internalID: 888652263
       vertices: []
       indices: 
       edges: []
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acf82d2de6d25384d9f550b9988cac51
-      internalID: -1139550428
+      spriteID: bc421ae4649789343ad1626de661ed16
+      internalID: -686640208
       vertices: []
       indices: 
       edges: []
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86644ed752a0fce4c821c2e04cfb8a55
-      internalID: -843400827
+      spriteID: 0d3620c01486ff74eb94e82e55cf25fd
+      internalID: 669755538
       vertices: []
       indices: 
       edges: []
@@ -204,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      krabs_walk_0: -1030562395
-      krabs_walk_1: 47657843
-      krabs_walk_2: -1139550428
-      krabs_walk_3: -843400827
+      krabs_walk_0: -1660981602
+      krabs_walk_1: 888652263
+      krabs_walk_2: -686640208
+      krabs_walk_3: 669755538
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

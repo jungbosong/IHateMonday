@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7497faedf42fe9445b0ff334db9fdf6a
+guid: 22b9ab09b8eca67458bd517c6d616479
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: krabs_idle_0
+      name: plankton_walk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6a0ac7f4c9df4244aef70f7d8844e42
-      internalID: 2053002468
+      spriteID: 50e6ec555126072449bf9d8a64b12708
+      internalID: -686381226
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: krabs_idle_1
+      name: plankton_walk_1
       rect:
         serializedVersion: 2
         x: 160
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9728ba860fc8fd74abcf1665b9f57977
-      internalID: 1490441844
+      spriteID: d71f0472141aa22499450214666a0af6
+      internalID: 121221963
       vertices: []
       indices: 
       edges: []
@@ -162,8 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      krabs_idle_0: 2053002468
-      krabs_idle_1: 1490441844
+      plankton_walk_0: -686381226
+      plankton_walk_1: 121221963
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

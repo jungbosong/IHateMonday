@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0722ef982894be748816d59268b8ec36
+guid: 1962cbbd01f233b4392523fec202ee3a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c48f7e85fd64b6e4990db4eafe1ac065
-      internalID: -868014391
+      spriteID: 118bd20762b95e447bfc46f41865497d
+      internalID: -565022999
       vertices: []
       indices: 
       edges: []
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6735b11504d152642881b3220a816fed
-      internalID: -1506429580
+      spriteID: 8031816647e11c44f899ef854217e7a5
+      internalID: -743798749
       vertices: []
       indices: 
       edges: []
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b3170334108b8946875ea02ca92f69b
-      internalID: 332218369
+      spriteID: 574931f18bcbd964bb1e8dfce1190d04
+      internalID: -116864088
       vertices: []
       indices: 
       edges: []
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c386b4161909caf4882d3b81027aa44e
-      internalID: 655381661
+      spriteID: 7b220507842699a49bc1e4c8990606a1
+      internalID: 1749325727
       vertices: []
       indices: 
       edges: []
@@ -204,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spongebob_walk_0: -868014391
-      spongebob_walk_1: -1506429580
-      spongebob_walk_2: 332218369
-      spongebob_walk_3: 655381661
+      spongebob_walk_0: -565022999
+      spongebob_walk_1: -743798749
+      spongebob_walk_2: -116864088
+      spongebob_walk_3: 1749325727
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

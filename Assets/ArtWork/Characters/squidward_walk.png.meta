@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e09105636e672814982b0708963251ed
+guid: cf3c06afd63f962438b44e0461d07833
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1212150a20857d43a4a1441b161b371
-      internalID: 1719196882
+      spriteID: a08856e6119b6ba41bdf59a49bdbac49
+      internalID: 210894135
       vertices: []
       indices: 
       edges: []
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f01a79abc899eb45b651373e35f6c1d
-      internalID: -1371477767
+      spriteID: 2b5bf016f02453e44a42cd5e38c65853
+      internalID: -585480670
       vertices: []
       indices: 
       edges: []
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73d2968f45f3acf4ebd8483af1e2687e
-      internalID: 1048687190
+      spriteID: 3de5561947e876846a139a2970077356
+      internalID: -304027702
       vertices: []
       indices: 
       edges: []
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db7a03bff556b364fa4a595ec11c0b91
-      internalID: -817485519
+      spriteID: 6cf4a8e40a5e4be4bbecd8378eb2bc76
+      internalID: -1463549727
       vertices: []
       indices: 
       edges: []
@@ -204,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      squidward_walk_0: 1719196882
-      squidward_walk_1: -1371477767
-      squidward_walk_2: 1048687190
-      squidward_walk_3: -817485519
+      squidward_walk_0: 210894135
+      squidward_walk_1: -585480670
+      squidward_walk_2: -304027702
+      squidward_walk_3: -1463549727
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bf0a3b6758862e845b9a896901089154
+guid: 209582a85b80eed4ca3171c5c896b571
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08046dd36004d684eba4d502ee4683d9
-      internalID: -2089468834
+      spriteID: 0fb7b975510fac144943e34eb29f5e4f
+      internalID: -246020390
       vertices: []
       indices: 
       edges: []
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f57bd99af88c7414593ec95ebc5668a8
-      internalID: -1394963666
+      spriteID: b5057cb4cf91c4344af0609d9e33d578
+      internalID: -1362827218
       vertices: []
       indices: 
       edges: []
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3848a6d05380a3e4385d3bd18f6f4f51
-      internalID: 93327149
+      spriteID: c3890fae10c3a2d44b687032191dee29
+      internalID: -1022031896
       vertices: []
       indices: 
       edges: []
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d39ce0ffb20923459eb619f127241b4
-      internalID: 1263710467
+      spriteID: 3d61b22bed51b0c429e6a29c7a8e6f1a
+      internalID: 1187600188
       vertices: []
       indices: 
       edges: []
@@ -204,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      patrick_star_walk_0: -2089468834
-      patrick_star_walk_1: -1394963666
-      patrick_star_walk_2: 93327149
-      patrick_star_walk_3: 1263710467
+      patrick_star_walk_0: -246020390
+      patrick_star_walk_1: -1362827218
+      patrick_star_walk_2: -1022031896
+      patrick_star_walk_3: 1187600188
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
