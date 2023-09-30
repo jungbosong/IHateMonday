@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5489091335377004819}
   - component: {fileID: 331295852123879996}
   - component: {fileID: 4593322593073493083}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plankton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ Transform:
   m_Children:
   - {fileID: 6592472907186646919}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8552870302652257509
 MonoBehaviour:
@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 6592472907186646919}
   - component: {fileID: 3164345407201700403}
   - component: {fileID: 7700249244419580884}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
