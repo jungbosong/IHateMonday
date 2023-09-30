@@ -13,14 +13,12 @@ public class ShootingAttackController : MonoBehaviour
     private bool _isReady;
 
     private Rigidbody2D _rigidbody;
-    private TrailRenderer _trailRenderer;
 
     private MonsterAttackDataSO _monsterAttackDataSO;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _trailRenderer = GetComponent<TrailRenderer>();
     }
 
     private void Update()
@@ -73,7 +71,6 @@ public class ShootingAttackController : MonoBehaviour
         _monsterAttackDataSO = monsterAttackDataSO;
         _direction = direction;
 
-        _trailRenderer.Clear();
         _currentDuration = 0;
 
         transform.right = _direction;

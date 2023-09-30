@@ -113,7 +113,7 @@ MonoBehaviour:
   _characterSpriteRenderer: {fileID: 1069303807203864652}
   followRange: 15
   shootRange: 10
-  monsterAttackDataSO: {fileID: 0}
+  monsterAttackDataSO: {fileID: 11400000, guid: 4633a8df2bb0f82468717ba6c6e61784, type: 2}
 --- !u!114 &816534739285101838
 MonoBehaviour:
   m_ObjectHideFlags: 0

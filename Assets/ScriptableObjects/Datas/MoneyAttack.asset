@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MoneyAttack
   m_EditorClassIdentifier: 
   speed: 10
-  duration: 3
+  duration: 2
   power: 1
   target:
     serializedVersion: 2

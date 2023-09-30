@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10af9185b032db341893d159cc54d9a1, type: 3}
   m_Name: GaryAttack
   m_EditorClassIdentifier: 
-  speed: 0
-  duration: 0
-  power: 0
+  speed: 13
+  duration: 2
+  power: 2
   target:
     serializedVersion: 2
     m_Bits: 128
-  projectilePrefab: {fileID: 0}
-  isOnKnockback: 0
-  knockbackPower: 0
-  knockbackTime: 0
-  spread: 0
-  numberOfProjectilesPerShot: 0
-  multipleProjectilesAngle: 0
+  projectilePrefab: {fileID: 7960679890629798603, guid: 13dff7f06bb80d64c939a6b01224a4a0, type: 3}
+  isOnKnockback: 1
+  knockbackPower: 8
+  knockbackTime: 0.3
+  spread: 8
+  numberOfProjectilesPerShot: 3
+  multipleProjectilesAngle: 3
