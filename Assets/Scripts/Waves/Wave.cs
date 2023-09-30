@@ -12,25 +12,27 @@ public class Wave : MonoBehaviour
     // 방의 가운데 좌표 ~ 벽까지 길이
     private float _limit;
 
-    #region Wave variable
     private int _currentWaveIndex = 0;      // 현재 웨이브 index
     private int _currentSpawnCount = 0;     // 현재 몬스터가 생성되는 spawn의 개수 (몬스터가 죽으면 감소 -> 웨이브 종료 체크)
     private int _waveSpawnCount = 0;        // 웨이브 한 번에 만들어지는 몬스터의 수
     private int _waveSpawnPosCount = 0;     // 웨이브에서 몬스터가 생성되는 spawn의 수
     private float _spawnInterval = 0.5f;     // 웨이브 간격
-    #endregion
 
-    public List<GameObject> _enemyPrefabs = new List<GameObject>();     // 생성할 몬스터 프리팹 리스트
     private List<Vector3> _spawnPositions = new List<Vector3>();        // 몬스터가 생성될 spawn의 position 리스트
 
-    private void Awake()
-    {
-        InitSpawnPositions();
-    }
+    public List<GameObject> _enemyPrefabs = new List<GameObject>();     // 생성할 몬스터 프리팹 리스트
 
     void Start()
     {
+        InitSpawnPositions();
         StartCoroutine("COPlayWave");
+    }
+
+    public void InitRoomInfo(Room room)
+    {
+        _centerPos.x = room.center.x;
+        _centerPos.y = room.center.y;
+        _limit = (room.width <= room.height) ? room.width / 2 : room.height / 2;    // 방의 가로, 세로 길이 중 더 짧은 쪽 길이의 반
     }
 
     // 방의 좌표와 limit에 따라 몬스터의 spawn position 리스트 초기화
@@ -45,13 +47,6 @@ public class Wave : MonoBehaviour
                 _spawnPositions.Add(new Vector3(x, y));
             }
         }
-    }
-
-    public void SetSpawnPositionInfo(float x, float y, float limit)
-    {
-        _centerPos.x = x;
-        _centerPos.y = y;
-        _limit = limit;
     }
 
     // 웨이브 실행 코루틴 함수
@@ -81,8 +76,7 @@ public class Wave : MonoBehaviour
                     {
                         int prefabIndex = Random.Range(0, _enemyPrefabs.Count);
                         GameObject enemy = Instantiate(_enemyPrefabs[prefabIndex], _spawnPositions[posIdx], Quaternion.identity);
-                        // TODO Monster 스탯 변경
-                        // TODO Monster Death 처리 함수 Event에 연결
+                        enemy.GetComponent<HealthSystem>().OnDeath += OnEnemyDeath;
                         _currentSpawnCount++;
                         yield return new WaitForSeconds(_spawnInterval);
                     }
@@ -93,5 +87,9 @@ public class Wave : MonoBehaviour
         }
     }
 
-    // TODO Monster Death 처리 함수 추가
+    // 몬스터의 OnDeath 이벤트에 연결됨
+    private void OnEnemyDeath()
+    {
+        _currentSpawnCount--;
+    }
 }
