@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8375623829105086680}
   - component: {fileID: 6667551076041312936}
   - component: {fileID: 8467741005805114127}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 3489026011530259739}
   - component: {fileID: 7783911954226176316}
   - component: {fileID: 719728718331339487}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PatrickStar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,18 +185,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a0529b730501840b742492c0703cb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseStats:
-    statsChangeType: 0
+  CurrentStats:
     currentHp: 5
     currentMaxHp: 5
-    shieldCount: 0
-    attackPowerCoefficient: 100
-    attackSpeedCoefiicient: 100
     moveSpeed: 5
-    moveSpeedCoefficient: 100
-    isInvincible: 0
-    invincibilityTime: 2
-  statsModifiers: []
 --- !u!114 &5384881321703935390
 MonoBehaviour:
   m_ObjectHideFlags: 0

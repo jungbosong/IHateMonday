@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2739145188867563841}
   - component: {fileID: 5261972831869092500}
   - component: {fileID: 3997783509517066494}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpongeBob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,18 +79,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a0529b730501840b742492c0703cb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseStats:
-    statsChangeType: 0
+  CurrentStats:
     currentHp: 5
     currentMaxHp: 5
-    shieldCount: 0
-    attackPowerCoefficient: 100
-    attackSpeedCoefiicient: 100
     moveSpeed: 5
-    moveSpeedCoefficient: 100
-    isInvincible: 0
-    invincibilityTime: 2
-  statsModifiers: []
 --- !u!114 &926866694408053490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +203,7 @@ GameObject:
   - component: {fileID: 5673143481290541883}
   - component: {fileID: 1069303807203864652}
   - component: {fileID: 3705125015726373248}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
