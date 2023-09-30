@@ -22,16 +22,12 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private GameObject _map;           // root 영역을 표시하기 위한 line renderer
     [SerializeField] private GameObject _roomLine;      // 방을 표시하기 위한 line renderer
     #endregion
-
-    #region Tiles
-    [SerializeField] private Tilemap _tileMap;      // 타일이 그려지는 곳
-    [SerializeField] private Tile roomTile;         // 방을 표현할 타일
-    [SerializeField] private Tile wallTile;         // 벽을 표현할 타일
-    [SerializeField] private Tile outTile;          // 외곽지역(빈공간)을 표현할 타일
-    #endregion
+    TileMapPainter _mapPainter;
+    
 
     void Awake()
     {
+        _mapPainter = this.GetComponent<TileMapPainter>();
         Managers.Map.roomList.Clear();
         for (int i = 0; i < _roomCounts.Length; i++)
         {
@@ -54,19 +50,13 @@ public class MapGenerator : MonoBehaviour
 
     void Start()
     {
-        FillBackground();
+        _mapPainter.FillBackground(_mapSize);
         SpaceNode root = new SpaceNode(new Rect(0, 0, _mapSize.x, _mapSize.y));
         //DrawMap(0, 0);
         Divide(root, 0);
         GenerateRoom(root, 0);
-        GenerateLoad(root, 0);
-        FillWall();
-        // TODO 확인 후 지우기
-        for (int i = 0; i < Managers.Map.roomList.Count; i++)
-        {
-            Room room = Managers.Map.roomList[i];
-            Debug.Log($"type: {room.type}\ncenter: {room.center}\nwidth: {room.width}\nheight {room.height}");
-        }
+        GenerateRoad(root, 0);
+        _mapPainter.FillWall(_mapSize);
     }
 
     #region GenerateMap
@@ -112,7 +102,7 @@ public class MapGenerator : MonoBehaviour
             Managers.Map.roomList.Add(new Room(new Vector3(x,y), width, height, GetRandomRoomType()));
 
             //DrawRectangle(rect);
-            FillRoom(rect);
+            _mapPainter.FillRoom(_mapSize, rect);
         }
         else
         {
@@ -135,7 +125,7 @@ public class MapGenerator : MonoBehaviour
     }
 
     // 각 방을 이어주는 길 생성
-    private void GenerateLoad(SpaceNode tree, int n)
+    private void GenerateRoad(SpaceNode tree, int n)
     {
         if (n == _maxDepth)
             return;
@@ -143,20 +133,12 @@ public class MapGenerator : MonoBehaviour
         Vector3 leftNodeCenter = tree.leftSpace.center;
         Vector3 rightNodeCenter = tree.rightSpace.center;
 
+        _mapPainter.FillRoad(leftNodeCenter, rightNodeCenter, _mapSize);
         //DrawLine(new Vector2(leftNodeCenter.x, leftNodeCenter.y), new Vector2(rightNodeCenter.x, leftNodeCenter.y));
         //DrawLine(new Vector2(rightNodeCenter.x, leftNodeCenter.y), new Vector2(rightNodeCenter.x, rightNodeCenter.y));
-        for (int i = (int)Mathf.Min(leftNodeCenter.x, rightNodeCenter.x); i <= Mathf.Max(leftNodeCenter.x, rightNodeCenter.x); i++)
-        {
-            _tileMap.SetTile(new Vector3Int(i - _mapSize.x / 2, (int)leftNodeCenter.y - _mapSize.y / 2, 0), roomTile);
-        }
 
-        for (int j = (int)Mathf.Min(leftNodeCenter.y, rightNodeCenter.y); j <= Mathf.Max(leftNodeCenter.y, rightNodeCenter.y); j++)
-        {
-            _tileMap.SetTile(new Vector3Int((int)rightNodeCenter.x - _mapSize.x / 2, j - _mapSize.y / 2, 0), roomTile);
-        }
-
-        GenerateLoad(tree.leftSpace, n + 1);
-        GenerateLoad(tree.rightSpace, n + 1);
+        GenerateRoad(tree.leftSpace, n + 1);
+        GenerateRoad(tree.rightSpace, n + 1);
     }
     #endregion
 
@@ -192,64 +174,6 @@ public class MapGenerator : MonoBehaviour
         lineRenderer.SetPosition(2, new Vector2(rect.x + rect.width, rect.y + rect.height) - _mapSize / 2);
         lineRenderer.SetPosition(3, new Vector2(rect.x, rect.y + rect.height) - _mapSize / 2);
         lineRenderer.SetColors(Color.white, Color.white);
-    }
-    #endregion
-
-    #region FillTile
-    //배경을 채우는 함수
-    void FillBackground() 
-    {
-        for (int i = -10; i < _mapSize.x + 10; i++)
-        {
-            for (int j = -10; j < _mapSize.y + 10; j++)
-            {
-                _tileMap.SetTile(new Vector3Int(i - _mapSize.x / 2, j - _mapSize.y / 2, 0), outTile);
-            }
-        }
-    }
-
-    //룸 타일과 바깥 타일이 만나는 부분
-    void FillWall() 
-    {
-        for (int i = 0; i < _mapSize.x; i++)
-        {
-            for (int j = 0; j < _mapSize.y; j++)
-            {
-                if (_tileMap.GetTile(new Vector3Int(i - _mapSize.x / 2, j - _mapSize.y / 2, 0)) == outTile)
-                {
-                    //바깥타일 일 경우
-                    for (int x = -1; x <= 1; x++)
-                    {
-                        for (int y = -1; y <= 1; y++)
-                        {
-                            if (x == 0 && y == 0) continue;
-                            if (_tileMap.GetTile(new Vector3Int(i - _mapSize.x / 2 + x, j - _mapSize.y / 2 + y, 0)) == roomTile)
-                            {
-                                _tileMap.SetTile(new Vector3Int(i - _mapSize.x / 2, j - _mapSize.y / 2, 0), wallTile);
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    //방의 Rect정보를 받아서 tile을 설정하는 함수
-    private void FillRoom(Rect rect)
-    {
-        int x = (int)System.Math.Round(rect.x);
-        int y = (int)System.Math.Round(rect.y);
-        int width = (int)System.Math.Round(rect.width);
-        int height = (int)System.Math.Round(rect.height);
-
-        for (int i = x; i < x + width; i++)
-        {
-            for (int j = y; j < y + height; j++)
-            {
-                _tileMap.SetTile(new Vector3Int(i - _mapSize.x / 2, j - _mapSize.y / 2, 0), roomTile);
-            }
-        }
     }
     #endregion
 }
