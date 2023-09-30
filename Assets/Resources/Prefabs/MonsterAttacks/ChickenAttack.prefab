@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2538240052410304615}
+  - component: {fileID: 667456654719269702}
   - component: {fileID: 7072668460035246974}
   - component: {fileID: 5025109025124595626}
   - component: {fileID: 3351710598995360580}
-  - component: {fileID: 8448857724814506202}
   m_Layer: 0
-  m_Name: MoneyBullet
+  m_Name: ChickenAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7960679890629798603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0246083, y: -14.661761, z: -0.2506688}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -36,6 +36,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &667456654719269702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7960679890629798603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5a1657dbe595049a2b7867bbd74e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelCollisionLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!61 &7072668460035246974
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -221,32 +236,6 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 0
---- !u!114 &8448857724814506202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7960679890629798603}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d5a1657dbe595049a2b7867bbd74e61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelCollisionLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  _attackData:
-    speed: 5
-    duration: 3
-    power: 1
-    target:
-      serializedVersion: 2
-      m_Bits: 128
-    projectilePrefab: {fileID: 7960679890629798603}
-    isOnKnockback: 1
-    knockbackPower: 5
-    knockbackTime: 0.1
 --- !u!1 &8238972074905373772
 GameObject:
   m_ObjectHideFlags: 0

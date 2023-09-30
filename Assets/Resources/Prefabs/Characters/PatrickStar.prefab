@@ -106,6 +106,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &6379305584747874797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4226650831407567256}
+  m_Layer: 0
+  m_Name: SpawnBulletPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4226650831407567256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6379305584747874797}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.488, y: 0.24, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8470005156743576388}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8503380916326937616
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,6 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8470005156743576388}
   - component: {fileID: 3412912468738706634}
+  - component: {fileID: 4295229796032746415}
   - component: {fileID: 7280597898535132867}
   - component: {fileID: 6180438749668999760}
   - component: {fileID: 5384881321703935390}
@@ -143,8 +175,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8375623829105086680}
+  - {fileID: 4226650831407567256}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3412912468738706634
 MonoBehaviour:
@@ -158,6 +191,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b42b33f02c2a843bbb77c2af55238a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4295229796032746415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8503380916326937616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c169ed327f2ce2e48b1c601023af415b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileSpawnPosition: {fileID: 4226650831407567256}
 --- !u!114 &7280597898535132867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +219,7 @@ MonoBehaviour:
   _characterSpriteRenderer: {fileID: 6667551076041312936}
   followRange: 15
   shootRange: 10
+  monsterAttackDataSO: {fileID: 0}
 --- !u!114 &6180438749668999760
 MonoBehaviour:
   m_ObjectHideFlags: 0
