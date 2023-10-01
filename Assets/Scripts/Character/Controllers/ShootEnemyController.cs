@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class ShootEnemyController : EnemyController
 {
-    [SerializeField] private float followRange = 15f;
-    [SerializeField] private float shootRange = 10f;
+    [SerializeField] private float _followRange = 15f;
+    [SerializeField] private float _shootRange = 10f;
+
+    // 마지막으로 공격한 시간
+    private float _timeSinceLastAttack = float.MaxValue;
 
     public MonsterAttackDataSO monsterAttackDataSO;
 
@@ -18,10 +21,10 @@ public class ShootEnemyController : EnemyController
 
         //IsAttacking = false;
         // target이 범위 내에 있을 때 따라가기
-        if (distance <= followRange)
+        if (distance <= _followRange)
         {
             // target이 사격 거리 내에 있을 때
-            if (distance <= shootRange)
+            if (distance <= _shootRange)
             {
                 int layerMaskTarget = monsterAttackDataSO.target;
 
@@ -33,6 +36,7 @@ public class ShootEnemyController : EnemyController
                     CallLookEvent(direction);       // 바라보는 방향 바꾸기
                     CallMoveEvent(Vector2.zero);    // 총을 쏠 때는 움직이지 않음
                     IsAttacking = true;
+                    HandleAttackDelay();
                 }
                 else
                 {
@@ -45,6 +49,20 @@ public class ShootEnemyController : EnemyController
                 CallMoveEvent(direction); // target이 범위 내에 있지 않을 때 target을 향해 움직임
                 Rotate(direction);
             }
+        }
+    }
+
+    private void HandleAttackDelay()
+    {
+        if (_timeSinceLastAttack <= monsterAttackDataSO.attackDelay)
+        {
+            _timeSinceLastAttack += Time.fixedDeltaTime;
+        }
+
+        if (IsAttacking && _timeSinceLastAttack > monsterAttackDataSO.attackDelay)
+        {
+            _timeSinceLastAttack = 0;
+            CallAttackEvent();
         }
     }
 }
