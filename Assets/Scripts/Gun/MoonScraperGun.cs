@@ -33,9 +33,9 @@ public class MoonScraperGun : LaserGun
         }
     }
 
-    private void Update()
+    protected override void Update()
     {
-        OnKeyDown();
+        base.Update();
         if (_isShooting)
         {
             if (_magazine == 0)
@@ -63,54 +63,6 @@ public class MoonScraperGun : LaserGun
     {
         _animator.SetBool("Fire" , false);
         _isShooting = false;
-    }
-
-    public override void OnLook(Vector2 worldPos)
-    {
-        //플레이어의 트랜스폼을 받아온다 - 멤버변수로 두고 Awake에서 받아올예정
-        //플레이어에는 왼손좌표랑 오른손좌표도 필요하다.
-        Vector2 playerPosition = new Vector3(0, 0);
-        Vector2 playerLeftHandPosition = new Vector2(-0.3f, 0);
-        Vector2 playerRightHandPosition = new Vector2(0.3f, 0);
-
-        Vector2 leftdir;
-        Vector2 rightdir;
-
-        if ((playerPosition - worldPos).magnitude < (playerPosition - playerRightHandPosition).magnitude)
-            return;
-
-
-        leftdir = (worldPos - (Vector2)playerLeftHandPosition).normalized;
-        rightdir = (worldPos - (Vector2)playerRightHandPosition).normalized;
-
-        float leftRotZ = Mathf.Atan2(leftdir.y, leftdir.x) * Mathf.Rad2Deg;
-        float rightRotZ = Mathf.Atan2(rightdir.y, rightdir.x) * Mathf.Rad2Deg;
-
-        if (isLeftHand && Mathf.Abs(leftRotZ) < 75 && Mathf.Abs(rightRotZ) < 105)
-        {
-            isLeftHand = false;
-        }
-        else if (!isLeftHand && Mathf.Abs(rightRotZ) > 105 && Mathf.Abs(leftRotZ) > 75)
-        {
-            isLeftHand = true;
-        }
-
-        float rotY = 0f;
-        float rotZ = 0f;
-        if (isLeftHand)
-        {
-            transform.position = playerLeftHandPosition;
-            rotZ = 180f - Mathf.Atan2(leftdir.y, leftdir.x) * Mathf.Rad2Deg;
-            rotY = 180f;
-        }
-        else
-        {
-            transform.position = playerRightHandPosition;
-            rotZ = Mathf.Atan2(rightdir.y, rightdir.x) * Mathf.Rad2Deg;
-            rotY = 0;
-        }
-
-        transform.rotation = Quaternion.Euler(0, rotY, rotZ);
     }
 
     public override void OnRoll()

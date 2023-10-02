@@ -29,11 +29,6 @@ public class BubbleGun : AutoGun
         throw new System.NotImplementedException();
     }
 
-    public override void OnLook(Vector2 worldPos)
-    {
-        throw new System.NotImplementedException();
-    }
-
     public override void OnRoll()
     {
         throw new System.NotImplementedException();

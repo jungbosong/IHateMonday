@@ -21,8 +21,45 @@ public class Inventory : MonoBehaviour
     private Transform _dropPosition;
     private ItemSlot _selectItem;
     private int _itemListIndex = 0;
-    
 
+    private Gun _handGun;
+    private Gun _subGun;
+    private PlayerInputController _controller;
+    public void EquipWeapon(WeaponItemData data)
+    {
+        if(_handGun == null)
+        {
+            GameObject go = Managers.Resource.Instantiate($"Guns/{data.WeaponName}");
+            _handGun = go.GetComponent<Gun>();
+        }
+        else
+        {
+            _controller.UnEquipWeapon(_handGun);
+            if (_subGun != null)
+            {
+                Managers.Resource.Instantiate($"Items/{_subGun.name}Item" , _dropPosition.position);
+                Managers.Resource.Destroy(_subGun);
+            }
+
+            _subGun = _handGun;
+            GameObject go = Managers.Resource.Instantiate($"Guns/{data.WeaponName}");
+            _handGun = go.GetComponent<Gun>();
+        }
+
+        _controller.EquipWeapon(_handGun);
+    }
+
+    public void SwapWeapon()
+    {
+        if (_handGun == null || _subGun == null)
+            return;
+
+        _controller.UnEquipWeapon(_handGun);
+        Gun temp = _handGun;
+        _handGun = _subGun;
+        _subGun = temp;
+        _controller.EquipWeapon(_handGun);
+    }
 
     public static Inventory s_instance;
 
@@ -31,6 +68,7 @@ public class Inventory : MonoBehaviour
         s_instance = this;
         _inventoryUI = GetComponent<InventoryUI>();
         _useItem = GetComponent<UseItem>();
+        _controller = GetComponent<PlayerInputController>();
     }
 
     private void Start()

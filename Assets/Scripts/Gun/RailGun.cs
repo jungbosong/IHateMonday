@@ -29,8 +29,9 @@ public class RailGun : CharzingGun
         _lineRenderers[4].enabled = false;
     }
 
-    public void Update()
+    protected override void Update()
     {
+        base.Update();
         if(_isShooting)
         {
             _shotCharzing += Time.deltaTime;
@@ -53,8 +54,7 @@ public class RailGun : CharzingGun
 
                 Vector2 dirRight = Quaternion.AngleAxis(_angle[i], Vector3.forward) * _shotPoint.right;
                 dirRight.Normalize();
-                RaycastHit2D hitRight = Physics2D.Raycast(_shotPoint.position, dirRight, 100f
-                    /*, LayerMask.GetMask("Wall") | LayerMask.GetMask("Monster") | LayerMask.GetMask("Env")*/);
+                RaycastHit2D hitRight = Physics2D.Raycast(_shotPoint.position, dirRight, 100f, tagetLayer);
                 Vector2 dirLeft = Quaternion.AngleAxis(-_angle[i], Vector3.forward) * _shotPoint.right;
                 dirLeft.Normalize();
                 RaycastHit2D hitLeft = Physics2D.Raycast(_shotPoint.position, dirLeft, 100f, tagetLayer);
@@ -72,7 +72,7 @@ public class RailGun : CharzingGun
             if (!_lineRenderers[4].enabled)
                 _lineRenderers[4].enabled = true;
             _lineRenderers[4].SetPosition(0, _shotPoint.position);
-            RaycastHit2D hit = Physics2D.Raycast(_shotPoint.position, _shotPoint.right, 100f);
+            RaycastHit2D hit = Physics2D.Raycast(_shotPoint.position, _shotPoint.right, 100f , tagetLayer);
             if (hit)
                 _lineRenderers[4].SetPosition(1, hit.point);
             else
@@ -131,56 +131,6 @@ public class RailGun : CharzingGun
             lr.enabled = false;
         }
         _angle = (float[])_baseAngle.Clone();
-    }
-    public override void OnLook(Vector2 worldPos)
-    {
-        //플레이어의 트랜스폼을 받아온다 - 멤버변수로 두고 Awake에서 받아올예정
-        //플레이어에는 왼손좌표랑 오른손좌표도 필요하다.
-
-        Vector2 playerPosition = new Vector3(0, 0);
-        Vector2 playerLeftHandPosition = new Vector2(-0.3f, 0);
-        Vector2 playerRightHandPosition = new Vector2(0.3f, 0);
-
-        Vector2 leftdir;
-        Vector2 rightdir;
-
-        if ((playerPosition - worldPos).magnitude < (playerPosition - playerRightHandPosition).magnitude)
-            return;
-
-
-        leftdir = (worldPos - (Vector2)playerLeftHandPosition).normalized;
-        rightdir = (worldPos - (Vector2)playerRightHandPosition).normalized;
-
-
-
-        float leftRotZ = Mathf.Atan2(leftdir.y, leftdir.x) * Mathf.Rad2Deg;
-        float rightRotZ = Mathf.Atan2(rightdir.y, rightdir.x) * Mathf.Rad2Deg;
-
-        if (isLeftHand && Mathf.Abs(leftRotZ) < 75 && Mathf.Abs(rightRotZ) < 105)
-        {
-            isLeftHand = false;
-        }
-        else if (!isLeftHand && Mathf.Abs(rightRotZ) > 105 && Mathf.Abs(leftRotZ) > 75)
-        {
-            isLeftHand = true;
-        }
-
-        float rotY = 0f;
-        float rotZ = 0f;
-        if (isLeftHand)
-        {
-            transform.position = playerLeftHandPosition;
-            rotZ = 180f - Mathf.Atan2(leftdir.y, leftdir.x) * Mathf.Rad2Deg;
-            rotY = 180f;
-        }
-        else
-        {
-            transform.position = playerRightHandPosition;
-            rotZ = Mathf.Atan2(rightdir.y, rightdir.x) * Mathf.Rad2Deg;
-            rotY = 0;
-        }
-
-        transform.rotation = Quaternion.Euler(0, rotY, rotZ);
     }
 
     public override void OnRoll()
