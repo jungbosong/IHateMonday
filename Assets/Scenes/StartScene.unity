@@ -857,7 +857,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneType: 4
-  _init: 0
 --- !u!4 &1105823477
 Transform:
   m_ObjectHideFlags: 0
