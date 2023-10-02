@@ -70,26 +70,26 @@ public class TileMapPainter : MonoBehaviour
         }
     }
 
-    public void FillRoad(Vector3 leftNodeCenter, Vector3 rightNodeCenter, Vector2Int mapSize)
+    public void FillRoad(SpaceNode leftNode, SpaceNode rightNode, Vector2Int mapSize)
     {
-        int startX = (int)System.Math.Round(System.Math.Min(leftNodeCenter.x, rightNodeCenter.x));
-        int startY = (int)System.Math.Round(System.Math.Min(leftNodeCenter.y, rightNodeCenter.y));
+        int startX = (int)System.Math.Round(System.Math.Min(leftNode.center.x, rightNode.center.x));
+        int startY = (int)System.Math.Round(System.Math.Min(leftNode.center.y, rightNode.center.y));
 
-        int endX = (int)System.Math.Round(System.Math.Max(leftNodeCenter.x, rightNodeCenter.x));
-        int endY = (int)System.Math.Round(System.Math.Max(leftNodeCenter.y, rightNodeCenter.y));
+        int endX = (int)System.Math.Round(System.Math.Max(leftNode.center.x, rightNode.center.x));
+        int endY = (int)System.Math.Round(System.Math.Max(leftNode.center.y, rightNode.center.y));
 
         for (int i = startX; i <= endX; i++)
         {
-            _tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, (int)System.Math.Round(leftNodeCenter.y) - mapSize.y / 2 - 1, 0), roadTile);
-            _tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, (int)System.Math.Round(leftNodeCenter.y) - mapSize.y / 2, 0), roadTile);
-            _tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, (int)System.Math.Round(leftNodeCenter.y) - mapSize.y / 2 + 1, 0), roadTile);
+            _tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, (int)System.Math.Round(leftNode.center.y) - mapSize.y / 2 - 1, 0), roadTile);
+            _tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, (int)System.Math.Round(leftNode.center.y) - mapSize.y / 2, 0), roadTile);
+            _tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, (int)System.Math.Round(leftNode.center.y) - mapSize.y / 2 + 1, 0), roadTile);
         }
 
         for (int j = startY; j <= endY; j++)
         {
-            _tileMap.SetTile(new Vector3Int((int)System.Math.Round(rightNodeCenter.x) - mapSize.x / 2 - 1, j - mapSize.y / 2, 0), roadTile);
-            _tileMap.SetTile(new Vector3Int((int)System.Math.Round(rightNodeCenter.x) - mapSize.x / 2, j - mapSize.y / 2, 0), roadTile);
-            _tileMap.SetTile(new Vector3Int((int)System.Math.Round(rightNodeCenter.x) - mapSize.x / 2 + 1, j - mapSize.y / 2, 0), roadTile);
+            _tileMap.SetTile(new Vector3Int((int)System.Math.Round(rightNode.center.x) - mapSize.x / 2 - 1, j - mapSize.y / 2, 0), roadTile);
+            _tileMap.SetTile(new Vector3Int((int)System.Math.Round(rightNode.center.x) - mapSize.x / 2, j - mapSize.y / 2, 0), roadTile);
+            _tileMap.SetTile(new Vector3Int((int)System.Math.Round(rightNode.center.x) - mapSize.x / 2 + 1, j - mapSize.y / 2, 0), roadTile);
         }
     }
 }

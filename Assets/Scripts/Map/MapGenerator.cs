@@ -4,6 +4,7 @@ using System.Data;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.Tilemaps;
 
 public class MapGenerator : MonoBehaviour
@@ -16,6 +17,7 @@ public class MapGenerator : MonoBehaviour
     private int[] _roomCounts = new int[6];             // 해당 난이도에서의 6가지 종류 방의 개수
     private List<int> _notGeneratedRoom = new List<int>(); // 아직 만들어지지 않은 방
     #endregion
+    [SerializeField] private MoveCamera _mainCamera;
 
     #region lineRenderer
     [SerializeField] private GameObject _line;          // 각 영역의 경계선을 표시하기 위한 line renderer
@@ -28,6 +30,7 @@ public class MapGenerator : MonoBehaviour
     void Awake()
     {
         _mapPainter = this.GetComponent<TileMapPainter>();
+        _mainCamera = _mainCamera.GetComponent<MoveCamera>();
         Managers.Map.roomList.Clear();
         for (int i = 0; i < _roomCounts.Length; i++)
         {
@@ -98,9 +101,15 @@ public class MapGenerator : MonoBehaviour
             float x = rect.x + Random.Range(1, rect.width - width);
             float y = rect.y + Random.Range(1, rect.height - height);
             rect = new Rect(x, y, width, height);
-            
-            Managers.Map.roomList.Add(new Room(new Vector3(x,y), width, height, GetRandomRoomType()));
 
+            RoomType type = GetRandomRoomType();
+            Room room = new Room(new Vector3(rect.center.x, rect.center.y, 0), width, height, type);
+            Managers.Map.roomList.Add(room);
+            if(type == RoomType.NoneMonster)
+            {
+                GameObject player = Managers.Resource.Instantiate("Characters/Player", new Vector3(rect.center.x, rect.center.y, 0));
+                _mainCamera.SetTarget(player);
+            }
             //DrawRectangle(rect);
             _mapPainter.FillRoom(_mapSize, rect);
         }
@@ -130,10 +139,7 @@ public class MapGenerator : MonoBehaviour
         if (n == _maxDepth)
             return;
 
-        Vector3 leftNodeCenter = tree.leftSpace.center;
-        Vector3 rightNodeCenter = tree.rightSpace.center;
-
-        _mapPainter.FillRoad(leftNodeCenter, rightNodeCenter, _mapSize);
+        _mapPainter.FillRoad(tree.leftSpace, tree.rightSpace, _mapSize);
         //DrawLine(new Vector2(leftNodeCenter.x, leftNodeCenter.y), new Vector2(rightNodeCenter.x, leftNodeCenter.y));
         //DrawLine(new Vector2(rightNodeCenter.x, leftNodeCenter.y), new Vector2(rightNodeCenter.x, rightNodeCenter.y));
 
