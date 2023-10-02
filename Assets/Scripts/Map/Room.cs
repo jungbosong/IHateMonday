@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -20,6 +21,8 @@ public class Room : MonoBehaviour
     public float height;        // 방의 높이
     public RoomType type;       // 방 종류
 
+    public Action OnBattleStart;
+    public Action OnBattleEnd;
     public Room(Vector3 center, float width, float height, RoomType type)
     {
         this.center = center;
