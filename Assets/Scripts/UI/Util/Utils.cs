@@ -8,6 +8,41 @@ using static Define;
 
 public class Utils
 {
+    public static GameObject CreateDoor(Vector3 position, bool isLocked)
+    {
+        float nearDistance = float.MaxValue;
+        Room nearRoom = null;
+        foreach (Room room in Managers.Map.roomList)
+        {
+            float near = Mathf.Abs(room.center.x - position.x) - room.height / 2f;
+            near = Mathf.Min(near, Mathf.Abs(room.center.y - position.y) - room.width / 2f);
+
+            if (near < nearDistance)
+            {
+                nearDistance = near;
+                nearRoom = room;
+            }
+        }
+
+        if (nearRoom is null)
+            return null;
+
+        GameObject go;
+        if (nearDistance == Mathf.Abs(nearRoom.center.x - position.x) - nearRoom.height / 2f)
+        {
+           go =  Managers.Resource.Instantiate("HorizonDoor" , position);
+        }
+        else
+        {
+            go = Managers.Resource.Instantiate("VerticalDoor" , position);
+        }
+
+        Door door = go.GetComponent<Door>();
+        door.SetNearRoom(nearRoom);
+        nearRoom.OnBattleStart += door.BattleStart;
+        nearRoom.OnBattleEnd += door.BattleEnd;
+        return go;
+    }
     public static T GetOrAddComponent<T>(GameObject go) where T : UnityEngine.Component
     {
         T component = go.GetComponent<T>();

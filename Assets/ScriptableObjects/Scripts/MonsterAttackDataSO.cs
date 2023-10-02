@@ -8,7 +8,8 @@ public class MonsterAttackDataSO : ScriptableObject
     [Header("Attack Info")]
     public float speed;         // 총알 발사 속도
     public float duration;      // 총알 지속 시간
-    public int power;         // 공격 데미지
+    public int power;           // 공격 데미지
+    public float attackDelay;   // 공격 딜레이
     public LayerMask target;    // 공격 대상
     public GameObject projectilePrefab;
 

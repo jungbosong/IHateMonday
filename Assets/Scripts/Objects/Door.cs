@@ -5,164 +5,91 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     //Door는 웨이브나 방에 종속되어있어야함 Why? 전투상황이다 -> 방을잠근다 라는것이 되어야하니까..
-    public bool isLocked = false;
-    private bool isOpened = true;
-    private bool _isSide = false;
+    protected bool _isLocked = false;
+    protected bool _isInBattle = false;
     //인벤토리에 키가 있다는 전제하에 작업
     private Inventory _inventory;
-    private LayerMask _playerLayerMask;
 
-    UI_Interaction go;
-    private Animator _animator;
+    protected LayerMask _playerLayerMask;
+
+    protected UI_Interaction _go = null;
+
+    protected Animator _animator;
+    protected Room _nearRoom;
 
     [Header("DoorDefaultSetting")]
-    [SerializeField] private BoxCollider2D _doorCollider;
-    [SerializeField] private SpriteRenderer _door1;
-    [SerializeField] private SpriteRenderer _door2;
-    [SerializeField] private GameObject _player;
-    [SerializeField] private SpriteRenderer _playerSprite;
-    [SerializeField] private int _playerSortingOrder;
+    [SerializeField] protected BoxCollider2D _doorCollider;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         //if(isLocked)
         //_inventory = ??.GetComponent<Inventory>();
         _playerLayerMask = LayerMask.GetMask("Player");
         _animator = GetComponent<Animator>();
-
-
-        //Test
-        {
-            _playerSortingOrder = 10;
-        } 
+        Lock();
     }
-    private void OnEnable()
+    
+    public void SetNearRoom(Room nearRoom)
     {
-        Room nearRoom;
-        float nearDistance = float.MaxValue;
-        //일단 룸리스트 직접순회 하겠습니다..;
-        foreach(Room room in Managers.Map.roomList)
-        {
-            float near = Mathf.Abs(room.center.x - transform.position.x) - room.height / 2f;
-            near = Mathf.Min(near, Mathf.Abs(room.center.y - transform.position.y) - room.width / 2f);
-
-            if(near < nearDistance)
-            {
-                nearDistance = near;
-                nearRoom = room;
-            }
-        }
-
-        if (nearRoom = null)
-            return;
-
-        if(Mathf.Abs(nearRoom.center.x - transform.position.x) - nearRoom.height / 2f <
-            Mathf.Abs(nearRoom.center.y - transform.position.y) - nearRoom.width / 2f)
-        {
-            //가로가 더 작다
-            _isSide = true;
-        }
-        else
-        {
-            _isSide = false;
-        }
-
-        _animator.Play("Close" , -1 , 0);
-
-        isOpened = false;
+        _nearRoom = nearRoom;
     }
-    private void Update()
+    public void BattleStart()
     {
-        if (( transform.position - _player.transform.position ).magnitude > 15)
-            return;
-
-        float playerBottiomPosY = _player.transform.position.y - _playerSprite.bounds.size.y + _playerSprite.transform.localPosition.y;
-        if(_door1.transform.position.y < playerBottiomPosY)
+        if(!_isInBattle)
         {
-            _door1.sortingOrder = _playerSortingOrder + 1;
+            _isInBattle = true;
+            _doorCollider.enabled = true;
+            _animator.Play("Close" , -1 , 0);
+            //_animator.Play("BattleStart" , -1 , 0);
         }
-        else
+    }
+    public void BattleEnd()
+    {
+        if (_isInBattle)
         {
-            _door1.sortingOrder = _playerSortingOrder - 1;
-        }
-
-        if (_door2.transform.position.y < playerBottiomPosY)
-        {
-            _door2.sortingOrder = _playerSortingOrder + 1;
-        }
-        else
-        {
-            _door2.sortingOrder = _playerSortingOrder - 1;
+            _isInBattle = false;
+            //_animator.Play("BattleEnd", -1 , 0);
         }
     }
     public void Lock()
     {
-        if(!isLocked)
+        if(!_isLocked)
         {
-            isLocked = true;
-            if(_isSide)
-            {
-                transform.GetChild(0).gameObject.SetActive(true);
-            }
+            _isLocked = true;
+            transform.GetChild(0).gameObject.SetActive(true);
         }
     }
     public bool UnLock()
     {
         //if(_inventory.UseKey())
         {
-            transform.GetChild(0).gameObject.SetActive(false);
-            isLocked = false;
-
             return true;
         }
 
         return false;
     }
+
+    public void OpenDoor()
+    {
+        transform.GetChild(0).gameObject.SetActive(false);
+        _isLocked = false;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isLocked)
+        if (!_isLocked || _go || _isInBattle)
             return;
 
         if (0 != ( _playerLayerMask.value & ( 1 << collision.gameObject.layer ) ))
         {
-            go = Managers.UI.ShowPopupUI<UI_Interaction>();
-            go.Refresh(transform.position);
-            go.AddDelegate(UnLock);
+            _go = Managers.UI.ShowPopupUI<UI_Interaction>();
+            _go.Refresh(transform.position);
+            _go.AddDelegate(UnLock);
+            _go.OnEndInteraction += OpenDoor;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Managers.Resource.Destroy(go);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (0 != ( _playerLayerMask.value & ( 1 << collision.gameObject.layer ) ))
-        {
-            if(_isSide)
-            {
-                if (collision.contacts[0].point.x > transform.position.x)
-                {
-                    _animator.Play("OpenA");
-                }
-                else
-                {
-                    _animator.Play("OpenB");
-                }
-            }
-            else
-            {
-                if (collision.contacts[0].point.y > transform.position.y)
-                {
-                    _animator.Play("OpenA");
-                }
-                else
-                {
-                    _animator.Play("OpenB");
-                }
-
-            }
-            _doorCollider.enabled = false;
-        }
+        Managers.Resource.Destroy(_go);
+        _go = null;
     }
 }

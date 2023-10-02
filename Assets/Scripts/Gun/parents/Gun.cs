@@ -50,36 +50,43 @@ public abstract class Gun : MonoBehaviour
     protected bool isLeftHand = true;
     protected Animator _animator;
 
-    protected GameObject _user;
-    protected bool _isMonsterWeapon;
+    protected GameObject _player;
+    protected PlayerStatsHandler _stat;
     protected virtual void Awake()
     {
         TryGetComponent<Animator>(out _animator);
          _magazine = _maxMagazine;
         _ammunition = _maxAmmunition;
         _camera = Camera.main;
-        _isMonsterWeapon = false;
+
+        _player = GameObject.FindWithTag("Player");
+        _stat = _player.GetComponent<PlayerStatsHandler>();
     }
     public GunType GetGunType()
     {
         return _gunType;
     }
 
-
+    protected virtual void Update()
+    {
+        if(isLeftHand)
+        {
+            transform.position = _player.transform.GetChild(0).position;
+        }
+        else
+        {
+            transform.position = _player.transform.GetChild(1).position;
+        }
+    }
     public void OnLook(Vector2 worldPos)
     {
         //유저에는 왼손좌표랑 오른손좌표도 필요하다.
-        Vector2 userPosition = _user.transform.position;
-        Vector2 userLeftHandPosition = _user.transform.GetChild(0).position;
-        Vector2 userRightHandPosition = _user.transform.GetChild(1).position;
+        Vector2 userPosition = _player.transform.position;
+        Vector2 userLeftHandPosition = _player.transform.GetChild(0).position;
+        Vector2 userRightHandPosition = _player.transform.GetChild(1).position;
 
         Vector2 leftdir;
         Vector2 rightdir;
-
-        if (_isMonsterWeapon)
-        {
-            worldPos = GameObject.FindWithTag("Player").transform.position;
-        }
 
         if (( userPosition - worldPos ).magnitude < ( userPosition - userRightHandPosition ).magnitude)
             return;
@@ -104,13 +111,11 @@ public abstract class Gun : MonoBehaviour
         float rotZ = 0f;
         if (isLeftHand)
         {
-            transform.position = userLeftHandPosition;
             rotZ = 180f - Mathf.Atan2(leftdir.y , leftdir.x) * Mathf.Rad2Deg;
             rotY = 180f;
         }
         else
         {
-            transform.position = userRightHandPosition;
             rotZ = Mathf.Atan2(rightdir.y , rightdir.x) * Mathf.Rad2Deg;
             rotY = 0;
         }
@@ -119,9 +124,8 @@ public abstract class Gun : MonoBehaviour
     }
 
     //장착 / 해제 시 플레이어쪽에서 불러야할 함수
-    public void Equip(GameObject user , Action onKeyDown, Action onKeyPress, Action onKeyUp, Action onRoll, Action<Vector2> onLook)
+    public void Equip(ref Action onKeyDown, ref Action onKeyPress , ref Action onKeyUp, ref Action onRoll, ref Action<Vector2> onLook, ref Action onReload)
     {
-        _user = user;
         isEquip = true;
         isAutoFireReady = true;
         isReload = false;
@@ -131,15 +135,20 @@ public abstract class Gun : MonoBehaviour
         onKeyUp -= OnKeyUp;
         onRoll -= OnRoll;
         onLook -= OnLook;
+        onReload -= OnReload;
         onKeyDown += OnKeyDown;
         onKeyPress += OnKeyPress;
         onKeyUp += OnKeyUp;
         onRoll += OnRoll;
-        onLook -= OnLook;
+        onLook += OnLook;
+        onReload += OnReload;
 
         gameObject.SetActive(true);
+
+        
+        OnLook(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
-    public void UnEquip(Action onKeyDown, Action onKeyPress, Action onKeyUp, Action onRoll, Action<Vector2> onLook)
+    public void UnEquip(ref Action onKeyDown , ref Action onKeyPress, ref Action onKeyUp, ref Action onRoll, ref Action<Vector2> onLook, ref Action onReload)
     {
         isEquip = false;
         onKeyDown -= OnKeyDown;
@@ -147,31 +156,25 @@ public abstract class Gun : MonoBehaviour
         onKeyUp -= OnKeyUp;
         onRoll -= OnRoll;
         onLook -= OnLook;
+        onReload -= OnReload;
 
-        if(_animator != null)
+        if (_animator != null)
         {
             _animator.SetBool("Reload" , false);
         }
         StopAllCoroutines();
         gameObject.SetActive(false);
     }
-    public void MonsterEquip(GameObject user)
-    {
-        _user = user;
-        _isMonsterWeapon = true;
-    }
 
-    public bool MonsterRayCast()
+    public void OnReload()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position , transform.right , 20 , LayerMask.GetMask("Wall") | LayerMask.GetMask("Player"));
+        if (_magazine == _maxMagazine)
+            return;
+        if (_ammunition == 0)
+            return;
+        if (_ammunition == _magazine)
+            return;
 
-        if (hit)
-        {
-            if (hit.collider.CompareTag("Player"))
-            {
-                return true;
-            }
-        }
-        return false;
+        StartCoroutine(COReload());
     }
 }
