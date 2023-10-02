@@ -16,7 +16,7 @@ public class RailGun : CharzingGun
     protected override void Awake()
     {
         base.Awake();
-        tagetLayer = LayerMask.GetMask("Wall") | LayerMask.GetMask("Env") | LayerMask.GetMask("Monster") | LayerMask.GetMask("Player");
+        tagetLayer = LayerMask.GetMask("Wall") | LayerMask.GetMask("Env") | LayerMask.GetMask("Monster");
         _angle = (float[])_baseAngle.Clone();
         _lineRenderers = GetComponentsInChildren<LineRenderer>();
 
@@ -29,8 +29,9 @@ public class RailGun : CharzingGun
         _lineRenderers[4].enabled = false;
     }
 
-    public void Update()
+    protected override void Update()
     {
+        base.Update();
         if(_isShooting)
         {
             _shotCharzing += Time.deltaTime;
@@ -53,8 +54,7 @@ public class RailGun : CharzingGun
 
                 Vector2 dirRight = Quaternion.AngleAxis(_angle[i], Vector3.forward) * _shotPoint.right;
                 dirRight.Normalize();
-                RaycastHit2D hitRight = Physics2D.Raycast(_shotPoint.position, dirRight, 100f
-                    /*, LayerMask.GetMask("Wall") | LayerMask.GetMask("Monster") | LayerMask.GetMask("Env")*/);
+                RaycastHit2D hitRight = Physics2D.Raycast(_shotPoint.position, dirRight, 100f, tagetLayer);
                 Vector2 dirLeft = Quaternion.AngleAxis(-_angle[i], Vector3.forward) * _shotPoint.right;
                 dirLeft.Normalize();
                 RaycastHit2D hitLeft = Physics2D.Raycast(_shotPoint.position, dirLeft, 100f, tagetLayer);
@@ -72,7 +72,7 @@ public class RailGun : CharzingGun
             if (!_lineRenderers[4].enabled)
                 _lineRenderers[4].enabled = true;
             _lineRenderers[4].SetPosition(0, _shotPoint.position);
-            RaycastHit2D hit = Physics2D.Raycast(_shotPoint.position, _shotPoint.right, 100f);
+            RaycastHit2D hit = Physics2D.Raycast(_shotPoint.position, _shotPoint.right, 100f , tagetLayer);
             if (hit)
                 _lineRenderers[4].SetPosition(1, hit.point);
             else

@@ -14,25 +14,23 @@ public class PlayerInputController : CharacterController
     {
         if (Input.GetMouseButtonDown(0))
         {
-            // 마우스 왼쪽 버튼을 눌렀을 때의 처리
-            //Debug.Log("down");
+            CallKeyDown();
         }
 
         if (Input.GetMouseButton(0))
         {
-            // 마우스 왼쪽 버튼을 누르고 있는 도중의 처리
-            //Debug.Log("press");
-
+            CallKeyPress();
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            // 마우스 왼쪽 버튼을 뗄 때의 처리
-            //Debug.Log("up");
-
+            CallKeyUp();
         }
     }
-
+    public void OnInteraction()
+    {
+        CallInteractionEvent();
+    }
     public void OnMove(InputValue value)
     {
         // Debug.Log("OnMove" + value.ToString());
@@ -48,7 +46,7 @@ public class PlayerInputController : CharacterController
 
         if (newAim.magnitude >= .9f)
         {
-            CallLookEvent(newAim);
+            CallLookEvent(worldPos);
         }
     }
 
@@ -72,5 +70,10 @@ public class PlayerInputController : CharacterController
     public void OnChangeWeapon()
     {
         CallChangeWeaponEvent();
+    }
+
+    public void OnReload()
+    {
+        CallReloadEvent();
     }
 }
