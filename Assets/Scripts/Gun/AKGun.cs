@@ -13,14 +13,14 @@ public class AKGun : AutoGun
         
         GameObject go = Managers.Resource.Instantiate("Bullets/AKBullet", _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
         NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
-        bullet.Init(_damage, _bulletSpeed, _bulletDistance, _knockBack, true);
+        bullet.Init(GetDamage(_damage), _bulletSpeed, _bulletDistance, _knockBack, true , true);
 
         //Managers.Sound.Play("?");
 
         --_magazine;
         --_ammunition;
 
-        yield return new WaitForSeconds(_autoFireDelay);
+        yield return new WaitForSeconds(GetSpeed(_autoFireDelay));
 
         isAutoFireReady = true;
     }

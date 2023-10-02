@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO Player 코드 완성되면 HealthSystem 구조 완성해서 주석 풀기
 public class ContactEnemyController : EnemyController
 {
     [SerializeField][Range(0f, 100f)] private float followRange;
@@ -11,7 +10,7 @@ public class ContactEnemyController : EnemyController
 
     private HealthSystem _healthSystem;
     private HealthSystem _collidingTargetHealthSystem;
-    private CharacterMovement _collidingMovement;
+    //private CharacterMovement _collidingMovement; // TODO 카메라 쉐이킹 구현되면 삭제
 
     protected override void Start()
     {
@@ -72,7 +71,7 @@ public class ContactEnemyController : EnemyController
             _isCollidingWithTarget = true;
         }
 
-        _collidingMovement = receiver.GetComponent<CharacterMovement>();
+        //_collidingMovement = receiver.GetComponent<CharacterMovement>();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
