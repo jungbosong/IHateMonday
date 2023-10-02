@@ -80,13 +80,13 @@ public class ResourceManager
 
         return Instantiate(original , position, q, parent);
     }
+    
     public GameObject Instantiate(GameObject prefab , Vector3 position, Quaternion q, Transform parent = null)
     {
         GameObject go = Object.Instantiate(prefab , position, q, parent);
         go.name = prefab.name;
         return go;
     }
-
 
 
     public void Destroy(GameObject go)
@@ -105,6 +105,8 @@ public class ResourceManager
 
     public void Destroy(MonoBehaviour mob)
     {
+        if (mob == null)
+            return;
         Destroy(mob.gameObject);
         mob = null;
     }

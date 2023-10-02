@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class BeziarCurve
 {
-    private List<Vector3> _positions;
-    private List<Vector3> _rotations;
-    private List<Vector3> _scales;
+    private List<Vector3> _positions = new List<Vector3>();
+    private List<Vector3> _rotations = new List<Vector3>();
+    private List<Vector3> _scales = new List<Vector3>();
 
     public void InputTransform(Transform tr)
     {
