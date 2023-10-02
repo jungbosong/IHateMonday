@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DeadScene : BaseScene
+public class DeadScene : MonoBehaviour
 {
     public void LoadGameScene()
     {
