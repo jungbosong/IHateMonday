@@ -19,4 +19,9 @@ public class MoveCamera : MonoBehaviour
             this.transform.position = Vector3.Lerp(this.transform.position, _targetPosition, _moveSpeed * Time.deltaTime);
         }
     }
+
+    public void SetTarget(GameObject target)
+    {
+        _target = target;
+    }
 }
