@@ -37,11 +37,13 @@ public class Inventory : MonoBehaviour
             _controller.UnEquipWeapon(_handGun);
             if (_subGun != null)
             {
-                Managers.Resource.Instantiate($"Items/{_subGun.name}Item" , _dropPosition.position);
-                Managers.Resource.Destroy(_subGun);
+                Managers.Resource.Instantiate($"Items/{_handGun.name}Item" , _dropPosition.position);
+                Managers.Resource.Destroy(_handGun);
             }
-
-            _subGun = _handGun;
+            else
+            {
+                _subGun = _handGun;
+            }
             GameObject go = Managers.Resource.Instantiate($"Guns/{data.WeaponName}");
             _handGun = go.GetComponent<Gun>();
         }
@@ -69,6 +71,7 @@ public class Inventory : MonoBehaviour
         _inventoryUI = GetComponent<InventoryUI>();
         _useItem = GetComponent<UseItem>();
         _controller = GetComponent<PlayerInputController>();
+        _controller.OnChangeWeaponEvent += SwapWeapon;
     }
 
     private void Start()

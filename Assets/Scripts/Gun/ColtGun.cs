@@ -13,7 +13,7 @@ public class ColtGun : BurstGun
         {
             GameObject go = Managers.Resource.Instantiate("Bullets/ColtBullet" , _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
             NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
-            bullet.Init(_damage, _bulletSpeed, _bulletDistance, _knockBack, true);
+            bullet.Init(GetDamage(_damage) , _bulletSpeed, _bulletDistance, _knockBack, true , true);
 
 
             _animator.Play("ColtGun_Fire" , -1 , 0f);
@@ -23,10 +23,10 @@ public class ColtGun : BurstGun
             --_ammunition;
             ++_burstedBullet;
 
-            yield return new WaitForSeconds(_shootingDelay);
+            yield return new WaitForSeconds(GetSpeed(_shootingDelay));
         }
 
-        yield return new WaitForSeconds(_autoFireDelay);
+        yield return new WaitForSeconds(GetSpeed(_autoFireDelay));
 
         isAutoFireReady = true;
     }
