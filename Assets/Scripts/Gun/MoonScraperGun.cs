@@ -33,8 +33,9 @@ public class MoonScraperGun : LaserGun
         }
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (_isShooting)
         {
             if (_magazine == 0)
