@@ -32,7 +32,7 @@ public class ShootingAttackController : MonoBehaviour
 
         if (_currentDuration > _monsterAttackDataSO.duration)
         {
-            Destroy(gameObject);
+            Managers.Resource.Destroy(this);
         }
 
         // 사라지지 않았다면 이동
@@ -44,7 +44,7 @@ public class ShootingAttackController : MonoBehaviour
         if (_levelCollisionLayer.value == (_levelCollisionLayer.value | (1 << collision.gameObject.layer)))
         {
             // 벽에 부딪히고 조금 안쪽으로 들어오도록
-            Destroy(gameObject);
+            Managers.Resource.Destroy(this);
         }
         else if (_monsterAttackDataSO.target.value == (_monsterAttackDataSO.target.value | (1 << collision.gameObject.layer)))
         {
@@ -53,16 +53,17 @@ public class ShootingAttackController : MonoBehaviour
             if (healthSystem != null)
             {
                 healthSystem.ChangeHealth(-_monsterAttackDataSO.power);
-                if (_monsterAttackDataSO.isOnKnockback)
-                {
-                    CharacterMovement movement = collision.GetComponent<CharacterMovement>();
-                    if (movement != null)
-                    {
-                        movement.ApplyKnockback(transform, _monsterAttackDataSO.knockbackPower, _monsterAttackDataSO.knockbackTime);
-                    }
-                }
+                // 넉백
+                //if (_monsterAttackDataSO.isOnKnockback)
+                //{
+                //    CharacterMovement movement = collision.GetComponent<CharacterMovement>();
+                //    if (movement != null)
+                //    {
+                //        movement.ApplyKnockback(transform, _monsterAttackDataSO.knockbackPower, _monsterAttackDataSO.knockbackTime);
+                //    }
+                //}
             }
-            Destroy(gameObject);
+            Managers.Resource.Destroy(this);
         }
     }
 
