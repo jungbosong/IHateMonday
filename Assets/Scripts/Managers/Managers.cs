@@ -16,6 +16,7 @@ public class Managers : MonoBehaviour
     private static SoundManager s_soundManager = new SoundManager();
     private static MapManager s_mapManager = new MapManager();
     private static PoolManager s_poolManager = new PoolManager();
+    private static GameManager s_gameManager = new GameManager();
 
     public static ResourceManager Resource { get { Init(); return s_resourceManager; } }
     public static UIManager UI { get { Init(); return s_uiManager; } }
@@ -23,6 +24,7 @@ public class Managers : MonoBehaviour
     public static SoundManager Sound { get { Init(); return s_soundManager; } }
     public static MapManager Map { get { return s_mapManager; } }
     public static PoolManager Pool { get { Init(); return s_poolManager; } }
+    public static GameManager Game { get { Init();return s_gameManager; } }
 
     private void Start()
     {

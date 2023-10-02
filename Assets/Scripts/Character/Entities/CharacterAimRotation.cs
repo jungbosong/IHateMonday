@@ -25,8 +25,8 @@ public class CharacterAimRotation : MonoBehaviour
     private void RotateArm(Vector2 direction)
     {
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        armRenderer.flipY = Mathf.Abs(rotZ) > 90f;
-        characterRenderer.flipX = armRenderer.flipY;
-        armPovot.rotation = Quaternion.Euler(0, 0, rotZ);
+        //armRenderer.flipY = Mathf.Abs(rotZ) > 90f;
+        characterRenderer.flipX = Mathf.Abs(rotZ) > 90f;
+        //armPovot.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 }
