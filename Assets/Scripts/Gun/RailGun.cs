@@ -39,7 +39,7 @@ public class RailGun : CharzingGun
             //라인랜더링..레이캐스팅...
             for(int i = 0; i < 4; i++)
             {
-                _angle[i] -= (_baseAngle[i] / _maxShotCharzing) * Time.deltaTime;
+                _angle[i] -= (_baseAngle[i] / GetSpeed(_maxShotCharzing) ) * Time.deltaTime;
 
                 if (_angle[i] < 0)
                 {
@@ -107,11 +107,11 @@ public class RailGun : CharzingGun
 
     public override void OnKeyUp()
     {
-        if(_maxShotCharzing < _shotCharzing)
+        if(GetSpeed(_maxShotCharzing) < _shotCharzing)
         {
             GameObject go = Managers.Resource.Instantiate("Bullets/RailBullet", _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
             NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
-            bullet.Init(_damage, _bulletSpeed, _bulletDistance, _knockBack, true);
+            bullet.Init(GetDamage(_damage) , _bulletSpeed, _bulletDistance, _knockBack, true , true);
 
             //Managers.Sound.Play("?");
 

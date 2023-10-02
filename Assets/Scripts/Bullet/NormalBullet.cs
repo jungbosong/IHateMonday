@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,9 +13,49 @@ public class NormalBullet : Bullet
 
     private void OnEnable()
     {
-        transform.position += transform.right * GetComponent<BoxCollider2D>().size.x * 0.5f;
+        transform.position += transform.right.normalized * GetComponent<BoxCollider2D>().size.x * 0.5f;
     }
 
+    private void Update()
+    {
+        if(_isGuided)
+        {
+            if (_target == null)
+            {
+                _target = GetNearObjectInAngle();
+            }
+
+            if(_target != null)//1.0.2초마다 타겟감지 두트윈회전 //2.그냥 단순회전
+            {
+                   Vector2 _targetVector = _target.transform.position - transform.position;
+                    float dot = Vector3.Dot(transform.right.normalized , _targetVector.normalized);
+                    float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+                if (angle < _findMaxAngle)
+                {
+                    Vector3 cross = Vector3.Cross(transform.right.normalized , _targetVector).normalized;
+                    float flipValue = 1;
+                    if (transform.rotation.eulerAngles.y > 170f)
+                        flipValue = -1;
+                        // 외적 결과 값에 따라 각도 반영
+                        if (cross.z < 0)
+                    {
+                            angle = transform.rotation.eulerAngles.z - Mathf.Min(10 , angle) * flipValue;
+                    }
+                    else
+                    {
+                        angle = transform.rotation.eulerAngles.z + Mathf.Min(10 , angle) * flipValue;
+                    }
+
+                    transform.rotation = Quaternion.Lerp(transform.rotation , Quaternion.Euler(0 , transform.rotation.eulerAngles.y , angle) , 0.4f);
+                    // angle이 윗 방향과 target의 각도.
+                }
+                else
+                {
+                    _target = null;
+                }
+            }
+        }
+    }
     private void LateUpdate()
     {
         if (_bulletDistance < _nowMoveDistance)
@@ -24,7 +65,7 @@ public class NormalBullet : Bullet
     }
     private void FixedUpdate()
     {
-        _rigidbody.velocity = transform.right * _bulletSpeed;
+        _rigidbody.velocity = transform.right.normalized * _bulletSpeed;
         _nowMoveDistance += (_rigidbody.velocity * Time.fixedDeltaTime).magnitude;
     }
     
