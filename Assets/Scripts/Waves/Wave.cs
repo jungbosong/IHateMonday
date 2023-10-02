@@ -22,9 +22,12 @@ public class Wave : MonoBehaviour
 
     public List<GameObject> _enemyPrefabs = new List<GameObject>();     // 생성할 몬스터 프리팹 리스트
 
+    private CharacterStats _monsterStats;
+
     void Start()
     {
         InitSpawnPositions();
+        InitUpgradeStat();
         StartCoroutine("COPlayWave");
     }
 
@@ -67,6 +70,7 @@ public class Wave : MonoBehaviour
                 if (_currentWaveIndex % 2 == 0)
                 {
                     _waveSpawnCount++;
+                    if(_monsterStats != null) RandomUpgrade();
                 }
 
                 for (int i = 0; i < _waveSpawnPosCount; i++)
@@ -76,6 +80,7 @@ public class Wave : MonoBehaviour
                     {
                         int prefabIndex = Random.Range(0, _enemyPrefabs.Count);
                         GameObject enemy = Instantiate(_enemyPrefabs[prefabIndex], _spawnPositions[posIdx], Quaternion.identity);
+                        //enemy.GetComponent<CharacterStatsHandler>().AddStatModifier(_monsterStats);
                         enemy.GetComponent<HealthSystem>().OnDeath += OnEnemyDeath;
                         _currentSpawnCount++;
                         yield return new WaitForSeconds(_spawnInterval);
@@ -85,11 +90,57 @@ public class Wave : MonoBehaviour
             }
             yield return null;
         }
+        CreateReward();
+    }
+
+    // TODO 아이템 부분 완성되면 CharacterStats 리팩토링하고 주석 풀기
+    private void InitUpgradeStat()
+    {
+        //_monsterStats.statsChangeType = StatsChangeType.Add;
     }
 
     // 몬스터의 OnDeath 이벤트에 연결됨
     private void OnEnemyDeath()
     {
         _currentSpawnCount--;
+    }
+
+    // 웨이브 클리어 시 보상 제공
+    private void CreateReward()
+    {
+        // TODO 보상 아이템 생성
+        // 현재 웨이브 방에서 진행되는 웨이브는 총 10회 
+        // 10회가 끝나야 보상을 제공할 것인지, 중간에도 제공할 것인지 결정해야 함 -> 밸런스 패치와 연관
+        //Instantiate();
+    }
+
+    // TODO 랜덤하게 몬스터의 스탯을 변화시키는 로직 구현
+    // 고려할 점 : PlayerStatsHandler에 있는 StatModifier 방식을 CharacterStatsHandler로 옮기고 MonsterStatsHandler 추가로 생성
+    // PlayerStatsHandler와 MonsterStatsHandler에서는 넘겨 받은 CharaterStats를 타입캐스팅하여 스탯 적용 -> 효율적인가?
+    private void RandomUpgrade()
+    {
+        switch (Random.Range(0, 6))
+        {
+            case 0:
+                _monsterStats.currentHp += 3;
+                break;
+            case 1:
+                _monsterStats.currentHp += 6;
+                break;
+            case 2:
+                _monsterStats.currentHp += 9;
+                break;
+            case 3:
+                _monsterStats.moveSpeed += 1;
+                break;
+            case 4:
+                _monsterStats.moveSpeed += 3;
+                break;
+            case 5:
+                _monsterStats.moveSpeed += 5;
+                break;
+            default:
+                break;
+        }
     }
 }

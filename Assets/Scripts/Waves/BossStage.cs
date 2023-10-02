@@ -28,7 +28,7 @@ public class BossStage : MonoBehaviour
     {
         if (_isGameOver)
         {
-
+            Managers.Game.StageClear();
         }
     }
 
