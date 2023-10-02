@@ -62,7 +62,7 @@ public class MonsterShooting : MonoBehaviour
     {
         //GameObject obj = objectPool.SpawnFromPool(monsterAttackDataSO.bulletNameTag);
 
-        GameObject obj = Instantiate(monsterAttackDataSO.projectilePrefab);
+        GameObject obj = Managers.Resource.Instantiate("MonsterAttacks/" + monsterAttackDataSO.projectilePrefab.name);
 
         obj.transform.position = startPosition;     // 시작 위치
         ShootingAttackController attackController = obj.GetComponent<ShootingAttackController>();

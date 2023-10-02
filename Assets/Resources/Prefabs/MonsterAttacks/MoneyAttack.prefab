@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 667456654719269702}
   - component: {fileID: 7072668460035246974}
   - component: {fileID: 5025109025124595626}
+  - component: {fileID: 3265080812060193083}
   m_Layer: 0
   m_Name: MoneyAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2538240052410304615
 Transform:
   m_ObjectHideFlags: 0
@@ -122,6 +123,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3265080812060193083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7960679890629798603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c75c5d8fe87edfb49aa9812b4182f2c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8238972074905373772
 GameObject:
   m_ObjectHideFlags: 0
