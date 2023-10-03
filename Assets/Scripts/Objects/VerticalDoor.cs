@@ -74,6 +74,7 @@ public class VerticalDoor : Door
 
             if (doorDistance > playerDistance)
             {
+                Debug.Log($"{_nearRoom.center}");
                 _nearRoom.OnBattleStart?.Invoke();
             }
         }

@@ -15,12 +15,6 @@ public class HorizonDoor : Door
     {
         base.Awake();
 
-        //Test (프리펩 만지고있어서 나중에 빼고 프리펩에서 직접연결하는 방식으로 합시다)
-        {
-            _Leftdoor = transform.GetChild(1).GetComponent<SpriteRenderer>();
-            _Rightdoor = transform.GetChild(2).GetComponent<SpriteRenderer>();
-        }
-
         _player = GameObject.FindWithTag("Player");
         _playerSprite = _player.GetComponentInChildren<SpriteRenderer>();
         _playerSortingOrder = _playerSprite.sortingOrder;
@@ -82,6 +76,7 @@ public class HorizonDoor : Door
 
             if (doorDistance > playerDistance)
             {
+                Debug.Log($"{_nearRoom.center}");
                 _nearRoom.OnBattleStart?.Invoke();
             }
         }
