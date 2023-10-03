@@ -30,4 +30,9 @@ public class Room : MonoBehaviour
         this.height = height;
         this.type = type;
     }
+
+    private void Awake()
+    {
+        center = this.transform.localPosition;
+    }
 }
