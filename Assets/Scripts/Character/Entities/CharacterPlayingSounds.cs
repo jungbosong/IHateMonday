@@ -9,10 +9,6 @@ public class CharacterPlayingSounds : MonoBehaviour
 
     private HealthSystem _healthSystem;
 
-
-    private void Awake()
-    {
-    }
     void Start()
     {
         _healthSystem = GetComponent<HealthSystem>();
@@ -20,9 +16,12 @@ public class CharacterPlayingSounds : MonoBehaviour
         _healthSystem.OnDamage += PlayingDamage;
         _healthSystem.OnDeath += PlayingDead;
 
-        if ( soundSO.starting != "")   //캐릭터 생성시 플레이
+        if ( soundSO.starting != "" && soundSO.isPlayer)   //캐릭터 생성시
         {
-            Managers.Sound.Play(soundSO.starting);
+            Managers.Sound.Play(soundSO.starting, Define.Sound.Bgm);  //배경음악 재생
+        }else if( soundSO.starting != "")
+        {
+            Managers.Sound.Play(soundSO.starting);  //플레이어 외의 캐릭터 생성시 재생
         }
     }
 
@@ -34,11 +33,11 @@ public class CharacterPlayingSounds : MonoBehaviour
 
             if( result== 0)    //랜덤 10프로의 확률로 피격 사운드 플레이
             {
-                Managers.Sound.Play(soundSO.damaging, Define.Sound.Effect);
+                Managers.Sound.Play(soundSO.damaging);
             }
-        }else if(soundSO.damaging != null)  //징징이(플레이어)가 피격될 경우
+        }else if(soundSO.damaging != "")  //징징이(플레이어)가 피격될 경우
         {
-            Managers.Sound.Play(soundSO.damaging, Define.Sound.Effect);
+            Managers.Sound.Play(soundSO.damaging);
         }
     }
 
@@ -46,12 +45,12 @@ public class CharacterPlayingSounds : MonoBehaviour
     {
         if(soundSO.dead != "" && soundSO.isBoss)    //보스가 사망한 경우
         {
-            Managers.Sound.Play(soundSO.dead, Define.Sound.Effect);  //보스 사망대사와 함께
-            Managers.Sound.Play(soundSO.victory, Define.Sound.Effect);  //징징이 승리 대사 플레이
+            Managers.Sound.Play(soundSO.dead);  //보스 사망대사와 함께
+            Managers.Sound.Play(soundSO.victory);  //징징이 승리 대사 플레이
         }
         else if(soundSO.dead != "")
         {
-            Managers.Sound.Play(soundSO.dead, Define.Sound.Effect);
+            Managers.Sound.Play(soundSO.dead);
         }
     }
     

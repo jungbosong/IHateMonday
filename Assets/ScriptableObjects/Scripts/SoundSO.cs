@@ -12,4 +12,5 @@ public class SoundSO : ScriptableObject
     public string dead;
     public string victory;
     public bool isBoss;
+    public bool isPlayer;
 }
