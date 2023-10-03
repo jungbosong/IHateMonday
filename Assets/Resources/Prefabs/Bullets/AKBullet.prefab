@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8307747126542931214}
   - component: {fileID: 6312035863907010173}
-  - component: {fileID: 8845699840854862922}
+  - component: {fileID: -5857853308634282777}
   - component: {fileID: 8470212355747513860}
   - component: {fileID: 7193631031257526135}
   m_Layer: 0
@@ -48,9 +48,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1d1c0695cca2d45a06ece549faa817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPlayerBullet: 0
+  _isGuided: 0
+  _damage: 0
+  _bulletSpeed: 0
+  _bulletDistance: 0
+  _nowMoveDistance: 0
+  _knockBack: 0
+  _wallCollisionLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _targetCollisionLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _envCollisionLayer:
+    serializedVersion: 2
+    m_Bits: 0
   _deadSpawnAnimatorController: {fileID: 9100000, guid: 977ca558150c84a279bf5f9245171f31, type: 2}
   _findMaxAngle: 50
---- !u!114 &8845699840854862922
+--- !u!114 &-5857853308634282777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

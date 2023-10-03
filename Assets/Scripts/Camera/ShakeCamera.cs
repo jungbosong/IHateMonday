@@ -19,7 +19,10 @@ public class ShakeCamera : MonoBehaviour
 
     public void Shake(ShakeType type)
     {
-        _animations[(int)type].CreateTween();
-        _animations[(int)type].DORestart();
+        if (_animations.Length > (int)type)
+        {
+            _animations[(int)type].CreateTween();
+            _animations[(int)type].DORestart();
+        }
     }
 }
