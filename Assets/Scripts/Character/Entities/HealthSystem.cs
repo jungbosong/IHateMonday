@@ -62,6 +62,8 @@ public class HealthSystem : MonoBehaviour
         }
         else
         {
+            //Test
+            Camera.main.GetComponent<ShakeCamera>().Shake(ShakeType.Hit);
             OnDamage?.Invoke();
         }
 

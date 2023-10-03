@@ -6,9 +6,9 @@ public class HorizonDoor : Door
 {
     private void OnEnable()
     {
-
         _animator.Play("Close" , -1 , 0);
     }
+
 
     private void OnCollisionStay2D(Collision2D collision)
     {

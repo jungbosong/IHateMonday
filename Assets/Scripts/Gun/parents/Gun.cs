@@ -52,6 +52,7 @@ public abstract class Gun : MonoBehaviour
 
     protected GameObject _player;
     protected PlayerStatsHandler _stat;
+
     protected virtual void Awake()
     {
         TryGetComponent<Animator>(out _animator);
@@ -158,12 +159,12 @@ public abstract class Gun : MonoBehaviour
         onLook -= OnLook;
         onReload -= OnReload;
 
+        StopAllCoroutines();
+        gameObject.SetActive(false);
         if (_animator != null)
         {
             _animator.SetBool("Reload" , false);
         }
-        StopAllCoroutines();
-        gameObject.SetActive(false);
     }
 
     public void OnReload()
@@ -176,5 +177,14 @@ public abstract class Gun : MonoBehaviour
             return;
 
         StartCoroutine(COReload());
+    }
+
+    protected float GetDamage(float baseDamage)
+    {
+        return baseDamage * _stat.CurrentStats.attackPowerCoefficient / 100f;
+    }
+    protected float GetSpeed(float baseDelay)
+    {
+        return baseDelay * _stat.CurrentStats.attackSpeedCoefiicient / 100f;
     }
 }

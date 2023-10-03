@@ -14,8 +14,8 @@ public class MoonScraperGun : LaserGun
         _animator.SetBool("Fire" , true);
         GameObject go = Managers.Resource.Instantiate("Bullets/MoonScraperBullet", _shotPoint.position, _shotPoint.rotation);
         _moonScraperBullet = go.GetOrAddComponent<MoonScraperBullet>();
-        _moonScraperBullet.Init(_damage, _bulletSpeed, _bulletDistance, _knockBack, true);
-        _moonScraperBullet.LaserInit(_lineSize, _shotPoint);
+        _moonScraperBullet.Init(GetDamage(_damage) , _bulletSpeed , _bulletDistance , _knockBack , true , true);
+        _moonScraperBullet.LaserInit(_lineSize , _shotPoint);
         _isShooting = true;
 
         while (true)

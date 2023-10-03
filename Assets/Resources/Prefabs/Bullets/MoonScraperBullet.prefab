@@ -128,7 +128,7 @@ LineRenderer:
       m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 4
+    numCornerVertices: 3
     numCapVertices: 4
     alignment: 0
     textureMode: 0
@@ -152,6 +152,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deadSpawnAnimatorController: {fileID: 0}
+  _findMaxAngle: 30
+  _smooth: 20
+  targetPos: {x: 0, y: 0, z: 0}
+  nowPos: {x: 0, y: 0, z: 0}
 --- !u!95 &1232751211242873195
 Animator:
   serializedVersion: 5

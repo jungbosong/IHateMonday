@@ -18,6 +18,9 @@ public class Define
         LobbyScene,
         DungeonScene,
         PoolTestScene,
+        StartScene,
+        EndingScene,
+        DeadEndScene
     }
 
     public enum Sound

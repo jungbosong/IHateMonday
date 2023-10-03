@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class MagnumGun : SemiAutoGun
 {
+    Coroutine _myCoroutine;
     public override IEnumerator COFire()
     {
         isManualFireReady = false;
@@ -12,16 +13,16 @@ public class MagnumGun : SemiAutoGun
 
         GameObject go = Managers.Resource.Instantiate("Bullets/MagnumBullet" , _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
         NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
-        bullet.Init(_damage, _bulletSpeed, _bulletDistance, _knockBack, true);
+        bullet.Init(GetDamage(_damage) , _bulletSpeed, _bulletDistance, _knockBack, true , true);
 
         _animator.Play("MagnumGun_Fire" , -1 , 0f);
         //Managers.Sound.Play("?");
 
         --_magazine;
 
-        yield return new WaitForSeconds(_manualFireDelay);
+        yield return new WaitForSeconds(GetSpeed(_manualFireDelay));
         isManualFireReady = true;
-        yield return new WaitForSeconds(_autoFireDelay - _manualFireDelay);
+        yield return new WaitForSeconds(GetSpeed(_autoFireDelay) - GetSpeed(_manualFireDelay));
         isAutoFireReady = true;
     }
 
@@ -38,9 +39,6 @@ public class MagnumGun : SemiAutoGun
 
     public override void OnKeyDown()
     {
-        if (_ammunition == 0)
-            return;
-
         if (isReload || !isManualFireReady)
             return;
 
@@ -50,8 +48,9 @@ public class MagnumGun : SemiAutoGun
         }
         else if (isManualFireReady)
         {
-            StopCoroutine(COFire());
-            StartCoroutine(COFire());
+            if (_myCoroutine is not null)
+                StopCoroutine(_myCoroutine);
+            _myCoroutine = StartCoroutine(COFire());
         }
     }
 
@@ -59,9 +58,9 @@ public class MagnumGun : SemiAutoGun
     {
         if (isReload || !isAutoFireReady || _magazine == 0)
             return;
-
-        StopCoroutine(COFire());
-        StartCoroutine(COFire());
+        if(_myCoroutine is not null)
+            StopCoroutine(_myCoroutine);
+        _myCoroutine = StartCoroutine(COFire());
     }
 
     public override void OnKeyUp()
