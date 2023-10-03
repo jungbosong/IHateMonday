@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using static Unity.Collections.AllocatorManager;
 
 public enum RoomType
@@ -21,10 +22,20 @@ public class Room : MonoBehaviour
     public float width;         // 방의 넓이    
     public float height;        // 방의 높이
     public RoomType type;       // 방 종류
-    //public bool notDone = true;
+    public bool firstEntered;
 
     public Action OnBattleStart;
     public Action OnBattleEnd;
+
+    private void Start()
+    {
+        if(type == RoomType.Wave || type == RoomType.Boss)
+        {
+            Debug.Log(this.name);
+            center = this.transform.GetChild(2).transform.position;
+        }
+        firstEntered = true;
+    }
     public Room(Vector3 center, float width, float height, RoomType type)
     {
         this.center = center;
@@ -33,29 +44,17 @@ public class Room : MonoBehaviour
         this.type = type;
     }
 
-    private void Awake()
-    {
-        center = this.transform.localPosition;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"now entered {type} room");
-        Debug.Log($"center({this.center.x}, {this.center.y})");
-
-        if(type == RoomType.NoneMonster)
+        if (type == RoomType.Wave || type == RoomType.Boss)
         {
-            return;
-        }
-        else
-        {
-            Managers.Game.StartWave(this);
-            /*if (notDone)
+            if(firstEntered)
             {
-                Managers.Game.StartWave(this);
-                notDone = false;
-            }*/
-            //OnBattleStart?.Invoke();
+                Debug.Log($"first started {this.name}");
+                Managers.Game.StartWave(this.transform.GetChild(2).transform.position, this);
+                this.OnBattleStart?.Invoke();
+                firstEntered = false;
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class VerticalDoor : Door
@@ -64,7 +65,7 @@ public class VerticalDoor : Door
     protected override void OnTriggerExit2D(Collider2D collision)
     {
         base.OnTriggerExit2D(collision);
-
+        
         if (_nearRoom.type == RoomType.Normal ||
             _nearRoom.type == RoomType.Wave ||
             _nearRoom.type == RoomType.Boss)
@@ -74,8 +75,8 @@ public class VerticalDoor : Door
 
             if (doorDistance > playerDistance)
             {
-                // 디버깅 대신 보스나 웨이브 스타트 하면 됨
-                Debug.Log($"{_nearRoom.center}");
+                Debug.Log($"{_nearRoom.name}");
+                Managers.Game.StartWave(_nearRoom.transform.GetChild(2).transform.position, _nearRoom);
                 _nearRoom.OnBattleStart?.Invoke();
             }
         }

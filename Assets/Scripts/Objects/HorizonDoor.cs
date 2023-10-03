@@ -64,7 +64,7 @@ public class HorizonDoor : Door
     protected override void OnTriggerExit2D(Collider2D collision)
     {
         base.OnTriggerExit2D(collision);
-
+        
         if(_nearRoom.type == RoomType.Normal ||
             _nearRoom.type == RoomType.Wave||
             _nearRoom.type == RoomType.Boss)
@@ -74,7 +74,8 @@ public class HorizonDoor : Door
 
             if (doorDistance > playerDistance)
             {
-                Debug.Log($"{_nearRoom.center}");
+                Debug.Log($"{_nearRoom.name}");
+                Managers.Game.StartWave(_nearRoom.transform.GetChild(2).transform.position, _nearRoom);
                 _nearRoom.OnBattleStart?.Invoke();
             }
         }

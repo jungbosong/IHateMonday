@@ -36,8 +36,8 @@ public class GameManager : MonoBehaviour
     {
         _curStage = 1;
         // 웨이브 테스트용 코드 
-        _currentRoom = new Room(new Vector3(2f, 2f, 0), 5f, 7f, RoomType.Wave);
-        StartWave(_currentRoom);
+        //_currentRoom = new Room(new Vector3(2f, 2f, 0), 5f, 7f, RoomType.Wave);
+        //StartWave(_currentRoom);
     }
 
     void Update()
@@ -47,19 +47,21 @@ public class GameManager : MonoBehaviour
 
     // 게임 매니저에게 웨이브 시작을 요청할 때 사용
     // 플레이어가 들어간 방의 정보를 Room 타입으로 넘겨줘야 함
-    public void StartWave(Room curRoom)
+    public void StartWave(Vector3 centerPosition, Room curRoom)
     {
         _currentRoom = curRoom;
 
         if (_currentRoom.type == RoomType.Wave)
         {
-            _curWave = Instantiate(Resources.Load<GameObject>(WAVE_PREFAB_PATH)).GetComponent<Wave>();
-            _curWave.InitRoomInfo(_currentRoom);
+            _curWave = Instantiate(Resources.Load<GameObject>(WAVE_PREFAB_PATH)).GetOrAddComponent<Wave>();
+            //_curWave.transform.position = curRoom.transform.localPosition;
+            _curWave.InitRoomInfo(centerPosition, _currentRoom);
         }
         else
         {
-            _curBossStage = Instantiate(Resources.Load<GameObject>(BOSS_STAGE_PREFAB_PATH)).GetComponent<BossStage>();
-            _curBossStage.InitRoomInfo(_currentRoom, _curStage);
+            _curBossStage = Instantiate(Resources.Load<GameObject>(BOSS_STAGE_PREFAB_PATH)).GetOrAddComponent<BossStage>();
+            //_curBossStage.transform.position = curRoom.transform.localPosition;
+            _curBossStage.InitRoomInfo(centerPosition, _currentRoom, _curStage);
         }
     }
 
