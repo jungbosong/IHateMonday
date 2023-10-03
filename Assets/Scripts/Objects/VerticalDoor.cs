@@ -20,25 +20,9 @@ public class VerticalDoor : Door
         _playerSprite = _player.GetComponentInChildren<SpriteRenderer>();
         _playerSortingOrder = _playerSprite.sortingOrder;
     }
+
     private void OnEnable()
     {
-        Room nearRoom = null;
-        float nearDistance = float.MaxValue;
-        //일단 룸리스트 직접순회 하겠습니다..;
-        foreach (Room room in Managers.Map.roomList)
-        {
-            float near = Mathf.Abs(room.center.y - transform.position.y) - room.width / 2f;
-
-            if (near < nearDistance)
-            {
-                nearDistance = near;
-                nearRoom = room;
-            }
-        }
-
-        if (nearRoom is null)
-            return;
-
         _animator.Play("Close" , -1 , 0);
     }
 
