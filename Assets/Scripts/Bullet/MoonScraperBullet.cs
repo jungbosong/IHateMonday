@@ -8,8 +8,10 @@ public class MoonScraperBullet : Bullet
     private LineRenderer _lineRenderer;
     private int tagetLayer;
     [SerializeField]private int _smooth;
-    public Vector3 targetPos;
-    public Vector3 nowPos;
+
+    private float _damageDelay = 0.1f;
+    private float _damageTime;
+    private bool _damageAble = true;
     private void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
@@ -52,8 +54,7 @@ public class MoonScraperBullet : Bullet
                     _lineRenderer.SetPosition(i , hit.point);
 
 
-                    //여기서 충돌체의 데미지처리나 이런걸 해야됨
-                    //초당 _damage피해
+                    AddDamage(hit);
                 }
                 else
                 {
@@ -69,7 +70,6 @@ public class MoonScraperBullet : Bullet
             {
                 dir.Normalize();
                 _target = GetNearObjectInAngle(pos , dir);
-                nowPos = pos;
                 BeziarCurve b = new BeziarCurve();
                 b.InputPosition(pos);
                 if (_target == null || ((Vector2)_target.transform.position - pos).magnitude > length)
@@ -86,7 +86,7 @@ public class MoonScraperBullet : Bullet
                 }
                 else
                 {
-                    targetPos = _target.transform.position;
+                    Vector3 targetPos = _target.transform.position;
                     //여기서 중간에수선의 발의 좌표를 찾아서 그 점을 찍어줘야함
                     //dot(타겟까지벡터.normalize, 내벡터.normalize) -> cosA;
                     //타겟까지벡터.magnitude * cosA -> 정사영한 길이
@@ -94,8 +94,6 @@ public class MoonScraperBullet : Bullet
 
                     b.InputPosition(pos + dir * Vector2.Dot(dir , targetVector.normalized) * targetVector.magnitude);
                     b.InputPosition(_target.transform.position);
-
-                    //여기서 타겟한테 데미지줌
                 }
 
                 Vector2 beforePos = pos;
@@ -117,6 +115,7 @@ public class MoonScraperBullet : Bullet
                             nextPos = hit.point;
                             pos = hit.point + dir.normalized * 0.1f;
                             objectHit = true;
+                            AddDamage(hit);
                         }
                     }
                     _lineRenderer.SetPosition(index , nextPos);
@@ -125,5 +124,37 @@ public class MoonScraperBullet : Bullet
                 }
             }
         }
+    }
+
+    void AddDamage(RaycastHit2D hit)
+    {
+        if (!_damageAble)
+            return;
+        if ((1 << hit.transform.gameObject.layer) != _targetCollisionLayer)
+            return;
+
+        if (hit.transform.TryGetComponent<CharacterMovement>(out CharacterMovement movement))
+        {
+            movement.ApplyKnockback(hit.point , _knockBack , 0.05f);
+        }
+        if (hit.transform.TryGetComponent<HealthSystem>(out HealthSystem health))
+        {
+            health.ChangeHealth((int)(-_damage * _damageDelay));
+            Camera.main.GetComponent<ShakeCamera>().Shake(ShakeType.Attack);
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if(_damageAble)
+        {
+            _damageAble = false;
+            _damageTime = Time.time + _damageDelay;
+        }
+        else if (Time.time > _damageTime)
+        {
+            _damageAble = true;
+        }
+
     }
 }

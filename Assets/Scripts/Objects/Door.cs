@@ -23,9 +23,12 @@ public class Door : MonoBehaviour
     protected virtual void Awake()
     {
         //if(isLocked)
-        //_inventory = ??.GetComponent<Inventory>();
+
+        _inventory = Managers.Game.player.GetComponent<Inventory>();
         _playerLayerMask = LayerMask.GetMask("Player");
         _animator = GetComponent<Animator>();
+
+        //Test
         Lock();
     }
     
@@ -61,7 +64,7 @@ public class Door : MonoBehaviour
     }
     public bool UnLock()
     {
-        //if(_inventory.UseKey())
+        if(_inventory.UseKey())
         {
             return true;
         }
