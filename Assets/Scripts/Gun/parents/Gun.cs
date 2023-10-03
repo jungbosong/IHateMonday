@@ -53,6 +53,9 @@ public abstract class Gun : MonoBehaviour
     protected GameObject _player;
     protected PlayerStatsHandler _stat;
 
+    public int GetAmmunition() { return _ammunition; }
+    public int GetMAXAmmunition() { return _maxMagazine; }
+
     protected virtual void Awake()
     {
         TryGetComponent<Animator>(out _animator);
@@ -179,13 +182,18 @@ public abstract class Gun : MonoBehaviour
         StartCoroutine(COReload());
     }
 
-    public void ChargingAmmunition()
+    public void AddAmmunition(int amount)   //패시브 아이템 탄피 충전
+    {
+        _ammunition += amount;
+    }
+
+    public void ChargingAmmunition()    //제단 사용 시 탄피 충전
     {
         _maxAmmunition = (int)(_maxAmmunition * 1.25f);
         _ammunition = _maxAmmunition;
     }
     
-    public void Lostmmunition(float random)
+    public void Lostmmunition(float random)     //제단 사용 시 탄피 잃음
     {
         _ammunition = _ammunition - (int)(_ammunition * random);
     }

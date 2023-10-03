@@ -20,4 +20,5 @@ public class PlayerStats: CharacterStats
     public float moveSpeedCoefficient = 100f;       // 현재 이동속도 증가 계수
     public bool isInvincible = false;               // 무적 여부
     public float invincibilityTime = 2f;            // 무적 지속 시간
+    public bool isGuied = false;                    // 유도탄 버프 여부
 }

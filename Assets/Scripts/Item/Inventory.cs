@@ -97,7 +97,8 @@ public class Inventory : MonoBehaviour
         {
             item.itemData.stack = 0;
         }
-        _uiComponent.Set(_itemsList[_itemListIndex].itemData);
+        _selectItem = _itemsList[_itemListIndex];
+        _uiComponent.Set(_selectItem.itemData);
     }
 
     public void AddItem(ItemData itemData)
@@ -112,18 +113,10 @@ public class Inventory : MonoBehaviour
             return;
     }
 
-    //private ItemSlot GetItemSlot(ItemData itemData)
+    //public void ThrowItem(ItemData item)
     //{
-    //    if ()
-    //    {
-
-    //    }
+    //    Managers.Resource.Instantiate(item.dropPrefab, _dropPosition.position, Quaternion.Euler(Vector3.one * UnityEngine.Random.value * 360f));
     //}
-
-    public void ThrowItem(ItemData item)
-    {
-        Managers.Resource.Instantiate(item.dropPrefab, _dropPosition.position, Quaternion.Euler(Vector3.one * UnityEngine.Random.value * 360f));
-    }
 
     public void OnUse()
     {
@@ -160,7 +153,7 @@ public class Inventory : MonoBehaviour
     public void UpdateInventoryUI()
     {
         //inventoryUI set »£√‚
-        _uiComponent.Set(_itemsList[_itemListIndex].itemData);
+        _uiComponent.Set(_selectItem.itemData);
     }
 
     public void ChangeItem()

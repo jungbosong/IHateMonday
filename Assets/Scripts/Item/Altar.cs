@@ -39,7 +39,7 @@ public class Altar : MonoBehaviour
 
     private void GoodDice()
     {
-        int goodCase = 0;// Random.Range(0, 3);
+        int goodCase = Random.Range(0, 3);
 
         switch (goodCase)
         {
@@ -61,21 +61,22 @@ public class Altar : MonoBehaviour
 
     private void BadDice()
     {
-        int badCase = 0;//Random.Range(0, 3);
+        int badCase = Random.Range(0, 3);
         GameObject curGun;
 
         switch (badCase)
         {
-            case 0:
+            case 0:                                                     //ÃÖ´ë Ã¼·Â °¨¼Ò
                 _playerStatsHandler.AddStatModifier(_stats[1]);
                 break;
 
             case 1:
-                curGun = GameObject.FindGameObjectWithTag("Gun");
+                curGun = GameObject.FindGameObjectWithTag("Gun");       //¹«±â ÆÄ±«
                 _playerInputController.UnEquipWeapon(curGun.GetComponent<Gun>());
+                Managers.Resource.Destroy(curGun);
                 break;
 
-            case 2:
+            case 2:                                                     //Åº¾à ÀÒÀ½
                 float rnd = Random.Range(25, 101) / 100f;
                 curGun = GameObject.FindGameObjectWithTag("Gun");
                 Gun handGun = curGun.GetComponent<Gun>();

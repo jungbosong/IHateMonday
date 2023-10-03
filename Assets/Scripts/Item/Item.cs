@@ -6,9 +6,8 @@ public class Item : MonoBehaviour
 {
     public ItemData itemData;  //아이템데이터 할당
     [SerializeField]
-    private PlayerStats _testStat;
-    [SerializeField]
-    private GameObject _player;
+    private PlayerStats _baseStat;
+    private PlayerStats _changeStat;
 
     private void OnTriggerEnter2D(Collider2D other) //아이템 획득
     {
@@ -16,9 +15,40 @@ public class Item : MonoBehaviour
         {
             if(itemData.type == ItemType.Passive)   //패시브 아이템
             {
-                //플레이어 스탯 변화
-                PlayerStatsHandler _handler = _player.GetComponent<PlayerStatsHandler>();
-                _handler.AddStatModifier(_testStat);
+                _changeStat = _baseStat;
+                _changeStat.statsChangeType = StatsChangeType.Add;
+                ////플레이어 스탯 변화
+                if (itemData.consumables[0].type == ConsumableType.Hp)
+                {
+                    _changeStat.currentHp = (int)itemData.consumables[1].value;
+                }
+                else if (itemData.consumables[0].type == ConsumableType.Shield)
+                {
+                    _changeStat.shieldCount = (int)itemData.consumables[1].value;
+                }
+                else if (itemData.consumables[0].type == ConsumableType.AttackPower)
+                {
+                    _changeStat.attackPowerCoefficient = itemData.consumables[1].value;
+                }
+                else if (itemData.consumables[0].type == ConsumableType.AttackSpeed)
+                {
+                    _changeStat.attackSpeedCoefiicient = itemData.consumables[1].value;
+                }
+                else if (itemData.consumables[0].type == ConsumableType.BulletAmount)
+                {
+                    GameObject curGun = GameObject.FindGameObjectWithTag("Gun");
+                    Gun handGun = curGun.GetComponent<Gun>();
+                    int amount = handGun.GetMAXAmmunition();
+                    int curAmount = handGun.GetAmmunition();
+                    handGun.AddAmmunition(amount - curAmount);
+                }
+                else if (itemData.consumables[0].type == ConsumableType.MoveSpeed)
+                {
+                    _changeStat.moveSpeedCoefficient = itemData.consumables[1].value;
+                }
+
+                PlayerStatsHandler _handler = other.GetComponent<PlayerStatsHandler>();
+                _handler.AddStatModifier(_baseStat);
                 Managers.Resource.Destroy(this);
             }
             else
