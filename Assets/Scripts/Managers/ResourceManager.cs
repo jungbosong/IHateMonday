@@ -94,13 +94,18 @@ public class ResourceManager
         if (go == null)
             return;
 
+        if (!go.activeSelf)
+            return;
+
         if (go.TryGetComponent<Poolable>(out Poolable p))
         {
             Managers.Pool.Push(p);
+            go = null;
             return;
         }
 
         Object.Destroy(go);
+        go = null;
     }
 
     public void Destroy(MonoBehaviour mob)

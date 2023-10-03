@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,7 @@ public class PlayerInputController : CharacterController
     public void OnInteraction()
     {
         CallInteractionEvent();
+        //Camera.main.GetComponent<ShakeCamera>().Shake(ShakeType.Attack);
     }
     public void OnMove(InputValue value)
     {
@@ -69,6 +71,7 @@ public class PlayerInputController : CharacterController
     }
     public void OnChangeWeapon()
     {
+        //Camera.main.GetComponent<ShakeCamera>().Shake(ShakeType.Hit);
         CallChangeWeaponEvent();
     }
 

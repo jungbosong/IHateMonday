@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class VerticalDoor : Door
@@ -10,8 +11,6 @@ public class VerticalDoor : Door
     [SerializeField] private GameObject _player;
     private SpriteRenderer _playerSprite;
     private int _playerSortingOrder;
-    [SerializeField]
-    float playerBottiomPosY;
     protected override void Awake()
     {
         base.Awake();
@@ -20,38 +19,19 @@ public class VerticalDoor : Door
         _playerSprite = _player.GetComponentInChildren<SpriteRenderer>();
         _playerSortingOrder = _playerSprite.sortingOrder;
     }
+
     private void OnEnable()
     {
-        Room nearRoom = null;
-        float nearDistance = float.MaxValue;
-        //일단 룸리스트 직접순회 하겠습니다..;
-        foreach (Room room in Managers.Map.roomList)
-        {
-            float near = Mathf.Abs(room.center.y - transform.position.y) - room.width / 2f;
-
-            if (near < nearDistance)
-            {
-                nearDistance = near;
-                nearRoom = room;
-            }
-        }
-
-        if (nearRoom is null)
-            return;
-
         _animator.Play("Close" , -1 , 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_isInBattle)
+        if (( transform.position - _player.transform.position ).magnitude > 5)
             return;
 
-        if (( transform.position - _player.transform.position ).magnitude > 15)
-            return;
-
-        playerBottiomPosY = _player.transform.position.y - _playerSprite.bounds.size.y * 0.5f+ _playerSprite.transform.localPosition.y;
+        float playerBottiomPosY = _player.transform.position.y - _playerSprite.bounds.size.y * 0.5f+ _playerSprite.transform.localPosition.y;
         if (_Leftdoor.transform.position.y < playerBottiomPosY)
         {
             _Leftdoor.sortingOrder = _playerSortingOrder + 1;
@@ -79,6 +59,25 @@ public class VerticalDoor : Door
                 _animator.Play("OpenB" , -1 , 0);
             }
             _doorCollider.enabled = false;
+        }
+    }
+
+    protected override void OnTriggerExit2D(Collider2D collision)
+    {
+        base.OnTriggerExit2D(collision);
+        
+        if (_nearRoom.type == RoomType.Wave ||
+            _nearRoom.type == RoomType.Boss)
+        {
+            float doorDistance = Mathf.Abs(_nearRoom.center.y - transform.position.y);
+            float playerDistance = Mathf.Abs(_nearRoom.center.y - collision.transform.position.y - _playerSprite.bounds.size.y * 0.5f + _playerSprite.transform.localPosition.y);
+
+            if (doorDistance > playerDistance)
+            {
+                Debug.Log($"{_nearRoom.name}");
+                Managers.Game.StartWave(_nearRoom.transform.GetChild(2).transform.position, _nearRoom);
+                _nearRoom.OnBattleStart?.Invoke();
+            }
         }
     }
 }

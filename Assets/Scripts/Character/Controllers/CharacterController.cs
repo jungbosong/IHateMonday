@@ -19,7 +19,6 @@ public class CharacterController : MonoBehaviour
     public event Action OnChangeWeaponEvent;
     public event Action OnRollEvent;
     public event Action OnReloadEvent;
-
     protected bool IsAttacking { get; set; }
     protected CharacterStatsHandler Stats { get; private set; }
 

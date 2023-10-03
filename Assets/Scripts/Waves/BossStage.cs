@@ -16,12 +16,13 @@ public class BossStage : MonoBehaviour
     private List<Vector3> _spawnPositions = new List<Vector3>();        // 몬스터가 생성될 spawn의 position 리스트
 
     public List<GameObject> _bossPrefabs = new List<GameObject>();     // 생성할 보스 몬스터 프리팹 리스트
+    //private Room _room;
 
     void Start()
     {
         _isGameOver = false;
         InitSpawnPositions();
-        StartBossWave();
+        //StartBossWave();
     }
 
     void Update()
@@ -32,12 +33,13 @@ public class BossStage : MonoBehaviour
         }
     }
 
-    public void InitRoomInfo(Room room, int curStage)
+    public void InitRoomInfo(Vector3 centerPosition, Room room, int curStage)
     {
-        _centerPos.x = room.center.x;
-        _centerPos.y = room.center.y;
+        _centerPos.x = centerPosition.x;
+        _centerPos.y = centerPosition.y;
         _limit = (room.width <= room.height) ? room.width / 2 : room.height / 2;    // 방의 가로, 세로 길이 중 더 짧은 쪽 길이의 반
         _curStage = curStage;
+        //_room = room;
     }
 
     // 방의 좌표와 limit에 따라 몬스터의 spawn position 리스트 초기화
@@ -58,6 +60,7 @@ public class BossStage : MonoBehaviour
     {
         int posIdx = Random.Range(0, _spawnPositions.Count);
         GameObject boss = Instantiate(_bossPrefabs[_curStage - 1], _spawnPositions[posIdx], Quaternion.identity);
+        //boss.transform.localPosition = this.transform.localPosition;
         boss.GetComponent<HealthSystem>().OnDeath += OnEnemyDeath;
     }
 

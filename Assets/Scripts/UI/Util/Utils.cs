@@ -14,8 +14,8 @@ public class Utils
         Room nearRoom = null;
         foreach (Room room in Managers.Map.roomList)
         {
-            float near = Mathf.Abs(room.center.x - position.x) - room.height / 2f;
-            near = Mathf.Min(near, Mathf.Abs(room.center.y - position.y) - room.width / 2f);
+            float near = Mathf.Abs(room.center.x - position.x) - room.width / 2f;
+            near = Mathf.Min(near, Mathf.Abs(room.center.y - position.y) - room.height / 2f);
 
             if (near < nearDistance)
             {
@@ -25,16 +25,18 @@ public class Utils
         }
 
         if (nearRoom is null)
+        {
             return null;
+        }
 
         GameObject go;
-        if (nearDistance == Mathf.Abs(nearRoom.center.x - position.x) - nearRoom.height / 2f)
+        if (nearDistance == Mathf.Abs(nearRoom.center.x - position.x) - nearRoom.width / 2f)
         {
-           go =  Managers.Resource.Instantiate("HorizonDoor" , position);
+            go =  Managers.Resource.Instantiate("Env/HorizonDoor" , position);
         }
         else
         {
-            go = Managers.Resource.Instantiate("VerticalDoor" , position);
+            go = Managers.Resource.Instantiate("Env/VerticalDoor" , position);
         }
 
         Door door = go.GetComponent<Door>();

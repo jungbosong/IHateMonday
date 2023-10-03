@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    //Door´Â ¿þÀÌºê³ª ¹æ¿¡ Á¾¼ÓµÇ¾îÀÖ¾î¾ßÇÔ Why? ÀüÅõ»óÈ²ÀÌ´Ù -> ¹æÀ»Àá±Ù´Ù ¶ó´Â°ÍÀÌ µÇ¾î¾ßÇÏ´Ï±î..
-    protected bool _isLocked = false;
+    //Doorï¿½ï¿½ ï¿½ï¿½ï¿½Ìºê³ª ï¿½æ¿¡ ï¿½ï¿½ï¿½ÓµÇ¾ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ Why? ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È²ï¿½Ì´ï¿½ -> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù´ï¿½ ï¿½ï¿½Â°ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½Ï´Ï±ï¿½..
+    [SerializeField]protected bool _isLocked = false;
     protected bool _isInBattle = false;
-    //ÀÎº¥Åä¸®¿¡ Å°°¡ ÀÖ´Ù´Â ÀüÁ¦ÇÏ¿¡ ÀÛ¾÷
+    //ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ Å°ï¿½ï¿½ ï¿½Ö´Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Û¾ï¿½
     private Inventory _inventory;
 
     protected LayerMask _playerLayerMask;
@@ -22,11 +22,15 @@ public class Door : MonoBehaviour
 
     protected virtual void Awake()
     {
-        //if(isLocked)
-        //_inventory = ??.GetComponent<Inventory>();
+
+        //_inventory = Managers.Game.player.GetComponent<Inventory>();
+        _inventory = GameObject.FindWithTag("Player").GetComponent<Inventory>();
         _playerLayerMask = LayerMask.GetMask("Player");
         _animator = GetComponent<Animator>();
-        Lock();
+
+        SetNearRoom(transform.parent.GetComponent<Room>());
+        _nearRoom.OnBattleStart += BattleStart;
+        _nearRoom.OnBattleEnd += BattleEnd;
     }
     
     public void SetNearRoom(Room nearRoom)
@@ -61,7 +65,7 @@ public class Door : MonoBehaviour
     }
     public bool UnLock()
     {
-        //if(_inventory.UseKey())
+        if(_inventory.UseKey())
         {
             return true;
         }
@@ -87,9 +91,11 @@ public class Door : MonoBehaviour
             _go.OnEndInteraction += OpenDoor;
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         Managers.Resource.Destroy(_go);
+
         _go = null;
     }
 }

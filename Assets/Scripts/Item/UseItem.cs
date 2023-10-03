@@ -4,19 +4,47 @@ using UnityEngine;
 
 public class UseItem : MonoBehaviour
 {
+    private const float CO_TIME = 0.1f;
+
+    private PlayerStats _playerStats;
+    private PlayerStats _changeInvincibilityStats;
     [SerializeField]
-    private GameObject _onWeapon;
-    //private ÇÃ·¹ÀÌ¾î »óÅÂº¯È¯Á¦¾î º¯¼ö
+    private PlayerStats _changeIncreaseStats;
+    [SerializeField]
+    private PlayerStats _changeGuiedStats;
+    private PlayerStatsHandler _controller;
     private GameObject[] _bullet;
+    private float _buffTime = 10.0f;
+
+    private void Start()
+    {
+        _controller = GetComponent<PlayerStatsHandler>();
+        _playerStats = _controller.CurrentStats;
+    }
 
     public void OnGuied()
     {
-        //gun ¹ß»ç¹æ½Ä Å¸°Ù Ã£¾Æ n¹ß ³¯¶ó°¡±â
+        //gun ï¿½ß»ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ Ã£ï¿½ï¿½ nï¿½ï¿½ ï¿½ï¿½ï¿½ó°¡±ï¿½ ï¿½Ã°ï¿½.or Åºï¿½ï¿½
+        //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ bool ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        _changeGuiedStats = _controller.CurrentStats;
+        _changeGuiedStats.isGuied = true;
+        _changeGuiedStats.statsChangeType = StatsChangeType.Override;
+        _controller.AddStatModifier(_changeGuiedStats);
+    }
+
+    public void OffGuied()
+    {
+        _changeGuiedStats = _controller.CurrentStats;
+        _changeGuiedStats.isGuied = false;
+        _changeIncreaseStats.statsChangeType= StatsChangeType.Override;
+        _controller.AddStatModifier(_changeGuiedStats);
     }
 
     public void OnDamageIncrease()
     {
-        //nÃÊ°£ player damage Áõ°¡
+        //10ï¿½Ê°ï¿½ player damage ï¿½ï¿½ï¿½ï¿½
+        StartCoroutine(COOnIncreaseDamage());
+        //nï¿½Ê°ï¿½ player damage ï¿½ï¿½ï¿½ï¿½
     }
 
     public void OnDestroyBullet()
@@ -31,6 +59,42 @@ public class UseItem : MonoBehaviour
 
     public void OnInvincibilite()
     {
-        //nÃÊ°£ ¹«Àû
+        //2ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½
+        StartCoroutine(COOnInvincibility());
+    }
+
+    IEnumerator COOnInvincibility()
+    {
+        _changeInvincibilityStats = _controller.CurrentStats;
+        _changeInvincibilityStats.isInvincible = true;
+        _changeInvincibilityStats.statsChangeType = StatsChangeType.Override;    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
+        _controller.AddStatModifier(_changeInvincibilityStats);
+        while(_changeInvincibilityStats.invincibilityTime > 0)
+        {
+            _changeInvincibilityStats.invincibilityTime -= CO_TIME;
+            yield return new WaitForSeconds(CO_TIME);
+        }
+
+        _playerStats = _controller.CurrentStats;
+        _playerStats.statsChangeType = StatsChangeType.Override;    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        _controller.AddStatModifier(_playerStats);
+    }
+
+    IEnumerator COOnIncreaseDamage()
+    {
+        float playerAttackPower = _controller.CurrentStats.attackPowerCoefficient;
+        _changeIncreaseStats.attackPowerCoefficient = 150f;
+        _changeIncreaseStats.statsChangeType = StatsChangeType.Override;    //ï¿½ï¿½ï¿½Ý·ï¿½ 150% -> 1.5
+
+        _controller.AddStatModifier(_changeIncreaseStats);
+        while (_buffTime > 0)
+        {
+            _buffTime -= CO_TIME;
+            yield return new WaitForSeconds(CO_TIME);
+        }
+        _playerStats.attackPowerCoefficient = playerAttackPower;    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        _playerStats.statsChangeType = StatsChangeType.Override;
+        _controller.AddStatModifier(_playerStats);
+        //nï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 }

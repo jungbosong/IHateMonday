@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deadSpawnAnimatorController: {fileID: 9100000, guid: 931958b00d8884b979b54bcca9c5e5d5, type: 2}
+  _findMaxAngle: 50
 --- !u!114 &8845699840854862922
 MonoBehaviour:
   m_ObjectHideFlags: 0

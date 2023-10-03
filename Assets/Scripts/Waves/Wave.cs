@@ -23,6 +23,7 @@ public class Wave : MonoBehaviour
     public List<GameObject> _enemyPrefabs = new List<GameObject>();     // 생성할 몬스터 프리팹 리스트
 
     private CharacterStats _monsterStats;
+    //private Room _room;
 
     void Start()
     {
@@ -31,16 +32,18 @@ public class Wave : MonoBehaviour
         StartCoroutine("COPlayWave");
     }
 
-    public void InitRoomInfo(Room room)
+    public void InitRoomInfo(Vector3 centerPosition, Room room)
     {
-        _centerPos.x = room.center.x;
-        _centerPos.y = room.center.y;
+        _centerPos.x = centerPosition.x;
+        _centerPos.y = centerPosition.y;
         _limit = (room.width <= room.height) ? room.width / 2 : room.height / 2;    // 방의 가로, 세로 길이 중 더 짧은 쪽 길이의 반
+        //_room = room;
     }
 
     // 방의 좌표와 limit에 따라 몬스터의 spawn position 리스트 초기화
     private void InitSpawnPositions()
     {
+        _spawnPositions.Clear();
         for (int i = -1; i <= 1; i += 2)
         {
             for (int j = -1; j <= 1; j++)
@@ -80,6 +83,7 @@ public class Wave : MonoBehaviour
                     {
                         int prefabIndex = Random.Range(0, _enemyPrefabs.Count);
                         GameObject enemy = Instantiate(_enemyPrefabs[prefabIndex], _spawnPositions[posIdx], Quaternion.identity);
+                        //enemy.transform.localPosition = _spawnPositions[posIdx];
                         //enemy.GetComponent<CharacterStatsHandler>().AddStatModifier(_monsterStats);
                         enemy.GetComponent<HealthSystem>().OnDeath += OnEnemyDeath;
                         _currentSpawnCount++;

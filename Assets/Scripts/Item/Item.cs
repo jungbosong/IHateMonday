@@ -4,19 +4,57 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public ItemData itemData;  //¾ÆÀÌÅÛµ¥ÀÌÅÍ ÇÒ´ç
+    public ItemData itemData;  //ï¿½ï¿½ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½
+    [SerializeField]
+    private PlayerStats _baseStat;
+    private PlayerStats _changeStat;
 
-    private void OnTriggerEnter2D(Collider2D other) //¾ÆÀÌÅÛ È¹µæ
+    private void OnTriggerEnter2D(Collider2D other) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½
     {
         if(other.tag == "Player")
         {
-            if(itemData.type == ItemType.Passive)   //ÆÐ½Ãºê ¾ÆÀÌÅÛ
+            if(itemData.type == ItemType.Passive)   //ï¿½Ð½Ãºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {
-                //ÇÃ·¹ÀÌ¾î ½ºÅÈ º¯È­
+                _changeStat = _baseStat;
+                _changeStat.statsChangeType = StatsChangeType.Add;
+                ////ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­
+                if (itemData.consumables[0].type == ConsumableType.Hp)
+                {
+                    _changeStat.currentHp = (int)itemData.consumables[1].value;
+                }
+                else if (itemData.consumables[0].type == ConsumableType.Shield)
+                {
+                    _changeStat.shieldCount = (int)itemData.consumables[1].value;
+                }
+                else if (itemData.consumables[0].type == ConsumableType.AttackPower)
+                {
+                    _changeStat.attackPowerCoefficient = itemData.consumables[1].value;
+                }
+                else if (itemData.consumables[0].type == ConsumableType.AttackSpeed)
+                {
+                    _changeStat.attackSpeedCoefiicient = itemData.consumables[1].value;
+                }
+                else if (itemData.consumables[0].type == ConsumableType.BulletAmount)
+                {
+                    GameObject curGun = GameObject.FindGameObjectWithTag("Gun");
+                    Gun handGun = curGun.GetComponent<Gun>();
+                    int amount = handGun.GetMAXAmmunition();
+                    int curAmount = handGun.GetAmmunition();
+                    handGun.AddAmmunition(amount - curAmount);
+                }
+                else if (itemData.consumables[0].type == ConsumableType.MoveSpeed)
+                {
+                    _changeStat.moveSpeedCoefficient = itemData.consumables[1].value;
+                }
+
+                PlayerStatsHandler _handler = other.GetComponent<PlayerStatsHandler>();
+                _handler.AddStatModifier(_baseStat);
+                Managers.Resource.Destroy(this);
+                //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­
             }
             else
-            {   // ¾×Æ¼ºê ¾ÆÀÌÅÛ
-                if (itemData.maxStackAmount > itemData.stack)    //¾ÆÀÌÅÛ ¼ö·®Ã¼Å©
+            {   // ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                if (itemData.maxStackAmount > itemData.stack)    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼Å©
                 {
                     Inventory.s_instance.AddItem(itemData);
                 }
