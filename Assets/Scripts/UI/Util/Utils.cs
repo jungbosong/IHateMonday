@@ -16,7 +16,6 @@ public class Utils
         {
             float near = Mathf.Abs(room.center.x - position.x) - room.height / 2f;
             near = Mathf.Min(near, Mathf.Abs(room.center.y - position.y) - room.width / 2f);
-            Debug.Log(near);
 
             if (near < nearDistance)
             {
