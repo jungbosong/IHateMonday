@@ -18,23 +18,28 @@ public class GameManager : MonoBehaviour
 
     // Player
     public GameObject player;
+    private PlayerStatsHandler _playerStatsHandler;
     private HealthSystem _healthSystem;
 
-    private void Awake()
-    {
-        Init();
-    }
+    private UI_DungeonScene _dungeonUI;
+
     public void Init()
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
+        _playerStatsHandler = player.GetComponent<PlayerStatsHandler>();
         _healthSystem = player.GetComponent<HealthSystem>();
         _healthSystem.OnDeath += GameOver;
+
+        GameObject uiRoot = Managers.UI.Root;
+        _dungeonUI = uiRoot.transform.Find("UI_DungeonScene").GetComponent<UI_DungeonScene>();
+        _dungeonUI.UpdatePlayerStatUI(_playerStatsHandler.CurrentStats);
     }
 
     public void Start()
     {
         _curStage = 1;
+
         // 웨이브 테스트용 코드 
         _currentRoom = new Room(new Vector3(2f, 2f, 0), 5f, 7f, RoomType.Wave);
         //StartWave(_currentRoom);

@@ -18,7 +18,9 @@ public class HealthSystem : MonoBehaviour
     public event Action OnInvincibilityEnd;
 
     public int CurrentHealth { get; private set; }  
-    public int MaxHealth => _characterStatsHandler.CurrentStats.currentMaxHp;
+    public int MaxHealth => _characterStatsHandler.DefaultStats.currentMaxHp;
+
+    private UI_DungeonScene _dungeonUI;
 
     private void Awake()
     {
@@ -27,7 +29,7 @@ public class HealthSystem : MonoBehaviour
 
     void Start()
     {
-        CurrentHealth = _characterStatsHandler.CurrentStats.currentHp;
+        CurrentHealth = _characterStatsHandler.DefaultStats.currentHp;
     }
 
     void Update()
@@ -71,6 +73,12 @@ public class HealthSystem : MonoBehaviour
         {
             CallDeath();
         }
+
+        GameObject uiRoot = Managers.UI.Root;
+        _dungeonUI = uiRoot.transform.Find("UI_DungeonScene").GetComponent<UI_DungeonScene>();
+
+        if (gameObject.CompareTag("Player"))
+            _dungeonUI.UpdatePlayerStatUI(GetComponent<PlayerStatsHandler>().CurrentStats);
 
         return true;
     }

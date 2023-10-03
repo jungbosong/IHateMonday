@@ -47,8 +47,7 @@ public class Managers : MonoBehaviour
             s_resourceManager.Init();
             s_soundManager.Init();
             s_poolManager.Init();
-            s_gameManager.Init();
-            s_gameManager.Start();
+            //s_gameManager.Init();
             Application.targetFrameRate = 60;
         }
     }
