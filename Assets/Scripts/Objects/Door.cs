@@ -90,25 +90,11 @@ public class Door : MonoBehaviour
             _go.OnEndInteraction += OpenDoor;
         }
     }
+
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         Managers.Resource.Destroy(_go);
-        _go = null;
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        Managers.Resource.Destroy(_go);
 
-        if (_nearRoom.type == RoomType.Wave || _nearRoom.type == RoomType.Boss)
-        {
-            float doorDistance = (_nearRoom.center - transform.position).magnitude;
-            float playerDistance = (_nearRoom.center - collision.transform.position).magnitude;
-
-            if (doorDistance > playerDistance)
-            {
-                //���⼭ �Ƹ� ��Ʋ �����ҵ� �մϴ�
-                _nearRoom.OnBattleStart?.Invoke();
-            }
-        }
         _go = null;
     }
 }

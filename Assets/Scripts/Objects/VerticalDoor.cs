@@ -74,6 +74,7 @@ public class VerticalDoor : Door
 
             if (doorDistance > playerDistance)
             {
+                // 디버깅 대신 보스나 웨이브 스타트 하면 됨
                 Debug.Log($"{_nearRoom.center}");
                 _nearRoom.OnBattleStart?.Invoke();
             }

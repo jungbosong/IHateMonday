@@ -42,8 +42,6 @@ public class HorizonDoor : Door
         }
     }
 
-
-
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (_isInBattle || _isLocked)
