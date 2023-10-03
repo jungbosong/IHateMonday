@@ -6,5 +6,5 @@ using System.Linq;
 
 public class CharacterStatsHandler : MonoBehaviour
 {
-    public CharacterStats CurrentStats;
+    public CharacterStats DefaultStats;
 }

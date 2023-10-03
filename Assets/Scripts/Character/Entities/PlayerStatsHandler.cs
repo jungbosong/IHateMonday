@@ -61,8 +61,8 @@ public class PlayerStatsHandler : CharacterStatsHandler
 
     private void UpdateStats(Func<float, float, float> operation, PlayerStats newModifier)
     {
-        CurrentStats.currentMaxHp = (int)operation(CurrentStats.currentMaxHp, newModifier.currentMaxHp);
-        CurrentStats.currentHp = (int)operation(CurrentStats.currentHp, newModifier.currentHp);
+        CurrentStats.currentMaxHp = (int)(operation(CurrentStats.currentMaxHp, newModifier.currentMaxHp));
+        CurrentStats.currentHp = (int)(operation(CurrentStats.currentHp, newModifier.currentHp));
         CurrentStats.shieldCount = (int)operation(CurrentStats.shieldCount, newModifier.shieldCount);
         CurrentStats.attackPowerCoefficient = operation(CurrentStats.attackPowerCoefficient, newModifier.attackPowerCoefficient);
         CurrentStats.attackSpeedCoefiicient = operation(CurrentStats.moveSpeed, newModifier.attackSpeedCoefiicient);

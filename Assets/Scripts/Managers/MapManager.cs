@@ -12,5 +12,5 @@ public class MapManager : MonoBehaviour
         {4, 1, 4, 4, 2, 1},
         {3, 1, 6, 3, 2, 1},
     };
-    public int currentFloor = 1;
+    public int currentFloor = 2;
 }

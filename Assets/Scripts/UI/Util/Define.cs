@@ -20,7 +20,7 @@ public class Define
         PoolTestScene,
         StartScene,
         EndingScene,
-        DeadEndScene
+        DeadEndScene,
     }
 
     public enum Sound

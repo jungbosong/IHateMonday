@@ -5,7 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     //Door는 웨이브나 방에 종속되어있어야함 Why? 전투상황이다 -> 방을잠근다 라는것이 되어야하니까..
-    protected bool _isLocked = false;
+    [SerializeField]protected bool _isLocked = false;
     protected bool _isInBattle = false;
     //인벤토리에 키가 있다는 전제하에 작업
     private Inventory _inventory;
@@ -22,14 +22,14 @@ public class Door : MonoBehaviour
 
     protected virtual void Awake()
     {
-        //if(isLocked)
 
         _inventory = Managers.Game.player.GetComponent<Inventory>();
         _playerLayerMask = LayerMask.GetMask("Player");
         _animator = GetComponent<Animator>();
 
-        //Test
-        Lock();
+        SetNearRoom(transform.parent.GetComponent<Room>());
+        _nearRoom.OnBattleStart += BattleStart;
+        _nearRoom.OnBattleEnd += BattleEnd;
     }
     
     public void SetNearRoom(Room nearRoom)
@@ -90,7 +90,7 @@ public class Door : MonoBehaviour
             _go.OnEndInteraction += OpenDoor;
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         Managers.Resource.Destroy(_go);
         _go = null;

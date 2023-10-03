@@ -59,6 +59,7 @@ public class MapGenerator : MonoBehaviour
         Divide(root, 0);
         GenerateRoom(root, 0);
         GenerateRoad(root, 0);
+        GenerateDoor(root, 0);
         _mapPainter.FillWall(_mapSize);
     }
 
@@ -107,7 +108,7 @@ public class MapGenerator : MonoBehaviour
             Managers.Map.roomList.Add(room);
             if(type == RoomType.NoneMonster)
             {
-                GameObject player = Managers.Resource.Instantiate("Characters/Player", new Vector3(rect.center.x, rect.center.y, 0));
+                GameObject player = Managers.Resource.Instantiate("Characters/Player", new Vector3(rect.center.x - _mapSize.x/2, rect.center.y - _mapSize.y/2, 0));
                 _mainCamera.SetTarget(player);
             }
             //DrawRectangle(rect);
@@ -145,6 +146,55 @@ public class MapGenerator : MonoBehaviour
 
         GenerateRoad(tree.leftSpace, n + 1);
         GenerateRoad(tree.rightSpace, n + 1);
+    }
+
+    private void GenerateDoor(SpaceNode tree, int n)
+    {
+        if (n == _maxDepth) 
+            return;
+
+        SpaceNode leftNode = tree.leftSpace;
+        SpaceNode rightNode = tree.rightSpace;
+
+        int startX = (int)System.Math.Round(System.Math.Min(leftNode.center.x, rightNode.center.x));  // 왼쪽에 있는 방의 x좌표
+        int startY = (int)System.Math.Round(System.Math.Min(leftNode.center.y, rightNode.center.y));  // 아래쪽에 있는 방의 y좌표
+
+        int endX = (int)System.Math.Round(System.Math.Max(leftNode.center.x, rightNode.center.x));    // 오른쪽에 있는 방의 x좌표
+        int endY = (int)System.Math.Round(System.Math.Max(leftNode.center.y, rightNode.center.y));    // 위쪽에 있는 방의 y좌표
+
+        // 세로로 긴 길일 경우
+        if(Mathf.Abs(startX-endX) < Mathf.Abs(startY - endY))
+        {
+            // 길의 시작지점의 y부터 종료지점의 y까지 돌면서
+            for (int y = startY; y <= endY; y++)
+            {
+                // y좌표가 방을 벗어난 위치에 있으면
+                if (Mathf.Abs(y) > Mathf.Abs((int)System.Math.Round(rightNode.center.y + rightNode.roomRect.height/2) - _mapSize.y / 2))
+                {
+                    // 문생성
+                    Utils.CreateDoor(new Vector3(startX - _mapSize.x / 2, (int)System.Math.Round(rightNode.center.y - rightNode.roomRect.height / 2) - _mapSize.y / 2, 0), true);
+                    break;
+                }
+            }
+        }
+        // 가로로 긴 길일 경우
+        else
+        {
+            // 길의 시작지점의 x부터 종료지점의 x까지 돌면서
+            for (int x = startX; x <= endX; x++)
+            {
+                // x좌표가 방을 벗어난 위치에 있으면
+                if (Mathf.Abs(x) > Mathf.Abs((int)System.Math.Round(leftNode.center.x + leftNode.roomRect.width/2 - _mapSize.x/2)))
+                {
+                    // 문생성
+                    Utils.CreateDoor(new Vector3((int)System.Math.Round(leftNode.center.x + leftNode.roomRect.width / 2) - _mapSize.x / 2, startY - _mapSize.y / 2, 0), true);
+                    break;
+                }
+            }
+        }
+
+        GenerateDoor(tree.leftSpace, n + 1);
+        GenerateDoor(tree.rightSpace, n + 1);
     }
     #endregion
 
