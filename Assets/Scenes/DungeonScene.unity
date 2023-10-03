@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &688018335
+--- !u!1001 &28421502
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -133,7 +133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 767108385275375127, guid: 391a48e0129941240a670591f59e769a, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 767108385275375127, guid: 391a48e0129941240a670591f59e769a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -184,7 +184,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 391a48e0129941240a670591f59e769a, type: 3}
---- !u!1001 &813477950
+--- !u!1001 &713422175
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -198,11 +198,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3250572027906749061, guid: cb899f91590f44e4386ecbe9ac1459d7, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3250572027906749061, guid: cb899f91590f44e4386ecbe9ac1459d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.04
+      value: -14.12
       objectReference: {fileID: 0}
     - target: {fileID: 3250572027906749061, guid: cb899f91590f44e4386ecbe9ac1459d7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -245,10 +245,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb899f91590f44e4386ecbe9ac1459d7, type: 3}
---- !u!1 &813477951 stripped
+--- !u!1 &713422176 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2162424143732340959, guid: cb899f91590f44e4386ecbe9ac1459d7, type: 3}
-  m_PrefabInstance: {fileID: 813477950}
+  m_PrefabInstance: {fileID: 713422175}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1007249357
 GameObject:
@@ -293,7 +293,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1152009986
 GameObject:
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356413ca644fb8d4d8d045e1783fce56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 813477951}
+  _target: {fileID: 713422176}
   _moveSpeed: 2
 --- !u!81 &1152009988
 AudioListener:
