@@ -68,8 +68,8 @@ public class GameManager : MonoBehaviour
     {
         if (_curStage == MAX_STAGE_NUM)
         {
-            // TODO 게임 최종 클리어 엔딩씬으로 넘어가기
-            //Managers.Scene.ChangeScene(Define.Scene.EndingScene);
+            // 게임 최종 클리어 엔딩씬으로 넘어가기
+            Managers.Scene.ChangeScene(Define.Scene.EndingScene);
         }
         else
         {
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
     {
         StopAllCoroutines();
         _curStage = 1;
-        // TODO 실패 엔딩씬으로 넘어가기
-        //Managers.Scene.ChangeScene(Define.Scene.EndingScene);
+        // 실패 엔딩씬으로 넘어가기
+        Managers.Scene.ChangeScene(Define.Scene.DeadEndScene);
     }
 }
