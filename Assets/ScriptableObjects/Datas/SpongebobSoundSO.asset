@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starting: Spongebob-Start
   damaging: Spongebob-Damage
-  dead: 
+  dead: Spongebob-Dead
   victory: Squid-Victory
   isBoss: 1
