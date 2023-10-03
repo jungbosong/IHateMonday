@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &854869217
+--- !u!1001 &983721546
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -178,10 +178,6 @@ PrefabInstance:
     - target: {fileID: 2125729151784232297, guid: 391a48e0129941240a670591f59e769a, type: 3}
       propertyPath: m_Name
       value: 1FloorGrid
-      objectReference: {fileID: 0}
-    - target: {fileID: 6555858293139530383, guid: 391a48e0129941240a670591f59e769a, type: 3}
-      propertyPath: type
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
