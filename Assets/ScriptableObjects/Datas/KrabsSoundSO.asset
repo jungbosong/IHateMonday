@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b359c7242256fd446829fdfff52c1acc, type: 3}
   m_Name: KrabsSoundSO
   m_EditorClassIdentifier: 
-  damaging: 
-  dead: 
-  victory: 
-  isBoss: 0
+  starting: Krabs-Start
+  damaging: Krabs-Damage
+  dead: Krabs-Dead
+  victory: Squid-Victory
+  isBoss: 1

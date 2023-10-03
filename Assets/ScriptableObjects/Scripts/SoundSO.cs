@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class SoundSO : ScriptableObject
 {
-    public string starting { get { return starting; } }
+    public string starting;
     public string damaging;
     public string dead;
     public string victory;

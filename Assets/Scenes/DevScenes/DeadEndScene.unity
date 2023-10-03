@@ -610,6 +610,7 @@ GameObject:
   - component: {fileID: 1587277067}
   - component: {fileID: 1587277066}
   - component: {fileID: 1587277068}
+  - component: {fileID: 1587277069}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -824,6 +825,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1587277069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587277065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471c1c0c5299c75419c290148fd4dd6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundSO: {fileID: 0}
 --- !u!1 &1672036213
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,7 +985,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2749a7749473d8142945e885413b48b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneType: 0
 --- !u!1 &1693183133
 GameObject:
   m_ObjectHideFlags: 0

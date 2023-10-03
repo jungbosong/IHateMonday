@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b359c7242256fd446829fdfff52c1acc, type: 3}
   m_Name: SpongebobSoundSO
   m_EditorClassIdentifier: 
-  damaging: 
+  starting: Spongebob-Start
+  damaging: Spongebob-Damage
   dead: 
-  victory: 
-  isBoss: 0
+  victory: Squid-Victory
+  isBoss: 1
