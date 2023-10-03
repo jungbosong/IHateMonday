@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 719728718331339487}
   m_Layer: 8
   m_Name: PatrickStar
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,8 +217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterSpriteRenderer: {fileID: 6667551076041312936}
-  followRange: 15
-  shootRange: 10
+  _followRange: 15
+  _shootRange: 10
   monsterAttackDataSO: {fileID: 11400000, guid: 20522c769c2935247912ddf04f3c302c, type: 2}
 --- !u!114 &6180438749668999760
 MonoBehaviour:
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd2ae3875cf697428d1514070f3f97b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthChangeDelay: 0.5
+  healthChangeDelay: 0.05
 --- !u!114 &3879096489984093884
 MonoBehaviour:
   m_ObjectHideFlags: 0

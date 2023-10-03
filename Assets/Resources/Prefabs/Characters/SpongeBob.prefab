@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 3997783509517066494}
   m_Layer: 8
   m_Name: SpongeBob
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,8 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterSpriteRenderer: {fileID: 1069303807203864652}
-  followRange: 15
-  shootRange: 10
+  _followRange: 15
+  _shootRange: 10
   monsterAttackDataSO: {fileID: 11400000, guid: 4633a8df2bb0f82468717ba6c6e61784, type: 2}
 --- !u!114 &816534739285101838
 MonoBehaviour:
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd2ae3875cf697428d1514070f3f97b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthChangeDelay: 0.5
+  healthChangeDelay: 0.05
 --- !u!114 &464893178127099759
 MonoBehaviour:
   m_ObjectHideFlags: 0
