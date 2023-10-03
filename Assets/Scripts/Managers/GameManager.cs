@@ -18,19 +18,10 @@ public class GameManager : MonoBehaviour
 
     // Player
     public GameObject player;
+    private PlayerStatsHandler _playerStatsHandler;
     private HealthSystem _healthSystem;
 
-    private void Awake()
-    {
-        Init();
-    }
-    public void Init()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-
-        _healthSystem = player.GetComponent<HealthSystem>();
-        _healthSystem.OnDeath += GameOver;
-    }
+    private UI_TestGameUIScene _testUI;
 
     public void Start()
     {
@@ -38,6 +29,19 @@ public class GameManager : MonoBehaviour
         // 웨이브 테스트용 코드 
         _currentRoom = new Room(new Vector3(2f, 2f, 0), 5f, 7f, RoomType.Wave);
         StartWave(_currentRoom);
+
+        UpdateUI();
+    }
+
+    public void Init()
+    {
+        _testUI = Managers.UI.ShowSceneUI<UI_TestGameUIScene>();
+
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        _playerStatsHandler = player.GetComponent<PlayerStatsHandler>();
+        _healthSystem = player.GetComponent<HealthSystem>();
+        _healthSystem.OnDeath += GameOver;
     }
 
     void Update()
@@ -84,5 +88,10 @@ public class GameManager : MonoBehaviour
         _curStage = 1;
         // 실패 엔딩씬으로 넘어가기
         Managers.Scene.ChangeScene(Define.Scene.DeadEndScene);
+    }
+
+    public void UpdateUI()
+    {
+        _testUI.InitPlayerStatUI(_playerStatsHandler.CurrentStats);
     }
 }

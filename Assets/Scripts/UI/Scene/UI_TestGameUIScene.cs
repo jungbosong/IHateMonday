@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_Game : UI_Scene
+public class UI_TestGameUIScene : UI_Scene
 {
     #region Enums
     enum Texts
@@ -35,6 +35,8 @@ public class UI_Game : UI_Scene
 
     private const string LIFE_TEXT = "Life";
     private const string SHIELD_TEXT = "Shield";
+    private const string FILLED_IMAGE_PATH = "Sprites/UI/filled_krabby_patty";
+    private const string EMPTY_IMAGE_PATH = "Sprites/UI/empty_krabby_patty";
 
     private const int MAX_LIFE_NUM = 8;
     private const int MAX_SHIELD_NUM = 3;
@@ -42,7 +44,7 @@ public class UI_Game : UI_Scene
     private Sprite _filledHealthImage;
     private Sprite _emptyHealthImage;
 
-    void Start()
+    void Awake()
     {
         Init();
     }
@@ -57,6 +59,9 @@ public class UI_Game : UI_Scene
         BindObject(typeof(GameObjects));
         BindImage(typeof(Images));
         #endregion
+
+        _filledHealthImage = Managers.Resource.Load<Sprite>(FILLED_IMAGE_PATH);
+        _emptyHealthImage = Managers.Resource.Load<Sprite>(EMPTY_IMAGE_PATH);
 
         //GetButton((int)Buttons.StartButton).gameObject.BindEvent(OnClickedStartButton);
 

@@ -20,7 +20,8 @@ public class Define
         PoolTestScene,
         StartScene,
         EndingScene,
-        DeadEndScene
+        DeadEndScene,
+        TestGameUIScene
     }
 
     public enum Sound

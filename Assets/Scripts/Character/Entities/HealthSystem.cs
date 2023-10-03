@@ -18,7 +18,7 @@ public class HealthSystem : MonoBehaviour
     public event Action OnInvincibilityEnd;
 
     public int CurrentHealth { get; private set; }  
-    public int MaxHealth => _characterStatsHandler.CurrentStats.currentMaxHp;
+    public int MaxHealth => _characterStatsHandler.DefaultStats.currentMaxHp;
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class HealthSystem : MonoBehaviour
 
     void Start()
     {
-        CurrentHealth = _characterStatsHandler.CurrentStats.currentHp;
+        CurrentHealth = _characterStatsHandler.DefaultStats.currentHp;
     }
 
     void Update()
@@ -71,6 +71,8 @@ public class HealthSystem : MonoBehaviour
         {
             CallDeath();
         }
+
+        Managers.Game.UpdateUI();
 
         return true;
     }
