@@ -20,6 +20,8 @@ public class HealthSystem : MonoBehaviour
     public int CurrentHealth { get; private set; }  
     public int MaxHealth => _characterStatsHandler.DefaultStats.currentMaxHp;
 
+    private UI_DungeonScene _dungeonUI;
+
     private void Awake()
     {
         _characterStatsHandler = GetComponent<CharacterStatsHandler>();
@@ -72,7 +74,11 @@ public class HealthSystem : MonoBehaviour
             CallDeath();
         }
 
-        Managers.Game.UpdateUI();
+        GameObject uiRoot = Managers.UI.Root;
+        _dungeonUI = uiRoot.transform.Find("UI_DungeonScene").GetComponent<UI_DungeonScene>();
+
+        if (gameObject.CompareTag("Player"))
+            _dungeonUI.UpdatePlayerStatUI(GetComponent<PlayerStatsHandler>().CurrentStats);
 
         return true;
     }

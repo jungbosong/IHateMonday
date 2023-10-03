@@ -21,7 +21,6 @@ public class Define
         StartScene,
         EndingScene,
         DeadEndScene,
-        TestGameUIScene
     }
 
     public enum Sound

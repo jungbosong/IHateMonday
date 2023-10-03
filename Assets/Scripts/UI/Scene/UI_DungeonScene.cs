@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_TestGameUIScene : UI_Scene
+public class UI_DungeonScene : UI_Scene
 {
     #region Enums
     enum Texts
@@ -68,7 +68,7 @@ public class UI_TestGameUIScene : UI_Scene
         return true;
     }
 
-    public void InitPlayerStatUI(PlayerStats playerStats)
+    public void UpdatePlayerStatUI(PlayerStats playerStats)
     {
         GetText((int)Texts.KeyNumText).text = "0";
 
@@ -119,7 +119,6 @@ public class UI_TestGameUIScene : UI_Scene
             GetObject((int)targetEnum).gameObject.SetActive(false);
         }
     }
-
     //void OnClickedStartButton()
     //{
     //    //Managers.Sound.Play("ClickBtnEff"); 

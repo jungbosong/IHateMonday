@@ -1122,7 +1122,7 @@ GameObject:
   - component: {fileID: 9015682169604656353}
   - component: {fileID: 3367757592253620336}
   m_Layer: 5
-  m_Name: UI_Game
+  m_Name: UI_DungeonScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
