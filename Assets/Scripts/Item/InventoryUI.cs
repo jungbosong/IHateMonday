@@ -7,12 +7,11 @@ public class InventoryUI : MonoBehaviour
 {
     public Image icon;
     public Text quatityText;
-    private ItemSlot _slot;
 
 
-    public void Set(ItemSlot slot)
+    public void Set(ItemData slot)
     {
-        icon.sprite = slot.item.icon;
-        quatityText.text = slot.item.stack.ToString();
+        icon.sprite = slot.icon;
+        quatityText.text = slot.stack.ToString();
     }
 }

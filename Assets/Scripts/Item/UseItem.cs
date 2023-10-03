@@ -21,10 +21,6 @@ public class UseItem : MonoBehaviour
         _controller = GetComponent<PlayerStatsHandler>();
         _playerStats = _controller.CurrentStats;
     }
-    [SerializeField]
-    private GameObject _onWeapon;
-    //private �÷��̾� ���º�ȯ���� ����
-    private GameObject[] _bullet;
 
     public void OnGuied()
     {
@@ -86,8 +82,9 @@ public class UseItem : MonoBehaviour
 
     IEnumerator COOnIncreaseDamage()
     {
-        _changeIncreaseStats.attackPowerCoefficient = 1.5f;
-        _changeIncreaseStats.statsChangeType = StatsChangeType.Multiple;    //���ݷ� 150% -> 1.5
+        float playerAttackPower = _controller.CurrentStats.attackPowerCoefficient;
+        _changeIncreaseStats.attackPowerCoefficient = 150f;
+        _changeIncreaseStats.statsChangeType = StatsChangeType.Override;    //���ݷ� 150% -> 1.5
 
         _controller.AddStatModifier(_changeIncreaseStats);
         while (_buffTime > 0)
@@ -95,7 +92,7 @@ public class UseItem : MonoBehaviour
             _buffTime -= CO_TIME;
             yield return new WaitForSeconds(CO_TIME);
         }
-        _playerStats = _controller.CurrentStats;    //���� ����
+        _playerStats.attackPowerCoefficient = playerAttackPower;    //���� ����
         _playerStats.statsChangeType = StatsChangeType.Override;
         _controller.AddStatModifier(_playerStats);
         //n�ʰ� ����

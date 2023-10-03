@@ -86,14 +86,16 @@ public class Inventory : MonoBehaviour
         _controller = GetComponent<PlayerInputController>();
         _characterController = GetComponent<CharacterController>();
         _uiComponent = _inventoryUI.GetComponent<InventoryUI>();
+        _controller.OnChangeWeaponEvent += SwapWeapon;
+       
     }
 
     private void Start()
     {
         _characterController.OnChangeActiveEvent += ChangeItem;
         _characterController.OnUseActiveEvent += OnUse;
-        
-        foreach(Item item in _itemsList)
+
+        foreach (Item item in _itemsList)
         {
             item.itemData.stack = 0;
         }
