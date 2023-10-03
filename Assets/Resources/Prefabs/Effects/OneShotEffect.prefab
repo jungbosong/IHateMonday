@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2389510630967962551}
   - component: {fileID: 6823936151143672221}
   - component: {fileID: 8430501534381071114}
-  - component: {fileID: 9192802967453631162}
   - component: {fileID: 4702553264961747179}
   m_Layer: 0
   m_Name: OneShotEffect
@@ -19,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2389510630967962551
 Transform:
   m_ObjectHideFlags: 0
@@ -108,18 +107,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &9192802967453631162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7603611955698150506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c75c5d8fe87edfb49aa9812b4182f2c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4702553264961747179
 MonoBehaviour:
   m_ObjectHideFlags: 0

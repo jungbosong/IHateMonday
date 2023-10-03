@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 4593322593073493083}
   m_Layer: 8
   m_Name: Plankton
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,8 +81,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentStats:
-    currentHp: 5
-    currentMaxHp: 5
+    currentHp: 10
+    currentMaxHp: 10
     moveSpeed: 3
 --- !u!114 &5108432660616458881
 MonoBehaviour:
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd2ae3875cf697428d1514070f3f97b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthChangeDelay: 0.5
+  healthChangeDelay: 0.05
 --- !u!114 &1621554746681098936
 MonoBehaviour:
   m_ObjectHideFlags: 0

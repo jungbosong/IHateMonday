@@ -22,18 +22,22 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Init();
+    }
+    public void Init()
+    {
         player = GameObject.FindGameObjectWithTag("Player");
 
         _healthSystem = player.GetComponent<HealthSystem>();
         _healthSystem.OnDeath += GameOver;
     }
 
-    void Start()
+    public void Start()
     {
         _curStage = 1;
         // 웨이브 테스트용 코드 
-        //_currentRoom = new Room(new Vector3(2f, 2f, 0), 5f, 7f, RoomType.Boss);
-        //StartWave();
+        _currentRoom = new Room(new Vector3(2f, 2f, 0), 5f, 7f, RoomType.Wave);
+        StartWave(_currentRoom);
     }
 
     void Update()

@@ -28,6 +28,8 @@ public class DisappearOnDeath : MonoBehaviour
         {
             component.enabled = false;    //모든 컴포넌트를 비활성화
         }
+
+
         Destroy(gameObject, 2f);
     }
 

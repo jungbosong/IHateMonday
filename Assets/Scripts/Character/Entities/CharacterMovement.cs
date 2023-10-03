@@ -44,6 +44,11 @@ public class CharacterMovement : MonoBehaviour
         knockbackDuration = duration;
         _knockback = -(other.position - transform.position).normalized * power;
     }
+    public void ApplyKnockback(Vector3 position , float power , float duration)
+    {
+        knockbackDuration = duration;
+        _knockback = -( position - transform.position ).normalized * power;
+    }
 
     private void ApplyMovement(Vector2 direction)
     {

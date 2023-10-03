@@ -21,10 +21,22 @@ public class Inventory : MonoBehaviour
     private Transform _dropPosition;
     private ItemSlot _selectItem;
     private int _itemListIndex = 0;
+    private int _key = 0;
 
     private Gun _handGun;
     private Gun _subGun;
     private PlayerInputController _controller;
+    public void AddKey()
+    {
+        _key++;
+    }
+    public bool UseKey()
+    {
+        if (_key <= 0)
+            return false;
+        _key--;
+        return true;
+    }
     public void EquipWeapon(WeaponItemData data)
     {
         if(_handGun == null)
