@@ -13,7 +13,7 @@ public class SpaceNode
     {
         get
         {
-            return new Vector3(roomRect.x + roomRect.width / 2, roomRect.y + roomRect.height / 2);
+            return new Vector3(roomRect.center.x, roomRect.center.y);
         }
     }
     public SpaceNode(Rect rect)
