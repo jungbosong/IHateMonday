@@ -90,7 +90,7 @@ public class Door : MonoBehaviour
             _go.OnEndInteraction += OpenDoor;
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         Managers.Resource.Destroy(_go);
         _go = null;

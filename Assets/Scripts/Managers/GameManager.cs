@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
         // 웨이브 테스트용 코드 
         _currentRoom = new Room(new Vector3(2f, 2f, 0), 5f, 7f, RoomType.Wave);
-        StartWave(_currentRoom);
+        //StartWave(_currentRoom);
     }
 
     void Update()

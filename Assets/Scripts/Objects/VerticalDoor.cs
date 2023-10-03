@@ -10,8 +10,6 @@ public class VerticalDoor : Door
     [SerializeField] private GameObject _player;
     private SpriteRenderer _playerSprite;
     private int _playerSortingOrder;
-    [SerializeField]
-    float playerBottiomPosY;
     protected override void Awake()
     {
         base.Awake();
@@ -29,13 +27,10 @@ public class VerticalDoor : Door
     // Update is called once per frame
     void Update()
     {
-        if (_isInBattle)
+        if (( transform.position - _player.transform.position ).magnitude > 5)
             return;
 
-        if (( transform.position - _player.transform.position ).magnitude > 15)
-            return;
-
-        playerBottiomPosY = _player.transform.position.y - _playerSprite.bounds.size.y * 0.5f+ _playerSprite.transform.localPosition.y;
+        float playerBottiomPosY = _player.transform.position.y - _playerSprite.bounds.size.y * 0.5f+ _playerSprite.transform.localPosition.y;
         if (_Leftdoor.transform.position.y < playerBottiomPosY)
         {
             _Leftdoor.sortingOrder = _playerSortingOrder + 1;
@@ -63,6 +58,25 @@ public class VerticalDoor : Door
                 _animator.Play("OpenB" , -1 , 0);
             }
             _doorCollider.enabled = false;
+        }
+    }
+
+    protected override void OnTriggerExit2D(Collider2D collision)
+    {
+        base.OnTriggerExit2D(collision);
+
+        if (_nearRoom.type == RoomType.Normal ||
+            _nearRoom.type == RoomType.Wave ||
+            _nearRoom.type == RoomType.Boss)
+        {
+            float doorDistance = Mathf.Abs(_nearRoom.center.y - transform.position.y);
+            float playerDistance = Mathf.Abs(_nearRoom.center.y - collision.transform.position.y - _playerSprite.bounds.size.y * 0.5f + _playerSprite.transform.localPosition.y);
+
+            if (doorDistance > playerDistance)
+            {
+                Debug.Log($"{_nearRoom.center}");
+                _nearRoom.OnBattleStart?.Invoke();
+            }
         }
     }
 }
