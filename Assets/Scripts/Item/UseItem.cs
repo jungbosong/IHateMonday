@@ -21,11 +21,15 @@ public class UseItem : MonoBehaviour
         _controller = GetComponent<PlayerStatsHandler>();
         _playerStats = _controller.CurrentStats;
     }
+    [SerializeField]
+    private GameObject _onWeapon;
+    //private ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½Âºï¿½È¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private GameObject[] _bullet;
 
     public void OnGuied()
     {
-        //gun ¹ß»ç¹æ½Ä Å¸°Ù Ã£¾Æ n¹ß ³¯¶ó°¡±â ½Ã°£.or ÅºÇÇ
-        //ÇÃ·¹ÀÌ¾î bool º¯¼ö º¯°æ
+        //gun ï¿½ß»ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ Ã£ï¿½ï¿½ nï¿½ï¿½ ï¿½ï¿½ï¿½ó°¡±ï¿½ ï¿½Ã°ï¿½.or Åºï¿½ï¿½
+        //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ bool ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         _changeGuiedStats = _controller.CurrentStats;
         _changeGuiedStats.isGuied = true;
         _changeGuiedStats.statsChangeType = StatsChangeType.Override;
@@ -42,8 +46,9 @@ public class UseItem : MonoBehaviour
 
     public void OnDamageIncrease()
     {
-        //10ÃÊ°£ player damage Áõ°¡
+        //10ï¿½Ê°ï¿½ player damage ï¿½ï¿½ï¿½ï¿½
         StartCoroutine(COOnIncreaseDamage());
+        //nï¿½Ê°ï¿½ player damage ï¿½ï¿½ï¿½ï¿½
     }
 
     public void OnDestroyBullet()
@@ -58,7 +63,7 @@ public class UseItem : MonoBehaviour
 
     public void OnInvincibilite()
     {
-        //2ÃÊ°£ ¹«Àû
+        //2ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½
         StartCoroutine(COOnInvincibility());
     }
 
@@ -66,7 +71,7 @@ public class UseItem : MonoBehaviour
     {
         _changeInvincibilityStats = _controller.CurrentStats;
         _changeInvincibilityStats.isInvincible = true;
-        _changeInvincibilityStats.statsChangeType = StatsChangeType.Override;    // ¹«ÀûÀÎ »óÅÂ·Î º¯È¯
+        _changeInvincibilityStats.statsChangeType = StatsChangeType.Override;    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
         _controller.AddStatModifier(_changeInvincibilityStats);
         while(_changeInvincibilityStats.invincibilityTime > 0)
         {
@@ -75,14 +80,14 @@ public class UseItem : MonoBehaviour
         }
 
         _playerStats = _controller.CurrentStats;
-        _playerStats.statsChangeType = StatsChangeType.Override;    // ¹«Àû ³¡³ª°í ½ºÅÈ º¹±Í
+        _playerStats.statsChangeType = StatsChangeType.Override;    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         _controller.AddStatModifier(_playerStats);
     }
 
     IEnumerator COOnIncreaseDamage()
     {
         _changeIncreaseStats.attackPowerCoefficient = 1.5f;
-        _changeIncreaseStats.statsChangeType = StatsChangeType.Multiple;    //°ø°Ý·Â 150% -> 1.5
+        _changeIncreaseStats.statsChangeType = StatsChangeType.Multiple;    //ï¿½ï¿½ï¿½Ý·ï¿½ 150% -> 1.5
 
         _controller.AddStatModifier(_changeIncreaseStats);
         while (_buffTime > 0)
@@ -90,8 +95,9 @@ public class UseItem : MonoBehaviour
             _buffTime -= CO_TIME;
             yield return new WaitForSeconds(CO_TIME);
         }
-        _playerStats = _controller.CurrentStats;    //½ºÅÈ º¹±Í
+        _playerStats = _controller.CurrentStats;    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         _playerStats.statsChangeType = StatsChangeType.Override;
         _controller.AddStatModifier(_playerStats);
+        //nï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 }

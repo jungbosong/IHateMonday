@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Prefabs/Items/ActiveItemBox.prefab.meta
+guid: be5c38277bc87654696fc86750a0c045
+========
+guid: 63aa747caf9c3a94db991b1afdca2087
+>>>>>>>> main:Assets/Resources/Prefabs/UI/Scene/UI_DungeonScene.prefab.meta
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

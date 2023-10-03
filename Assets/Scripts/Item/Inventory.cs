@@ -124,19 +124,19 @@ public class Inventory : MonoBehaviour
         if (curItem.stack != 0)
         {
             curItem.stack--;
-            if (curItem.consumables[0].type == ConsumableType.BulletGuide)  //À¯µµ
+            if (curItem.consumables[0].type == ConsumableType.BulletGuide)  //ï¿½ï¿½ï¿½ï¿½
             {
                 _useItem.OnGuied();
             }
-            else if (curItem.consumables[0].type == ConsumableType.IncreaseDamage)   //¼ø°£Àû µ¥¹ÌÁöÁõ°¡
+            else if (curItem.consumables[0].type == ConsumableType.IncreaseDamage)   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {
                 _useItem.OnDamageIncrease();
             }
-            else if (curItem.consumables[0].type == ConsumableType.BulletDelete)     //°øÆ÷Åº ºÒ¸´»èÁ¦
+            else if (curItem.consumables[0].type == ConsumableType.BulletDelete)     //ï¿½ï¿½ï¿½ï¿½Åº ï¿½Ò¸ï¿½ï¿½ï¿½ï¿½ï¿½
             {
                 _useItem.OnDestroyBullet();
             }
-            else if (curItem.consumables[0].type == ConsumableType.Invincibility)    //¼ø°£Àû ¹«Àû
+            else if (curItem.consumables[0].type == ConsumableType.Invincibility)    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             {
                 _useItem.OnInvincibilite();
             }
@@ -152,14 +152,14 @@ public class Inventory : MonoBehaviour
 
     public void UpdateInventoryUI()
     {
-        //inventoryUI set È£Ãâ
+        //inventoryUI set È£ï¿½ï¿½
         _uiComponent.Set(_selectItem.itemData);
     }
 
     public void ChangeItem()
     {
-        //¾ÆÀÌÅÛ Ã¼ÀÎÁö Å° ´­·¶À»¶§
-        //itemsList[itemListIndex] »ç¿ë -> index °ªÀÌ listLength ÀÌ»ó => 0À¸·Î
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ Å° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        //itemsList[itemListIndex] ï¿½ï¿½ï¿½ -> index ï¿½ï¿½ï¿½ï¿½ listLength ï¿½Ì»ï¿½ => 0ï¿½ï¿½ï¿½ï¿½
         _itemListIndex = (_itemListIndex + 1) % _itemsList.Count;
         _selectItem = _itemsList[_itemListIndex];
         UpdateInventoryUI();

@@ -84,7 +84,7 @@ public abstract class Gun : MonoBehaviour
     }
     public void OnLook(Vector2 worldPos)
     {
-        //À¯Àú¿¡´Â ¿Þ¼ÕÁÂÇ¥¶û ¿À¸¥¼ÕÁÂÇ¥µµ ÇÊ¿äÇÏ´Ù.
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ï´ï¿½.
         Vector2 userPosition = _player.transform.position;
         Vector2 userLeftHandPosition = _player.transform.GetChild(0).position;
         Vector2 userRightHandPosition = _player.transform.GetChild(1).position;
@@ -127,7 +127,7 @@ public abstract class Gun : MonoBehaviour
         transform.rotation = Quaternion.Euler(0 , rotY , rotZ);
     }
 
-    //ÀåÂø / ÇØÁ¦ ½Ã ÇÃ·¹ÀÌ¾îÂÊ¿¡¼­ ºÒ·¯¾ßÇÒ ÇÔ¼ö
+    //ï¿½ï¿½ï¿½ï¿½ / ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     public void Equip(ref Action onKeyDown, ref Action onKeyPress , ref Action onKeyUp, ref Action onRoll, ref Action<Vector2> onLook, ref Action onReload)
     {
         isEquip = true;
@@ -182,18 +182,18 @@ public abstract class Gun : MonoBehaviour
         StartCoroutine(COReload());
     }
 
-    public void AddAmmunition(int amount)   //ÆÐ½Ãºê ¾ÆÀÌÅÛ ÅºÇÇ ÃæÀü
+    public void AddAmmunition(int amount)   //ï¿½Ð½Ãºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Åºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         _ammunition += amount;
     }
 
-    public void ChargingAmmunition()    //Á¦´Ü »ç¿ë ½Ã ÅºÇÇ ÃæÀü
+    public void ChargingAmmunition()    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ Åºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         _maxAmmunition = (int)(_maxAmmunition * 1.25f);
         _ammunition = _maxAmmunition;
     }
     
-    public void Lostmmunition(float random)     //Á¦´Ü »ç¿ë ½Ã ÅºÇÇ ÀÒÀ½
+    public void Lostmmunition(float random)     //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ Åºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         _ammunition = _ammunition - (int)(_ammunition * random);
     }
