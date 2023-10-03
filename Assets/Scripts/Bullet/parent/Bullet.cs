@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    protected bool _isPlayerBullet;
-    protected bool _isGuided;
-    protected float _damage;
-    protected float _bulletSpeed;
-    protected float _bulletDistance;
-    protected float _nowMoveDistance = 0;
-    protected float _knockBack;
-    protected LayerMask _wallCollisionLayer;
-    protected LayerMask _targetCollisionLayer;
-    protected LayerMask _envCollisionLayer;
+    [SerializeField] protected bool _isPlayerBullet;
+    [SerializeField]protected bool _isGuided;
+    [SerializeField]protected float _damage;
+    [SerializeField]protected float _bulletSpeed;
+    [SerializeField]protected float _bulletDistance;
+    [SerializeField]protected float _nowMoveDistance = 0;
+    [SerializeField]protected float _knockBack;
+    [SerializeField]protected LayerMask _wallCollisionLayer;
+    [SerializeField]protected LayerMask _targetCollisionLayer;
+    [SerializeField]protected LayerMask _envCollisionLayer;
     [SerializeField] protected RuntimeAnimatorController _deadSpawnAnimatorController;
     [SerializeField] protected float _findMaxAngle;
     protected GameObject _target;
@@ -28,6 +28,7 @@ public class Bullet : MonoBehaviour
         //_envCollisionLayer = LayerMask.GetMask("Env");
         BulletTargetSetting(isPlayerBullet);
         _isGuided = isGuided;
+        _target = null;
     }
 
     public void BulletTargetSetting(bool isPlayerBullet)
@@ -35,7 +36,7 @@ public class Bullet : MonoBehaviour
         _isPlayerBullet = isPlayerBullet;
 
         if (_isPlayerBullet)
-            _targetCollisionLayer = LayerMask.GetMask("Monster");
+            _targetCollisionLayer = LayerMask.GetMask("Enemy");
         else
             _targetCollisionLayer = LayerMask.GetMask("Player");
     }
@@ -48,6 +49,14 @@ public class Bullet : MonoBehaviour
 
         foreach (GameObject obj in objects)
         {
+            if (obj.TryGetComponent<HealthSystem>(out HealthSystem hs))
+            {
+                if (hs.CurrentHealth == 0)
+                    continue;
+            }
+            else
+                continue;
+
             Vector3 targetPos = obj.transform.position;
             Vector2 targetVector = (Vector2)( targetPos - position );
             float dis = targetVector.magnitude;
@@ -71,6 +80,14 @@ public class Bullet : MonoBehaviour
 
         foreach (GameObject obj in objects)
         {
+            if (obj.TryGetComponent<HealthSystem>(out HealthSystem hs))
+            {
+                if (hs.CurrentHealth == 0)
+                    continue;
+            }
+            else
+                continue;
+
             Vector3 targetPos = obj.transform.position;
             Vector2 targetVector = (Vector2)( targetPos - position );
             float dis = targetVector.magnitude;

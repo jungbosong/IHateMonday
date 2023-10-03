@@ -11,6 +11,7 @@ public class PoolManager : MonoBehaviour
         public string Path { get; private set; }
         public Transform Root { get; set; }
 
+        public int poolStack = 0;
         Queue<Poolable> _poolStack = new Queue<Poolable>();
 
         public void Init(GameObject original , string path , int count = 5)

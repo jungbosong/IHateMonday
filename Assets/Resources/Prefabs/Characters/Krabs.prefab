@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 3257356978158173920}
   m_Layer: 8
   m_Name: Krabs
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,8 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterSpriteRenderer: {fileID: 1192970704761489971}
-  followRange: 15
-  shootRange: 10
+  _followRange: 15
+  _shootRange: 10
   monsterAttackDataSO: {fileID: 11400000, guid: e283edf308449934e8439ec002b6a281, type: 2}
 --- !u!114 &3398241255957799732
 MonoBehaviour:
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd2ae3875cf697428d1514070f3f97b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthChangeDelay: 0.5
+  healthChangeDelay: 0.05
 --- !u!114 &5031425178545478180
 MonoBehaviour:
   m_ObjectHideFlags: 0

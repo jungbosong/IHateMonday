@@ -79,24 +79,39 @@ public class NormalBullet : Bullet
                 GameObject go = Managers.Resource.Instantiate("Effects/OneShotEffect");
                 go.GetComponent<OneShotEffect>().Init(collision.ClosestPoint(transform.position) , _deadSpawnAnimatorController);
             }
-            Managers.Resource.Destroy(this);
+            Managers.Resource.Destroy(gameObject);
         }
         else if(0 != ( _targetCollisionLayer.value & ( 1 << collision.gameObject.layer ) ))
         {
-            //IDamageAble.GetDamage(_damage);
-
-            /*
-            if (collision.TryGetComponent<TopDownMovement>(out TopDownMovement movement))
+            if (_deadSpawnAnimatorController != null)
             {
-                movement.ApplyKnockback(transform , _attackData.konckbackPower , _attackData.knockbackTime);
+                GameObject go = Managers.Resource.Instantiate("Effects/OneShotEffect");
+                go.GetComponent<OneShotEffect>().Init(collision.ClosestPoint(transform.position) , _deadSpawnAnimatorController);
             }
-            */
-            Managers.Resource.Destroy(this);
+
+            
+            if (collision.TryGetComponent<CharacterMovement>(out CharacterMovement movement))
+            {
+                movement.ApplyKnockback(collision.ClosestPoint(Managers.Game.player.transform.position) , _knockBack , 0.05f);
+            }
+            if (collision.TryGetComponent<HealthSystem>(out HealthSystem health))
+            {
+                health.ChangeHealth((int)-_damage);
+            }
+
+            Camera.main.GetComponent<ShakeCamera>().Shake(ShakeType.Attack);
+            
+            Managers.Resource.Destroy(gameObject);
         }
         else if(0 != (_envCollisionLayer.value & ( 1 << collision.gameObject.layer ) ))
         {
             //Env오브젝트를 받아와서 그에 맞는 효과 (책이 총에 맞으면 펑 터지더라고요)
-            Managers.Resource.Destroy(this);
+            if (_deadSpawnAnimatorController != null)
+            {
+                GameObject go = Managers.Resource.Instantiate("Effects/OneShotEffect");
+                go.GetComponent<OneShotEffect>().Init(collision.ClosestPoint(transform.position) , _deadSpawnAnimatorController);
+            }
+            Managers.Resource.Destroy(gameObject);
         }
     }
 }
