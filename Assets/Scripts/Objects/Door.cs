@@ -23,7 +23,8 @@ public class Door : MonoBehaviour
     protected virtual void Awake()
     {
 
-        _inventory = Managers.Game.player.GetComponent<Inventory>();
+        //_inventory = Managers.Game.player.GetComponent<Inventory>();
+        _inventory = GameObject.FindWithTag("Player").GetComponent<Inventory>();
         _playerLayerMask = LayerMask.GetMask("Player");
         _animator = GetComponent<Animator>();
 

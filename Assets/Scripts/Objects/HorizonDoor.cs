@@ -65,8 +65,7 @@ public class HorizonDoor : Door
     {
         base.OnTriggerExit2D(collision);
         
-        if(_nearRoom.type == RoomType.Normal ||
-            _nearRoom.type == RoomType.Wave||
+        if(_nearRoom.type == RoomType.Wave||
             _nearRoom.type == RoomType.Boss)
         {
             float doorDistance = Mathf.Abs(_nearRoom.center.x - transform.position.x) ;
