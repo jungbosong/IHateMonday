@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 5489091335377004819}
   - component: {fileID: 331295852123879996}
   - component: {fileID: 4593322593073493083}
+  - component: {fileID: 5843226716623363712}
   m_Layer: 8
   m_Name: Plankton
   m_TagString: Enemy
@@ -238,6 +239,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.25, y: 1.4}
   m_EdgeRadius: 0
+--- !u!114 &5843226716623363712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215474876502966750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471c1c0c5299c75419c290148fd4dd6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundSO: {fileID: 11400000, guid: f53cf50d80ecce54884b5fde2bcb6f9f, type: 2}
 --- !u!1 &6943712863001463850
 GameObject:
   m_ObjectHideFlags: 0
