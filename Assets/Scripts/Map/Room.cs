@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Unity.Collections.AllocatorManager;
 
 public enum RoomType
 {
@@ -20,6 +21,7 @@ public class Room : MonoBehaviour
     public float width;         // 방의 넓이    
     public float height;        // 방의 높이
     public RoomType type;       // 방 종류
+    //public bool notDone = true;
 
     public Action OnBattleStart;
     public Action OnBattleEnd;
@@ -34,5 +36,26 @@ public class Room : MonoBehaviour
     private void Awake()
     {
         center = this.transform.localPosition;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log($"now entered {type} room");
+        Debug.Log($"center({this.center.x}, {this.center.y})");
+
+        if(type == RoomType.NoneMonster)
+        {
+            return;
+        }
+        else
+        {
+            Managers.Game.StartWave(this);
+            /*if (notDone)
+            {
+                Managers.Game.StartWave(this);
+                notDone = false;
+            }*/
+            //OnBattleStart?.Invoke();
+        }
     }
 }

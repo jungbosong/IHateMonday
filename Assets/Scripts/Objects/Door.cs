@@ -93,6 +93,18 @@ public class Door : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         Managers.Resource.Destroy(_go);
+
+        if (_nearRoom.type == RoomType.Wave || _nearRoom.type == RoomType.Boss)
+        {
+            float doorDistance = (_nearRoom.center - transform.position).magnitude;
+            float playerDistance = (_nearRoom.center - collision.transform.position).magnitude;
+
+            if (doorDistance > playerDistance)
+            {
+                //여기서 아마 배틀 시작할듯 합니다
+                _nearRoom.OnBattleStart?.Invoke();
+            }
+        }
         _go = null;
     }
 }
