@@ -21,6 +21,7 @@ public class Define
         StartScene,
         EndingScene,
         DeadEndScene,
+        MapDesignScene,
     }
 
     public enum Sound

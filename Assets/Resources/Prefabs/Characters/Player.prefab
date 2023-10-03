@@ -81,7 +81,6 @@ GameObject:
   - component: {fileID: 9163503251845310669}
   - component: {fileID: 5675266618380755884}
   - component: {fileID: 780645775479022807}
-  - component: {fileID: 9080430554035761549}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -189,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a949351a586d546a48787e4d95101a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultStats:
+  CurrentStats:
     currentHp: 5
     currentMaxHp: 5
     moveSpeed: 5
@@ -314,22 +313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963c50ed37f2b494b922a1311af4dd25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventoryUI: {fileID: 0}
   _itemsList: []
   _dropPosition: {fileID: 7495470698763754706}
---- !u!114 &9080430554035761549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2162424143732340959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 471c1c0c5299c75419c290148fd4dd6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundSO: {fileID: 11400000, guid: 870f67c4be53f2e4198fd506852f65c9, type: 2}
 --- !u!1 &4982823750064637210
 GameObject:
   m_ObjectHideFlags: 0

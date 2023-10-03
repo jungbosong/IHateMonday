@@ -42,8 +42,6 @@ public class HorizonDoor : Door
         }
     }
 
-
-
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (_isInBattle || _isLocked)
@@ -66,9 +64,8 @@ public class HorizonDoor : Door
     protected override void OnTriggerExit2D(Collider2D collision)
     {
         base.OnTriggerExit2D(collision);
-
-        if(_nearRoom.type == RoomType.Normal ||
-            _nearRoom.type == RoomType.Wave||
+        
+        if(_nearRoom.type == RoomType.Wave||
             _nearRoom.type == RoomType.Boss)
         {
             float doorDistance = Mathf.Abs(_nearRoom.center.x - transform.position.x) ;
@@ -76,7 +73,8 @@ public class HorizonDoor : Door
 
             if (doorDistance > playerDistance)
             {
-                Debug.Log($"{_nearRoom.center}");
+                Debug.Log($"{_nearRoom.name}");
+                Managers.Game.StartWave(_nearRoom.transform.GetChild(2).transform.position, _nearRoom);
                 _nearRoom.OnBattleStart?.Invoke();
             }
         }

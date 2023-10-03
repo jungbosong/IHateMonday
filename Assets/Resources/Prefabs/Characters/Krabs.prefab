@@ -124,7 +124,6 @@ GameObject:
   - component: {fileID: 7663756968690596779}
   - component: {fileID: 1379124685913930864}
   - component: {fileID: 3257356978158173920}
-  - component: {fileID: 373153888786937755}
   m_Layer: 8
   m_Name: Krabs
   m_TagString: Enemy
@@ -315,19 +314,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.6}
   m_EdgeRadius: 0
---- !u!114 &373153888786937755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5783096909860975716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 471c1c0c5299c75419c290148fd4dd6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundSO: {fileID: 11400000, guid: ab176db2b12f1b4479513d85ebf39e87, type: 2}
 --- !u!1 &6829803027606822723
 GameObject:
   m_ObjectHideFlags: 0

@@ -52,7 +52,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void ApplyMovement(Vector2 direction)
     {
-        direction = direction * _characterStatsHandler.DefaultStats.moveSpeed;
+        direction = direction * _characterStatsHandler.CurrentStats.moveSpeed;
         if (knockbackDuration > 0.0f)
         {
             direction += _knockback;

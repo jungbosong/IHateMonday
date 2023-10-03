@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 5475660390757007678}
   - component: {fileID: 6597185252022316820}
   - component: {fileID: 4800104729097373423}
-  - component: {fileID: 722777534023480912}
   m_Layer: 8
   m_Name: Resident2
   m_TagString: Enemy
@@ -239,19 +238,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 1.6}
   m_EdgeRadius: 0
---- !u!114 &722777534023480912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2694076052152908308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 471c1c0c5299c75419c290148fd4dd6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundSO: {fileID: 11400000, guid: f53cf50d80ecce54884b5fde2bcb6f9f, type: 2}
 --- !u!1 &3779886353162173614
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // wave ÇÁ¸®ÆÕÀÇ °æ·Î
+    // wave ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     const string WAVE_PREFAB_PATH = "Prefabs/Waves/Wave";
     const string BOSS_STAGE_PREFAB_PATH = "Prefabs/Waves/BossStage";
 
-    // ÃÖÁ¾ ½ºÅ×ÀÌÁö ¹øÈ£
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
     const int MAX_STAGE_NUM = 3;
 
     private int _curStage;
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public void Init()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-
+        Debug.Log(player.name);
         _playerStatsHandler = player.GetComponent<PlayerStatsHandler>();
         _healthSystem = player.GetComponent<HealthSystem>();
         _healthSystem.OnDeath += GameOver;
@@ -40,8 +40,8 @@ public class GameManager : MonoBehaviour
     {
         _curStage = 1;
 
-        // ¿þÀÌºê Å×½ºÆ®¿ë ÄÚµå 
-        _currentRoom = new Room(new Vector3(2f, 2f, 0), 5f, 7f, RoomType.Wave);
+        // ï¿½ï¿½ï¿½Ìºï¿½ ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½Úµï¿½ 
+        //_currentRoom = new Room(new Vector3(2f, 2f, 0), 5f, 7f, RoomType.Wave);
         //StartWave(_currentRoom);
     }
 
@@ -50,30 +50,32 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // °ÔÀÓ ¸Å´ÏÀú¿¡°Ô ¿þÀÌºê ½ÃÀÛÀ» ¿äÃ»ÇÒ ¶§ »ç¿ë
-    // ÇÃ·¹ÀÌ¾î°¡ µé¾î°£ ¹æÀÇ Á¤º¸¸¦ Room Å¸ÀÔÀ¸·Î ³Ñ°ÜÁà¾ß ÇÔ
-    public void StartWave(Room curRoom)
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
+    // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½î°£ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Room Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+    public void StartWave(Vector3 centerPosition, Room curRoom)
     {
         _currentRoom = curRoom;
 
         if (_currentRoom.type == RoomType.Wave)
         {
-            _curWave = Instantiate(Resources.Load<GameObject>(WAVE_PREFAB_PATH)).GetComponent<Wave>();
-            _curWave.InitRoomInfo(_currentRoom);
+            _curWave = Instantiate(Resources.Load<GameObject>(WAVE_PREFAB_PATH)).GetOrAddComponent<Wave>();
+            //_curWave.transform.position = curRoom.transform.localPosition;
+            _curWave.InitRoomInfo(centerPosition, _currentRoom);
         }
         else
         {
-            _curBossStage = Instantiate(Resources.Load<GameObject>(BOSS_STAGE_PREFAB_PATH)).GetComponent<BossStage>();
-            _curBossStage.InitRoomInfo(_currentRoom, _curStage);
+            _curBossStage = Instantiate(Resources.Load<GameObject>(BOSS_STAGE_PREFAB_PATH)).GetOrAddComponent<BossStage>();
+            //_curBossStage.transform.position = curRoom.transform.localPosition;
+            _curBossStage.InitRoomInfo(centerPosition, _currentRoom, _curStage);
         }
     }
 
-    // º¸½º ½ºÅ×ÀÌÁö Å¬¸®¾î½Ã BossStage¿¡¼­ È£Ãâ
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ BossStageï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
     public void StageClear()
     {
         if (_curStage == MAX_STAGE_NUM)
         {
-            // °ÔÀÓ ÃÖÁ¾ Å¬¸®¾î ¿£µù¾ÀÀ¸·Î ³Ñ¾î°¡±â
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½
             Managers.Scene.ChangeScene(Define.Scene.EndingScene);
         }
         else
@@ -82,12 +84,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // ÇÃ·¹ÀÌ¾î°¡ Á×¾úÀ» ¶§ÀÇ °ÔÀÓ ¿À¹ö Ã³¸®
+    // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½×¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     private void GameOver()
     {
         StopAllCoroutines();
         _curStage = 1;
-        // ½ÇÆÐ ¿£µù¾ÀÀ¸·Î ³Ñ¾î°¡±â
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½
         Managers.Scene.ChangeScene(Define.Scene.DeadEndScene);
     }
 }

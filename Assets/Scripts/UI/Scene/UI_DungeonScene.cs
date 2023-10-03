@@ -74,7 +74,7 @@ public class UI_DungeonScene : UI_Scene
 
         int currentHP = playerStats.currentHp;
         int curMaxHP = playerStats.currentMaxHp;
-        
+
         // 보유 체력
         for (int i = 1; i <= currentHP; i++)
         {
