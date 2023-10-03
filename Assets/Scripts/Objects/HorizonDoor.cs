@@ -68,4 +68,22 @@ public class HorizonDoor : Door
             _doorCollider.enabled = false;
         }
     }
+
+    protected override void OnTriggerExit2D(Collider2D collision)
+    {
+        base.OnTriggerExit2D(collision);
+
+        if(_nearRoom.type == RoomType.Normal ||
+            _nearRoom.type == RoomType.Wave||
+            _nearRoom.type == RoomType.Boss)
+        {
+            float doorDistance = Mathf.Abs(_nearRoom.center.x - transform.position.x) ;
+            float playerDistance = Mathf.Abs(_nearRoom.center.x - collision.transform.position.x);
+
+            if (doorDistance > playerDistance)
+            {
+                _nearRoom.OnBattleStart?.Invoke();
+            }
+        }
+    }
 }

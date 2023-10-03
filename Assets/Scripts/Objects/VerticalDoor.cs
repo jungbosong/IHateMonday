@@ -60,4 +60,22 @@ public class VerticalDoor : Door
             _doorCollider.enabled = false;
         }
     }
+
+    protected override void OnTriggerExit2D(Collider2D collision)
+    {
+        base.OnTriggerExit2D(collision);
+
+        if (_nearRoom.type == RoomType.Normal ||
+            _nearRoom.type == RoomType.Wave ||
+            _nearRoom.type == RoomType.Boss)
+        {
+            float doorDistance = Mathf.Abs(_nearRoom.center.y - transform.position.y);
+            float playerDistance = Mathf.Abs(_nearRoom.center.y - collision.transform.position.y - _playerSprite.bounds.size.y * 0.5f + _playerSprite.transform.localPosition.y);
+
+            if (doorDistance > playerDistance)
+            {
+                _nearRoom.OnBattleStart?.Invoke();
+            }
+        }
+    }
 }
