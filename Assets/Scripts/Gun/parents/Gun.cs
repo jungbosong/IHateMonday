@@ -179,6 +179,17 @@ public abstract class Gun : MonoBehaviour
         StartCoroutine(COReload());
     }
 
+    public void ChargingAmmunition()
+    {
+        _maxAmmunition = (int)(_maxAmmunition * 1.25f);
+        _ammunition = _maxAmmunition;
+    }
+    
+    public void Lostmmunition(float random)
+    {
+        _ammunition = _ammunition - (int)(_ammunition * random);
+    }
+
     protected float GetDamage(float baseDamage)
     {
         return baseDamage * _stat.CurrentStats.attackPowerCoefficient / 100f;

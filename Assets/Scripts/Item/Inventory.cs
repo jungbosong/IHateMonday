@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,21 +12,23 @@ public class ItemSlot
 
 public class Inventory : MonoBehaviour
 {
-    //private Event Action _event;
-
-    private InventoryUI _inventoryUI;
+    [SerializeField]
+    private GameObject _inventoryUI;
+    private InventoryUI _uiComponent;
     private UseItem _useItem;
     [SerializeField]
     private List<Item> _itemsList;
     [SerializeField]
     private Transform _dropPosition;
-    private ItemSlot _selectItem;
+    private Item _selectItem;
     private int _itemListIndex = 0;
     private int _key = 0;
 
     private Gun _handGun;
     private Gun _subGun;
     private PlayerInputController _controller;
+    private CharacterController _characterController;
+
     public void AddKey()
     {
         _key++;
@@ -37,9 +40,10 @@ public class Inventory : MonoBehaviour
         _key--;
         return true;
     }
+
     public void EquipWeapon(WeaponItemData data)
     {
-        if(_handGun == null)
+        if (_handGun == null)
         {
             GameObject go = Managers.Resource.Instantiate($"Guns/{data.WeaponName}");
             _handGun = go.GetComponent<Gun>();
@@ -49,13 +53,11 @@ public class Inventory : MonoBehaviour
             _controller.UnEquipWeapon(_handGun);
             if (_subGun != null)
             {
-                Managers.Resource.Instantiate($"Items/{_handGun.name}Item" , _dropPosition.position);
-                Managers.Resource.Destroy(_handGun);
+                Managers.Resource.Instantiate($"Items/{_subGun.name}Item", _dropPosition.position);
+                Managers.Resource.Destroy(_subGun);
             }
-            else
-            {
-                _subGun = _handGun;
-            }
+
+            _subGun = _handGun;
             GameObject go = Managers.Resource.Instantiate($"Guns/{data.WeaponName}");
             _handGun = go.GetComponent<Gun>();
         }
@@ -80,15 +82,22 @@ public class Inventory : MonoBehaviour
     private void Awake()
     {
         s_instance = this;
-        _inventoryUI = GetComponent<InventoryUI>();
         _useItem = GetComponent<UseItem>();
         _controller = GetComponent<PlayerInputController>();
-        _controller.OnChangeWeaponEvent += SwapWeapon;
+        _characterController = GetComponent<CharacterController>();
+        _uiComponent = _inventoryUI.GetComponent<InventoryUI>();
     }
 
     private void Start()
     {
+        _characterController.OnChangeActiveEvent += ChangeItem;
+        _characterController.OnUseActiveEvent += OnUse;
         
+        foreach(Item item in _itemsList)
+        {
+            item.itemData.stack = 0;
+        }
+        _uiComponent.Set(_itemsList[_itemListIndex].itemData);
     }
 
     public void AddItem(ItemData itemData)
@@ -96,60 +105,71 @@ public class Inventory : MonoBehaviour
         if (itemData.stack < itemData.maxStackAmount)
         {
             itemData.stack++;
+            UpdateInventoryUI();
             return;
         }
         else
             return;
     }
 
+    //private ItemSlot GetItemSlot(ItemData itemData)
+    //{
+    //    if ()
+    //    {
+
+    //    }
+    //}
+
     public void ThrowItem(ItemData item)
     {
-        Managers.Resource.Instantiate(item.dropPrefab, _dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360f));
+        Managers.Resource.Instantiate(item.dropPrefab, _dropPosition.position, Quaternion.Euler(Vector3.one * UnityEngine.Random.value * 360f));
     }
 
     public void OnUse()
     {
-        if(_selectItem.item.stack != 0)
+        ItemData curItem = _itemsList[_itemListIndex].itemData;
+        if (curItem.stack != 0)
         {
-            _selectItem.item.stack--;
-            if (_selectItem.item.consumables[0].type == ConsumableType.BulletGuide)  //유도
+            curItem.stack--;
+            if (curItem.consumables[0].type == ConsumableType.BulletGuide)  //유도
             {
                 _useItem.OnGuied();
             }
-            else if(_selectItem.item.consumables[0].type == ConsumableType.IncreaseDamage)   //순간적 데미지증가
+            else if (curItem.consumables[0].type == ConsumableType.IncreaseDamage)   //순간적 데미지증가
             {
                 _useItem.OnDamageIncrease();
             }
-            else if(_selectItem.item.consumables[0].type == ConsumableType.BulletDelete)     //공포탄 불릿삭제
+            else if (curItem.consumables[0].type == ConsumableType.BulletDelete)     //공포탄 불릿삭제
             {
                 _useItem.OnDestroyBullet();
             }
-            else if(_selectItem.item.consumables[0].type == ConsumableType.Invincibility)    //순간적 무적
+            else if (curItem.consumables[0].type == ConsumableType.Invincibility)    //순간적 무적
             {
                 _useItem.OnInvincibilite();
             }
-
+            UpdateInventoryUI();
             return;
         }
         else
         {
+            UpdateInventoryUI();
             return;
         }
-    } 
+    }
 
     public void UpdateInventoryUI()
     {
         //inventoryUI set 호출
-        _inventoryUI.Set(_selectItem);
+        _uiComponent.Set(_itemsList[_itemListIndex].itemData);
     }
 
     public void ChangeItem()
     {
         //아이템 체인지 키 눌렀을때
-        //inventoryUI Set 호출
         //itemsList[itemListIndex] 사용 -> index 값이 listLength 이상 => 0으로
         _itemListIndex = (_itemListIndex + 1) % _itemsList.Count;
-        _selectItem.item = _itemsList[_itemListIndex].itemData;
-        _inventoryUI.Set(_selectItem);
+        _selectItem = _itemsList[_itemListIndex];
+        UpdateInventoryUI();
     }
+
 }
