@@ -158,7 +158,7 @@ MonoBehaviour:
   _maxMagazine: 6
   _maxAmmunition: 9999
   _reloadDelay: 1
-  _damage: 13
+  _damage: 7
   _bulletSpeed: 23
   _bulletDistance: 60
   _knockBack: 30

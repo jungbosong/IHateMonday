@@ -83,8 +83,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentStats:
-    currentHp: 15
-    currentMaxHp: 15
+    currentHp: 20
+    currentMaxHp: 20
     moveSpeed: 2
 --- !u!114 &766597296205685177
 MonoBehaviour:

@@ -30,14 +30,20 @@ public class HorizonDoor : Door
             return;
 
         float playerBottiomPosY = _player.transform.position.y - _playerSprite.bounds.size.y * 0.5f + _playerSprite.transform.localPosition.y;
-        if (_Leftdoor.transform.position.y < playerBottiomPosY)
+        if (_Leftdoor.transform.position.y - _Leftdoor.transform.localPosition.y < playerBottiomPosY)
         {
             _Leftdoor.sortingOrder = _playerSortingOrder + 1;
-            _Rightdoor.sortingOrder = _playerSortingOrder + 1;
         }
         else
         {
             _Leftdoor.sortingOrder = _playerSortingOrder - 1;
+        }
+        if (_Rightdoor.transform.position.y - _Leftdoor.transform.localPosition.y < playerBottiomPosY)
+        {
+            _Rightdoor.sortingOrder = _playerSortingOrder + 1;
+        }
+        else
+        {
             _Rightdoor.sortingOrder = _playerSortingOrder - 1;
         }
     }

@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
             //_curWave.transform.position = curRoom.transform.localPosition;
             _curWave.InitRoomInfo(centerPosition, _currentRoom);
         }
-        else
+        else if (_currentRoom.type == RoomType.Boss)
         {
             _curBossStage = Instantiate(Resources.Load<GameObject>(BOSS_STAGE_PREFAB_PATH)).GetOrAddComponent<BossStage>();
             //_curBossStage.transform.position = curRoom.transform.localPosition;

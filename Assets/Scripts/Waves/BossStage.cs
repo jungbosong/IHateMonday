@@ -22,7 +22,7 @@ public class BossStage : MonoBehaviour
     {
         _isGameOver = false;
         InitSpawnPositions();
-        //StartBossWave();
+        StartBossWave();
     }
 
     void Update()
