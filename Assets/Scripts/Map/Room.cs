@@ -29,7 +29,7 @@ public class Room : MonoBehaviour
 
     private void Start()
     {
-        if(type == RoomType.Wave || type == RoomType.Boss)
+        if(type == RoomType.Wave || type == RoomType.Boss || type == RoomType.NoneMonster)
         {
             Debug.Log(this.name);
             center = this.transform.GetChild(2).transform.position;
