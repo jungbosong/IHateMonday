@@ -83,8 +83,6 @@ public class UI_DungeonScene : UI_Scene
         int currentHP = _playerStatsHandler.CurrentStats.currentHp;
         int curMaxHP = _playerStatsHandler.CurrentStats.currentMaxHp;
 
-        Debug.Log("UI업데이트 : " + currentHP + " " + curMaxHP);
-
         // 보유 체력
         for (int i = 1; i <= currentHP; i++)
         {
