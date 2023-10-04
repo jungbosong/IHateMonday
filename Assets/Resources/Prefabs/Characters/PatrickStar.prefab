@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 3489026011530259739}
   - component: {fileID: 7783911954226176316}
   - component: {fileID: 719728718331339487}
+  - component: {fileID: 3189907940103531033}
   m_Layer: 8
   m_Name: PatrickStar
   m_TagString: Enemy
@@ -345,3 +346,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 1.6}
   m_EdgeRadius: 0
+--- !u!114 &3189907940103531033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8503380916326937616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065241bec880eed40848a073175fa1e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundSO: {fileID: 11400000, guid: a21bebf7e11ed714d857229c3ca78bd3, type: 2}
