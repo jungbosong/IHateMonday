@@ -5,7 +5,8 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     //Door�� ���̺곪 �濡 ���ӵǾ��־���� Why? ������Ȳ�̴� -> ������ٴ� ��°��� �Ǿ���ϴϱ�..
-    [SerializeField]protected bool _isLocked = false;
+    public bool isLock = false;
+    protected bool _isLocked = false;
     protected bool _isInBattle = false;
     //�κ��丮�� Ű�� �ִٴ� �����Ͽ� �۾�
     private Inventory _inventory;
@@ -36,6 +37,9 @@ public class Door : MonoBehaviour
 
         //_minimapRenderer = transform.GetChild(3).GetComponent<SpriteRenderer>();
         //_minimapRenderer.color = Color.blue;
+
+        if (isLock)
+            Lock();
     }
     
     public void SetNearRoom(Room nearRoom)
