@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
-    [SerializeField] private GameObject _target;           // 카메라가 따라갈 대상
-    [SerializeField] private float _moveSpeed;             // 카메라가 따라갈 속도
+    private GameObject _target;           // 카메라가 따라갈 대상
+    [SerializeField] private float _moveSpeed = 2f;             // 카메라가 따라갈 속도
     private Vector3 _targetPosition;     // 대상의 현재 위치
+
+    private void Start()
+    {
+        _target = GameObject.FindWithTag("Player");
+    }
 
     // 카메라가 플레이어를 따라감
     void Update()

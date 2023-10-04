@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 7146a0b4fabddf3418886b7d1c1bd48b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 7663756968690596779}
   - component: {fileID: 1379124685913930864}
   - component: {fileID: 3257356978158173920}
+  - component: {fileID: 2598684360225582803}
   m_Layer: 8
   m_Name: Krabs
   m_TagString: Enemy
@@ -146,7 +147,7 @@ Transform:
   - {fileID: 3210024132965504764}
   - {fileID: 6167475859568711640}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3385724921261415142
 MonoBehaviour:
@@ -314,6 +315,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.6}
   m_EdgeRadius: 0
+--- !u!114 &2598684360225582803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783096909860975716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065241bec880eed40848a073175fa1e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundSO: {fileID: 11400000, guid: cec8c808a27afd74098a9cdcb331c5f6, type: 2}
 --- !u!1 &6829803027606822723
 GameObject:
   m_ObjectHideFlags: 0

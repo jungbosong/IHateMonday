@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -161,7 +162,7 @@ public class Inventory : MonoBehaviour
     public void ChangeItem()
     {
         //������ ü���� Ű ��������
-        //itemsList[itemListIndex] ��� -> index ���� listLength �̻� => 0����
+        //itemsList[itemListIndex] ���?-> index ���� listLength �̻� => 0����
         _itemListIndex = (_itemListIndex + 1) % _itemsList.Count;
         _selectItem = _itemsList[_itemListIndex];
         UpdateInventoryUI();
