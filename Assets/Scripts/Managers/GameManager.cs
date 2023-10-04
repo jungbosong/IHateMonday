@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public void Init()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log(player.name);
+
         _playerStatsHandler = player.GetComponent<PlayerStatsHandler>();
         _healthSystem = player.GetComponent<HealthSystem>();
         _healthSystem.OnDeath += GameOver;
@@ -50,8 +50,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // ���� �Ŵ������� ���̺� ������ ��û�� �� ���
-    // �÷��̾ �� ���� ������ Room Ÿ������ �Ѱ���� ��
+    // 사용자가 들어간 Room 정보를 넘겨 받아서 Wave 시작
     public void StartWave(Vector3 centerPosition, Room curRoom)
     {
         _currentRoom = curRoom;
@@ -70,12 +69,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // ���� �������� Ŭ����� BossStage���� ȣ��
+    // 보스 스테이지 클리어 시 현재 스테이지 값 증가
     public void StageClear()
     {
         if (_curStage == MAX_STAGE_NUM)
         {
-            // ���� ���� Ŭ���� ���������� �Ѿ��
+            // 최종 스테이지면 엔딩 씬으로 이동
             Managers.Scene.ChangeScene(Define.Scene.EndingScene);
         }
         else
@@ -84,12 +83,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // �÷��̾ �׾��� ���� ���� ���� ó��
+    // 플레이어가 죽으면 게임 오버
     private void GameOver()
     {
-        StopAllCoroutines();
         _curStage = 1;
-        // ���� ���������� �Ѿ��
+        // 게임 실패 씬으로 이동
         Managers.Scene.ChangeScene(Define.Scene.DeadEndScene);
     }
 }
