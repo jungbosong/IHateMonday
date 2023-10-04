@@ -54,7 +54,7 @@
 ||[플레이어 입력 상호작용 이벤트]()|
 ||[플레이어 죽음 처리]()|
 ||[플레이어 이동]()|
-||[플레이어 조준]()|
+|Gun|[플레이어 조준](https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Gun/parents/Gun.cs#L90-L133)|
 ||[플레이어 스탯 UI 상호작용]()|
 ||[플레이어 인벤토리 상호작용]()|
 ||[몬스터 스탯]()|
@@ -62,10 +62,10 @@
 ||[몬스터 공격]()|
 ||[몬스터 죽음]()|
 ||[몬스터 공격]()|
-||[무기 스탯]()|
-||[무기 장착/해제]()|
-||[무기 사용]()|
-||[무기 전환]()|
+|Gun|[무기 스탯](https://github.com/jungbosong/IHateMonday/blob/9e1a61e933563b78c78c50482e5ebf70fc27dc25/Assets/Scripts/Gun/parents/Gun.cs#L31-L45)|
+|Gun|[무기 장착/해제](https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Gun/parents/Gun.cs#L136-L176)|
+|Gun|[무기 사용](https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Gun/parents/Gun.cs#L17-L23)|
+|inventory|[무기 전환](https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Item/Inventory.cs#L78-L88)|
 ||[웨이브 시스템]()|
 ||[웨이브 시스템 보상]()|
 ||[보스 스테이지]()|
@@ -74,8 +74,8 @@
 ||[아이템 사용]()|
 ||[액티브 아이템 전환]()|
 ||[아티팩트 상호작용]()|
-||[열쇠 사용]()|
-||[문 상호작용]()|
+|Door|[열쇠 사용](https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Objects/Door.cs#L72-L116)|
+|Door|[문 상호작용](https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Objects/HorizonDoor.cs#L51-L88)|
 ||[사운드 재생]()|
 
 <br>
