@@ -61,7 +61,7 @@ public class Wave : MonoBehaviour
         {
             if (_currentSpawnCount == 0)
             {
-                if (_currentWaveIndex > 10)
+                if (_currentWaveIndex > 1)
                 {
                     CreateReward();
                     isWaveOver = true;
@@ -116,7 +116,7 @@ public class Wave : MonoBehaviour
         // 50퍼센트 확률로 열쇠 등장
         if (IsPossible(100))
         {
-            GameObject obj = Managers.Resource.Instantiate("Items/Key", new Vector3(_centerPos.x, _centerPos.y, 0));
+            Managers.Resource.Instantiate("Items/Key", new Vector3(_centerPos.x, _centerPos.y, 0));
         }
     }
 

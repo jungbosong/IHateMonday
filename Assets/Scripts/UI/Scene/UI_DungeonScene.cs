@@ -78,7 +78,7 @@ public class UI_DungeonScene : UI_Scene
 
     public void UpdatePlayerStatUI()
     {
-        GetText((int)Texts.KeyNumText).text = "0";
+        //GetText((int)Texts.KeyNumText).text = "0";
 
         int currentHP = _playerStatsHandler.CurrentStats.currentHp;
         int curMaxHP = _playerStatsHandler.CurrentStats.currentMaxHp;

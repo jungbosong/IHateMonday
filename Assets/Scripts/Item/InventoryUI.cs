@@ -14,6 +14,11 @@ public class InventoryUI : MonoBehaviour
 
     public TMP_Text keyNumText;
 
+    private void Start()
+    {
+       
+    }
+
     public void SetItemUI(ItemData slot)
     {
         itemIcon.sprite = slot.icon;
@@ -38,5 +43,7 @@ public class InventoryUI : MonoBehaviour
     public void SetKeyNumUI(int keyNum)
     {
         keyNumText.text = keyNum.ToString();
+        Debug.Log(keyNum);
+        Debug.Log(keyNumText.text);
     }
 }
