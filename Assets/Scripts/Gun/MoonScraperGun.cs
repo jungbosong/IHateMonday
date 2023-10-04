@@ -7,24 +7,22 @@ public class MoonScraperGun : LaserGun
     [Header("BulletDiscription")]
     [SerializeField] private MoonScraperBullet _moonScraperBullet;
     [SerializeField] private int _lineSize = 3;
-    private bool _isGuied;
-    private int _buffBullet = 0;
 
     public override IEnumerator COFire()
     {
         _animator.SetBool("Fire" , true);
         GameObject go = Managers.Resource.Instantiate("Bullets/MoonScraperBullet", _shotPoint.position, _shotPoint.rotation);
         _moonScraperBullet = go.GetOrAddComponent<MoonScraperBullet>();
-        _isGuied = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsHandler>().CurrentStats.isGuied;
-        if (_buffBullet < 10)
+        isGuied = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsHandler>().CurrentStats.isGuied;
+        if (buffBullet > 0 && isGuied)
         {
-            _moonScraperBullet.Init(GetDamage(_damage), _bulletSpeed, _bulletDistance, _knockBack, true, _isGuied);
-            --_buffBullet;
+            _moonScraperBullet.Init(GetDamage(_damage), _bulletSpeed, _bulletDistance, _knockBack, true, isGuied);
+            --buffBullet;
         }
         else
         {
             _player.GetComponent<UseItem>().OffGuied();
-            _moonScraperBullet.Init(GetDamage(_damage), _bulletSpeed, _bulletDistance, _knockBack, true, _isGuied);
+            _moonScraperBullet.Init(GetDamage(_damage), _bulletSpeed, _bulletDistance, _knockBack, true, isGuied);
         }
         _moonScraperBullet.LaserInit(_lineSize , _shotPoint);
         _isShooting = true;
