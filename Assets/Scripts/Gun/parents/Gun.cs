@@ -42,8 +42,8 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected float _knockBack;
     [SerializeField] protected float _accuracy;
     [SerializeField] protected float _autoFireDelay;
+    [SerializeField] protected int _bulletCount = 1;
 
-    
     [HideInInspector]public bool isEquip;
     [HideInInspector]public bool isAutoFireReady = true;
     [HideInInspector]public bool isReload = false;
@@ -65,6 +65,8 @@ public abstract class Gun : MonoBehaviour
 
         _player = GameObject.FindWithTag("Player");
         _stat = _player.GetComponent<PlayerStatsHandler>();
+
+
     }
     public GunType GetGunType()
     {

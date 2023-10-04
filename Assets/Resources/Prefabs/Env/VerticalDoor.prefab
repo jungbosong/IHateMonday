@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3582997794579323580}
-  m_Layer: 11
+  m_Layer: 6
   m_Name: LeftDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2783702755649718351}
-  m_Layer: 11
+  m_Layer: 6
   m_Name: RightDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2947872692337355833}
   - component: {fileID: 6330721310697223413}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3187148256916671124}
   - component: {fileID: 1179547219153802999}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6480019423411088920}
   - component: {fileID: 2983341029120053862}
-  m_Layer: 11
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 8244924077800741087}
   - component: {fileID: 1346587445065871138}
   - component: {fileID: 6367747455434154088}
-  m_Layer: 11
+  m_Layer: 6
   m_Name: VerticalDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +352,7 @@ Transform:
   - {fileID: 3582997794579323580}
   - {fileID: 2783702755649718351}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3663896038251148226
 BoxCollider2D:

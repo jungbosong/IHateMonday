@@ -31,9 +31,9 @@ public class GameManager : MonoBehaviour
         _healthSystem = player.GetComponent<HealthSystem>();
         _healthSystem.OnDeath += GameOver;
 
-        GameObject uiRoot = Managers.UI.Root;
-        _dungeonUI = uiRoot.transform.Find("UI_DungeonScene").GetComponent<UI_DungeonScene>();
-        _dungeonUI.UpdatePlayerStatUI(_playerStatsHandler.CurrentStats);
+        //GameObject uiRoot = Managers.UI.Root;
+        //_dungeonUI = uiRoot.transform.Find("UI_DungeonScene").GetComponent<UI_DungeonScene>();
+        //_dungeonUI.UpdatePlayerStatUI(_playerStatsHandler.CurrentStats);
     }
 
     public void Start()
