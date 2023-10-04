@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField]
     private GameObject _inventoryUI;
-    private InventoryUI _uiComponent;
+    private InventoryUI _inventoryUIComponent;
     private UseItem _useItem;
     [SerializeField]
     private List<Item> _itemsList;
@@ -30,15 +30,19 @@ public class Inventory : MonoBehaviour
     private PlayerInputController _controller;
     private CharacterController _characterController;
 
+    private Sprite _curGunSprite;
+
     public void AddKey()
     {
         _key++;
+        _inventoryUIComponent.SetKeyNumUI(_key);
     }
     public bool UseKey()
     {
         if (_key <= 0)
             return false;
         _key--;
+        _inventoryUIComponent.SetKeyNumUI(_key);
         return true;
     }
 
@@ -67,6 +71,7 @@ public class Inventory : MonoBehaviour
         }
 
         _controller.EquipWeapon(_handGun);
+        _curGunSprite = data.icon;
     }
 
     public void SwapWeapon()
@@ -89,13 +94,14 @@ public class Inventory : MonoBehaviour
         _useItem = GetComponent<UseItem>();
         _controller = GetComponent<PlayerInputController>();
         _characterController = GetComponent<CharacterController>();
-        _uiComponent = _inventoryUI.GetComponent<InventoryUI>();
+        _inventoryUIComponent = _inventoryUI.GetComponent<InventoryUI>();
         _controller.OnChangeWeaponEvent += SwapWeapon;
 
         GameObject go = Managers.Resource.Instantiate($"Guns/MagnumGun");
         _handGun = go.GetComponent<Gun>();
         _controller.EquipWeapon(_handGun);
-
+        _curGunSprite = go.GetComponentInChildren<SpriteRenderer>().sprite;
+        _inventoryUIComponent.SetWeaponUI(_curGunSprite, _handGun.GetAmmunition(), _handGun.GetMaxAmmunition());
     }
 
     private void Start()
@@ -108,7 +114,15 @@ public class Inventory : MonoBehaviour
             item.itemData.stack = 0;
         }
         _selectItem = _itemsList[_itemListIndex];
-        _uiComponent.Set(_selectItem.itemData);
+        _inventoryUIComponent.SetItemUI(_selectItem.itemData);
+    }
+
+    private void Update()
+    {
+        if (_handGun != null )
+        {
+            _inventoryUIComponent.SetWeaponUI(_curGunSprite, _handGun.GetAmmunition(), _handGun.GetMaxAmmunition());
+        }
     }
 
     public void AddItem(ItemData itemData)
@@ -116,7 +130,7 @@ public class Inventory : MonoBehaviour
         if (itemData.stack < itemData.maxStackAmount)
         {
             itemData.stack++;
-            UpdateInventoryUI();
+            UpdateInventoryItemUI();
             return;
         }
         else
@@ -150,20 +164,20 @@ public class Inventory : MonoBehaviour
             {
                 _useItem.OnInvincibilite();
             }
-            UpdateInventoryUI();
+            UpdateInventoryItemUI();
             return;
         }
         else
         {
-            UpdateInventoryUI();
+            UpdateInventoryItemUI();
             return;
         }
     }
 
-    public void UpdateInventoryUI()
+    public void UpdateInventoryItemUI()
     {
         //inventoryUI set ȣ��
-        _uiComponent.Set(_selectItem.itemData);
+        _inventoryUIComponent.SetItemUI(_selectItem.itemData);
     }
 
     public void ChangeItem()
@@ -172,7 +186,6 @@ public class Inventory : MonoBehaviour
         //itemsList[itemListIndex] ���?-> index ���� listLength �̻� => 0����
         _itemListIndex = (_itemListIndex + 1) % _itemsList.Count;
         _selectItem = _itemsList[_itemListIndex];
-        UpdateInventoryUI();
+        UpdateInventoryItemUI();
     }
-
 }

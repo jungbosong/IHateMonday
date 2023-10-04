@@ -22,8 +22,8 @@ public class Wave : MonoBehaviour
 
     public List<GameObject> _enemyPrefabs = new List<GameObject>();     // 생성할 몬스터 프리팹 리스트
 
-    private CharacterStats _monsterStats;
-    //private Room _room;
+    private Room _curRoom;
+    private bool isWaveOver = false;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class Wave : MonoBehaviour
         _centerPos.x = centerPosition.x;
         _centerPos.y = centerPosition.y;
         _limit = (room.width <= room.height) ? room.width / 2 : room.height / 2;    // 방의 가로, 세로 길이 중 더 짧은 쪽 길이의 반
-        //_room = room;
+        _curRoom = room;
     }
 
     // 방의 좌표와 limit에 따라 몬스터의 spawn position 리스트 초기화
@@ -57,10 +57,19 @@ public class Wave : MonoBehaviour
     // 웨이브 실행 코루틴 함수
     IEnumerator COPlayWave()
     {
-        while (_currentWaveIndex <= 10)
+        while (!isWaveOver)
         {
             if (_currentSpawnCount == 0)
             {
+                if (_currentWaveIndex > 10)
+                {
+                    CreateReward();
+                    isWaveOver = true;
+                    (_curRoom.OnBattleEnd)?.Invoke();
+                    Managers.Sound.Play("wave_clear");
+                    break;
+                }
+
                 // 몬스터가 생성되는 포지션 수 증가
                 if (_currentWaveIndex % 5 == 0)
                 {
@@ -92,7 +101,6 @@ public class Wave : MonoBehaviour
             }
             yield return null;
         }
-        CreateReward();
     }
 
     // 몬스터의 OnDeath 이벤트에 연결됨
@@ -104,9 +112,12 @@ public class Wave : MonoBehaviour
     // 웨이브 클리어 시 열쇠 보상 제공
     private void CreateReward()
     {
+        Debug.Log("보상");
         // 50퍼센트 확률로 열쇠 등장
         if (IsPossible(50))
-            Managers.Resource.Instantiate("Prefabs/Items/Key", new Vector3(_centerPos.x, _centerPos.y, 0));
+        {
+            GameObject obj = Managers.Resource.Instantiate("Items/Key", new Vector3(_centerPos.x, _centerPos.y, 0));
+        }
     }
 
     private bool IsPossible(int percent)
