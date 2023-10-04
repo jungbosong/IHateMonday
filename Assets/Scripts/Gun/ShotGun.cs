@@ -19,7 +19,17 @@ public class ShotGun : SemiAutoGun
             Vector3 position = _shotPoint.position + (Vector3)Random.insideUnitCircle * 0.1f;
             GameObject go = Managers.Resource.Instantiate("Bullets/MagnumBullet" , position , _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy , _accuracy) , Vector3.forward));
             NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
-            bullet.Init(GetDamage(_damage) , _bulletSpeed , _bulletDistance , _knockBack , true , true);
+            isGuied = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsHandler>().CurrentStats.isGuied;
+            if (buffBullet > 0 && isGuied)
+            {
+                bullet.Init(GetDamage(_damage), _bulletSpeed, _bulletDistance, _knockBack, true, isGuied);
+                --buffBullet;
+            }
+            else
+            {
+                _player.GetComponent<UseItem>().OffGuied();
+                bullet.Init(GetDamage(_damage), _bulletSpeed, _bulletDistance, _knockBack, true, isGuied);
+            }
         }
         _animator.Play("ShotGun_Fire" , -1 , 0f);
         Managers.Sound.Play("ShotgunShot");
