@@ -11,8 +11,6 @@ public class DungeonScene : BaseScene
 
         SceneType = Define.Scene.DungeonScene;
         Managers.UI.ShowSceneUI<UI_DungeonScene>();
-        Managers.Game.Init();
-        Managers.Game.Start();
         return true;
     }
 }

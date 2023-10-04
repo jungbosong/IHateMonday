@@ -21,8 +21,6 @@ public class GameManager : MonoBehaviour
     private PlayerStatsHandler _playerStatsHandler;
     private HealthSystem _healthSystem;
 
-    private UI_DungeonScene _dungeonUI;
-
     public void Init()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -31,16 +29,12 @@ public class GameManager : MonoBehaviour
         _healthSystem = player.GetComponent<HealthSystem>();
         _healthSystem.OnDeath += GameOver;
 
-        //GameObject uiRoot = Managers.UI.Root;
-        //_dungeonUI = uiRoot.transform.Find("UI_DungeonScene").GetComponent<UI_DungeonScene>();
-        //_dungeonUI.UpdatePlayerStatUI(_playerStatsHandler.CurrentStats);
+        _curStage = 1;
     }
 
     public void Start()
     {
-        _curStage = 1;
-
-        // ���̺� �׽�Ʈ�� �ڵ� 
+        // 웨이브 시스템 테스트용 코드
         //_currentRoom = new Room(new Vector3(2f, 2f, 0), 5f, 7f, RoomType.Wave);
         //StartWave(_currentRoom);
     }

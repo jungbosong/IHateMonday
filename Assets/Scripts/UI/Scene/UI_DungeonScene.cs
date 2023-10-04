@@ -44,9 +44,19 @@ public class UI_DungeonScene : UI_Scene
     private Sprite _filledHealthImage;
     private Sprite _emptyHealthImage;
 
+    private GameObject _player;
+    private PlayerStatsHandler _playerStatsHandler;
+
     void Awake()
     {
         Init();
+    }
+
+    private void Start()
+    {
+        _player = Managers.Game.player;
+        _playerStatsHandler = _player.GetComponent<PlayerStatsHandler>();
+        UpdatePlayerStatUI();
     }
 
     public override bool Init()
@@ -63,17 +73,17 @@ public class UI_DungeonScene : UI_Scene
         _filledHealthImage = Managers.Resource.Load<Sprite>(FILLED_IMAGE_PATH);
         _emptyHealthImage = Managers.Resource.Load<Sprite>(EMPTY_IMAGE_PATH);
 
-        //GetButton((int)Buttons.StartButton).gameObject.BindEvent(OnClickedStartButton);
-
         return true;
     }
 
-    public void UpdatePlayerStatUI(PlayerStats playerStats)
+    public void UpdatePlayerStatUI()
     {
         GetText((int)Texts.KeyNumText).text = "0";
 
-        int currentHP = playerStats.currentHp;
-        int curMaxHP = playerStats.currentMaxHp;
+        int currentHP = _playerStatsHandler.CurrentStats.currentHp;
+        int curMaxHP = _playerStatsHandler.CurrentStats.currentMaxHp;
+
+        Debug.Log("UI업데이트 : " + currentHP + " " + curMaxHP);
 
         // 보유 체력
         for (int i = 1; i <= currentHP; i++)
@@ -103,7 +113,7 @@ public class UI_DungeonScene : UI_Scene
             GetObject((int)targetEnum).gameObject.SetActive(false);
         }
 
-        int curShield = playerStats.shieldCount;
+        int curShield = _playerStatsHandler.CurrentStats.shieldCount;
         // 현재 실드 보유 개수 표시
         for (int i = 1; i <= curShield; i++)
         {
@@ -119,9 +129,4 @@ public class UI_DungeonScene : UI_Scene
             GetObject((int)targetEnum).gameObject.SetActive(false);
         }
     }
-    //void OnClickedStartButton()
-    //{
-    //    //Managers.Sound.Play("ClickBtnEff"); 
-    //    Managers.Scene.ChangeScene(Define.Scene.DungeonScene);
-    //}
 }
