@@ -80,7 +80,8 @@ GameObject:
   - component: {fileID: 7770574341070857742}
   - component: {fileID: 9163503251845310669}
   - component: {fileID: 5675266618380755884}
-  - component: {fileID: 780645775479022807}
+  - component: {fileID: 1039616504484707921}
+  - component: {fileID: 968208861081243337}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -105,7 +106,7 @@ Transform:
   - {fileID: 7495470698763754706}
   - {fileID: 3433212390258025048}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4804292660273591239
 MonoBehaviour:
@@ -203,6 +204,7 @@ MonoBehaviour:
     moveSpeedCoefficient: 100
     isInvincible: 0
     invincibilityTime: 2
+    isGuied: 0
   statsModifiers: []
 --- !u!114 &8073643033735288243
 MonoBehaviour:
@@ -301,7 +303,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7, y: 1.6}
   m_EdgeRadius: 0
---- !u!114 &780645775479022807
+--- !u!114 &1039616504484707921
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -313,8 +315,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963c50ed37f2b494b922a1311af4dd25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemsList: []
-  _dropPosition: {fileID: 7495470698763754706}
+  _inventoryUI: {fileID: 3886807055632993554, guid: be5c38277bc87654696fc86750a0c045, type: 3}
+  _itemsList:
+  - {fileID: 259226517729880174, guid: ab81730b43ed4294bbb116761d0b4d0d, type: 3}
+  - {fileID: 7021484653838817672, guid: 06767a33f1e65e94590d1a4788c47c53, type: 3}
+  - {fileID: 3204187058191587984, guid: ffa6e141864351c4189fad940c36fa74, type: 3}
+  - {fileID: 1212845213816848761, guid: 3cf2d1ff878c4ac41922319db8c0db2e, type: 3}
+  _dropPosition: {fileID: 3805093135235053609, guid: 36c89e386fdb85642b94f3dcd24d8458, type: 3}
+--- !u!114 &968208861081243337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2162424143732340959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2c4268c640be394c87f9064d33c2ae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _changeIncreaseStats:
+    currentHp: 5
+    currentMaxHp: 5
+    moveSpeed: 5
+    statsChangeType: 0
+    shieldCount: 0
+    attackPowerCoefficient: 100
+    attackSpeedCoefiicient: 100
+    moveSpeedCoefficient: 100
+    isInvincible: 0
+    invincibilityTime: 2
+    isGuied: 0
+  _changeGuiedStats:
+    currentHp: 5
+    currentMaxHp: 5
+    moveSpeed: 5
+    statsChangeType: 0
+    shieldCount: 0
+    attackPowerCoefficient: 100
+    attackSpeedCoefiicient: 100
+    moveSpeedCoefficient: 100
+    isInvincible: 0
+    invincibilityTime: 2
+    isGuied: 0
 --- !u!1 &4982823750064637210
 GameObject:
   m_ObjectHideFlags: 0
