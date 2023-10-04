@@ -64,7 +64,7 @@ Transform:
   - {fileID: 1919456651170616852}
   - {fileID: 9121394062772172816}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &939241136619865081
 MonoBehaviour:
@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1919456651170616852}
   - component: {fileID: 6058615840733549951}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GunSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

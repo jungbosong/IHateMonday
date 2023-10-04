@@ -18,7 +18,7 @@ public class MagnumGun : SemiAutoGun
             bullet.Init(GetDamage(_damage) , _bulletSpeed , _bulletDistance , _knockBack , true , true);
         }
         _animator.Play("MagnumGun_Fire" , -1 , 0f);
-        //Managers.Sound.Play("?");
+        Managers.Sound.Play("MagnumShot");
 
         --_magazine;
 

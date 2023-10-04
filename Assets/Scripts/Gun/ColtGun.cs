@@ -30,7 +30,7 @@ public class ColtGun : BurstGun
 
 
             _animator.Play("ColtGun_Fire" , -1 , 0f);
-            //Managers.Sound.Play("?");
+            Managers.Sound.Play("ColtShot");
 
             --_magazine;
             --_ammunition;
