@@ -1255,6 +1255,7 @@ MonoBehaviour:
   quatityText: {fileID: 7413834085648912866}
   weaponIcon: {fileID: 509281997239675776}
   bulletNumText: {fileID: 5113886036758166155}
+  keyNumText: {fileID: 3914737621168684491}
 --- !u!1 &5631833014089045024
 GameObject:
   m_ObjectHideFlags: 0

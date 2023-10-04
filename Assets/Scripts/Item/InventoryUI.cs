@@ -12,6 +12,8 @@ public class InventoryUI : MonoBehaviour
     public Image weaponIcon;
     public TMP_Text bulletNumText;
 
+    public TMP_Text keyNumText;
+
     public void SetItemUI(ItemData slot)
     {
         itemIcon.sprite = slot.icon;
@@ -22,5 +24,10 @@ public class InventoryUI : MonoBehaviour
     {
         weaponIcon.sprite = slot;
         bulletNumText.text = $"{ammunition}/{maxAmmunition}";
+    }
+
+    public void SetKeyNumUI(int keyNum)
+    {
+        keyNumText.text = keyNum.ToString();
     }
 }
