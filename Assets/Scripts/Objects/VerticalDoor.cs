@@ -76,7 +76,7 @@ public class VerticalDoor : Door
             {
                 Debug.Log($"{_nearRoom.name}");
                 //Managers.Game.StartWave(_nearRoom.transform.GetChild(2).transform.position, _nearRoom);
-                _nearRoom.OnBattleStart?.Invoke();
+                //_nearRoom.OnBattleStart?.Invoke();
             }
         }
     }

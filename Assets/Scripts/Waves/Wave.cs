@@ -114,7 +114,7 @@ public class Wave : MonoBehaviour
     {
         Debug.Log("보상");
         // 50퍼센트 확률로 열쇠 등장
-        if (IsPossible(50))
+        if (IsPossible(100))
         {
             GameObject obj = Managers.Resource.Instantiate("Items/Key", new Vector3(_centerPos.x, _centerPos.y, 0));
         }
