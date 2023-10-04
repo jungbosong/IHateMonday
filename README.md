@@ -142,12 +142,12 @@
 
 | Class | 기능 |
 | --- | --- |
-| PlayerStats |  |
-| PlayerStatsHandler |  |
-| PlayerInputCotroller |  |
-| HealthSystem |  |
-| CharacterMovement |  |
-| CharacterAimRotation |  |
+| PlayerStats | https://github.com/jungbosong/IHateMonday/blob/c00ca7b7da7eeee838ae10b6ab999bca2df233d8/Assets/Scripts/Character/Entities/PlayerStats.cs#L13-L24 |
+| PlayerStatsHandler | https://github.com/jungbosong/IHateMonday/blob/c00ca7b7da7eeee838ae10b6ab999bca2df233d8/Assets/Scripts/Character/Entities/PlayerStatsHandler.cs#L38-L70 |
+| PlayerInputCotroller | https://github.com/jungbosong/IHateMonday/blob/c00ca7b7da7eeee838ae10b6ab999bca2df233d8/Assets/Scripts/Character/Controllers/PlayerInputController.cs#L14-L81 |
+| HealthSystem | https://github.com/jungbosong/IHateMonday/blob/c00ca7b7da7eeee838ae10b6ab999bca2df233d8/Assets/Scripts/Character/Entities/HealthSystem.cs#L53-L93 |
+| CharacterMovement | https://github.com/jungbosong/IHateMonday/blob/c00ca7b7da7eeee838ae10b6ab999bca2df233d8/Assets/Scripts/Character/Entities/CharacterMovement.cs#L42-L62 |
+| CharacterAimRotation | https://github.com/jungbosong/IHateMonday/blob/c00ca7b7da7eeee838ae10b6ab999bca2df233d8/Assets/Scripts/Character/Entities/CharacterAimRotation.cs#L25-L33 |
 | UI_DungeonScene | https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/UI/Scene/UI_DungeonScene.cs#L79-L129 |
 | InventoryUI | https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Item/InventoryUI.cs#L22-L48 |
 | CharacterStats | https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Character/Entities/CharacterStats.cs#L9-L11 |
@@ -156,7 +156,7 @@
 | ShootEnemyController | https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Character/Controllers/ShootEnemyController.cs#L22-L53 |
 |  | https://github.com/jungbosong/IHateMonday/blob/480f81e6010e97388fd4bb0ee3286c0415e87343/Assets/Scripts/Character/Controllers/ShootEnemyController.cs#L34-L40 |
 | DisappearOnDeath | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Character/Entities/DisappearOnDeath.cs#L16-L34 |
-|  |  |
+| Weapon |  |
 |  |  |
 |  | |
 |  |  |
@@ -171,9 +171,9 @@ Inventory | https://github.com/jungbosong/IHateMonday/blob/1785e7f7b3078f67823f1
 | Altar | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Item/Altar.cs#L5-L101 |
 | |   |
 |  | |
-| SoundManager
-SoundSO
-CharacterPlaySound | |
+| SoundManager | https://github.com/jungbosong/IHateMonday/blob/c00ca7b7da7eeee838ae10b6ab999bca2df233d8/Assets/Scripts/Managers/SoundManager.cs#L52-L83|
+| SoundSO | https://github.com/jungbosong/IHateMonday/blob/c00ca7b7da7eeee838ae10b6ab999bca2df233d8/Assets/ScriptableObjects/Scripts/SoundSO.cs#L8-L16 |
+| CharacterPlaySound | https://github.com/jungbosong/IHateMonday/blob/c00ca7b7da7eeee838ae10b6ab999bca2df233d8/Assets/Scripts/Character/Entities/CharacterPlaySound.cs#L20-L58 |
 | Room | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Map/Room.cs#L19-L38 |
 |  | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Map/Room.cs#L47-L59 |
 
