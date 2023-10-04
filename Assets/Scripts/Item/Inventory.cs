@@ -64,6 +64,7 @@ public class Inventory : MonoBehaviour
         }
 
         _controller.EquipWeapon(_handGun);
+        _uiComponent.SetWeaponUI(data.icon, _handGun.GetAmmunition(), _handGun.GetMaxAmmunition());
     }
 
     public void SwapWeapon()
@@ -92,7 +93,7 @@ public class Inventory : MonoBehaviour
         GameObject go = Managers.Resource.Instantiate($"Guns/MagnumGun");
         _handGun = go.GetComponent<Gun>();
         _controller.EquipWeapon(_handGun);
-
+        _uiComponent.SetWeaponUI(go.GetComponentInChildren<SpriteRenderer>().sprite, _handGun.GetAmmunition(), _handGun.GetMaxAmmunition());
     }
 
     private void Start()
@@ -105,7 +106,7 @@ public class Inventory : MonoBehaviour
             item.itemData.stack = 0;
         }
         _selectItem = _itemsList[_itemListIndex];
-        _uiComponent.Set(_selectItem.itemData);
+        _uiComponent.SetItemUI(_selectItem.itemData);
     }
 
     public void AddItem(ItemData itemData)
@@ -113,7 +114,7 @@ public class Inventory : MonoBehaviour
         if (itemData.stack < itemData.maxStackAmount)
         {
             itemData.stack++;
-            UpdateInventoryUI();
+            UpdateInventoryItemUI();
             return;
         }
         else
@@ -147,20 +148,20 @@ public class Inventory : MonoBehaviour
             {
                 _useItem.OnInvincibilite();
             }
-            UpdateInventoryUI();
+            UpdateInventoryItemUI();
             return;
         }
         else
         {
-            UpdateInventoryUI();
+            UpdateInventoryItemUI();
             return;
         }
     }
 
-    public void UpdateInventoryUI()
+    public void UpdateInventoryItemUI()
     {
         //inventoryUI set ȣ��
-        _uiComponent.Set(_selectItem.itemData);
+        _uiComponent.SetItemUI(_selectItem.itemData);
     }
 
     public void ChangeItem()
@@ -169,7 +170,6 @@ public class Inventory : MonoBehaviour
         //itemsList[itemListIndex] ���?-> index ���� listLength �̻� => 0����
         _itemListIndex = (_itemListIndex + 1) % _itemsList.Count;
         _selectItem = _itemsList[_itemListIndex];
-        UpdateInventoryUI();
+        UpdateInventoryItemUI();
     }
-
 }

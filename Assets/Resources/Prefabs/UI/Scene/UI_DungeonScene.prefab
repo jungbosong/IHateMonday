@@ -1069,7 +1069,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7266657287141014758
 CanvasRenderer:
@@ -1251,8 +1251,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50ea9b9a67836047965165d86f24c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 127779495665251454}
+  itemIcon: {fileID: 127779495665251454}
   quatityText: {fileID: 7413834085648912866}
+  weaponIcon: {fileID: 509281997239675776}
+  bulletNumText: {fileID: 5113886036758166155}
 --- !u!1 &5631833014089045024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,7 +1502,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5983985721426141304
 CanvasRenderer:
