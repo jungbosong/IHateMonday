@@ -62,8 +62,6 @@ public class HealthSystem : MonoBehaviour
         CurrentHealth = Mathf.Min(CurrentHealth, MaxHealth);
         CurrentHealth = Mathf.Max(CurrentHealth, 0);
 
-        Debug.Log("맞았다! " + gameObject.name + ", CurrentHealth : " + CurrentHealth);
-
         if (change > 0)
         {
             OnHeal?.Invoke();

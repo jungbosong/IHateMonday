@@ -23,7 +23,16 @@ public class InventoryUI : MonoBehaviour
     public void SetWeaponUI(Sprite slot, int ammunition, int maxAmmunition)
     {
         weaponIcon.sprite = slot;
-        bulletNumText.text = $"{ammunition}/{maxAmmunition}";
+        if (ammunition != 9999)
+        {
+            bulletNumText.fontSize = 36;
+            bulletNumText.text = $"{ammunition}/{maxAmmunition}";
+        }
+        else
+        {
+            bulletNumText.fontSize = 80;
+            bulletNumText.text = "¡Ä";
+        }
     }
 
     public void SetKeyNumUI(int keyNum)

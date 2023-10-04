@@ -22,6 +22,7 @@ public class Wave : MonoBehaviour
 
     public List<GameObject> _enemyPrefabs = new List<GameObject>();     // 생성할 몬스터 프리팹 리스트
 
+    private Room _curRoom;
     private bool isWaveOver = false;
 
     void Start()
@@ -35,6 +36,7 @@ public class Wave : MonoBehaviour
         _centerPos.x = centerPosition.x;
         _centerPos.y = centerPosition.y;
         _limit = (room.width <= room.height) ? room.width / 2 : room.height / 2;    // 방의 가로, 세로 길이 중 더 짧은 쪽 길이의 반
+        _curRoom = room;
     }
 
     // 방의 좌표와 limit에 따라 몬스터의 spawn position 리스트 초기화
@@ -59,10 +61,12 @@ public class Wave : MonoBehaviour
         {
             if (_currentSpawnCount == 0)
             {
-                if (_currentWaveIndex > 1)
+                if (_currentWaveIndex > 10)
                 {
                     CreateReward();
                     isWaveOver = true;
+                    (_curRoom.OnBattleEnd)?.Invoke();
+                    Managers.Sound.Play("wave_clear");
                     break;
                 }
 
@@ -110,11 +114,9 @@ public class Wave : MonoBehaviour
     {
         Debug.Log("보상");
         // 50퍼센트 확률로 열쇠 등장
-        if (IsPossible(100))
+        if (IsPossible(50))
         {
             GameObject obj = Managers.Resource.Instantiate("Items/Key", new Vector3(_centerPos.x, _centerPos.y, 0));
-            if (obj == null) Debug.Log("보상 제공 실패");
-            else Debug.Log("보상 제공 성공");
         }
     }
 
