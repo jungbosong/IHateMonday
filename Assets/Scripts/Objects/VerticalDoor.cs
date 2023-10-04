@@ -59,6 +59,7 @@ public class VerticalDoor : Door
                 _animator.Play("OpenB" , -1 , 0);
             }
             _doorCollider.enabled = false;
+            _minimapRenderer.color = Color.clear;
         }
     }
 

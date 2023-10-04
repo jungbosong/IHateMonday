@@ -84,6 +84,7 @@ public class Inventory : MonoBehaviour
         _useItem = GetComponent<UseItem>();
         _controller = GetComponent<PlayerInputController>();
         _controller.OnChangeWeaponEvent += SwapWeapon;
+ 
         GameObject go = Managers.Resource.Instantiate($"Guns/MagnumGun");
         _handGun = go.GetComponent<Gun>();
         _controller.EquipWeapon(_handGun);

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1636099550955857051}
   - component: {fileID: 7929254323920262366}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2195880645793174871}
-  m_Layer: 11
+  m_Layer: 6
   m_Name: DownDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5736614120856541810}
   - component: {fileID: 7216435951270678381}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 872873432220650386}
-  m_Layer: 11
+  m_Layer: 6
   m_Name: UpDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 1052611690078814744}
   - component: {fileID: 5269991741469062086}
   - component: {fileID: 7594310313971827366}
-  m_Layer: 11
+  m_Layer: 6
   m_Name: HorizonDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2535286240956122391}
   - component: {fileID: 5289251519120798001}
-  m_Layer: 11
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
