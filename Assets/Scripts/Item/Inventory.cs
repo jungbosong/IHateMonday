@@ -35,6 +35,7 @@ public class Inventory : MonoBehaviour
     public void AddKey()
     {
         _key++;
+        Debug.Log(_key);
         _inventoryUIComponent.SetKeyNumUI(_key);
     }
     public bool UseKey()
@@ -115,6 +116,7 @@ public class Inventory : MonoBehaviour
         }
         _selectItem = _itemsList[_itemListIndex];
         _inventoryUIComponent.SetItemUI(_selectItem.itemData);
+        _inventoryUIComponent.SetKeyNumUI(_key);
     }
 
     private void Update()
