@@ -9,7 +9,6 @@ public class SwordAttackZone : Bullet
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _bulletDistance = 0.2f;
     }
 
     private void LateUpdate()

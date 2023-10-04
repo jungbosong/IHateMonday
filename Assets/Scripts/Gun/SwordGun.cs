@@ -20,7 +20,7 @@ public class SwordGun : CharzingGun
             _shotCharzing += Time.deltaTime;
             if(_shotCharzing > _maxShotCharzing)
             {
-                _renderer.color = Color.red;
+                _renderer.color = Color.blue;
             }
         }
         else
@@ -78,8 +78,8 @@ public class SwordGun : CharzingGun
         {
             //일반공격
             GameObject go = Managers.Resource.Instantiate("Bullets/SwordAttackZone" , _shotPoint.position , _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy , _accuracy) , Vector3.forward));
-            NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
-            bullet.Init(GetDamage(_minCharzingValaue) , _bulletSpeed , _bulletDistance , _knockBack , true , true);
+            SwordAttackZone bullet = go.GetOrAddComponent<SwordAttackZone>();
+            bullet.Init(GetDamage(_minCharzingValaue) , 0 , 0.2f , _knockBack , true , false);
 
             _isShooting = false;
         }
