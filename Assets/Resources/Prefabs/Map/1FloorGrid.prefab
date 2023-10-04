@@ -1694,7 +1694,7 @@ MonoBehaviour:
   width: 19
   height: 11
   type: 5
-  notDone: 0
+  firstEntered: 0
 --- !u!19719996 &5061173970931238885
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -6014,7 +6014,7 @@ MonoBehaviour:
   width: 17
   height: 29
   type: 1
-  notDone: 0
+  firstEntered: 0
 --- !u!19719996 &8021407419744851024
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -107052,7 +107052,7 @@ MonoBehaviour:
   width: 18
   height: 14
   type: 2
-  notDone: 0
+  firstEntered: 0
 --- !u!19719996 &2130541499511378448
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -107553,7 +107553,7 @@ MonoBehaviour:
   width: 8
   height: 7
   type: 3
-  notDone: 0
+  firstEntered: 0
 --- !u!19719996 &4893324339721434526
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -113811,6 +113811,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5043748331488588715}
   - {fileID: 8581362052205749516}
   - {fileID: 4868358361678945223}
   m_Father: {fileID: 9155099359312739751}
@@ -120183,7 +120184,7 @@ MonoBehaviour:
   width: 50
   height: 15
   type: 4
-  notDone: 0
+  firstEntered: 0
 --- !u!19719996 &5033442298690522249
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -125216,7 +125217,7 @@ MonoBehaviour:
   width: 26
   height: 22
   type: 2
-  notDone: 0
+  firstEntered: 0
 --- !u!19719996 &8988380225024751697
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -128718,7 +128719,7 @@ MonoBehaviour:
   width: 24
   height: 17
   type: 2
-  notDone: 0
+  firstEntered: 0
 --- !u!19719996 &6145691405523209808
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -131380,7 +131381,7 @@ MonoBehaviour:
   width: 29
   height: 11
   type: 3
-  notDone: 0
+  firstEntered: 0
 --- !u!19719996 &5201011080380691707
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -131417,6 +131418,37 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1 &8087076210786875062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5043748331488588715}
+  m_Layer: 0
+  m_Name: TmpObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5043748331488588715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8087076210786875062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7257042543208260616}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &83212618243743939
 PrefabInstance:
   m_ObjectHideFlags: 0
