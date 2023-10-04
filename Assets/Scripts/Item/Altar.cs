@@ -51,14 +51,17 @@ public class Altar : MonoBehaviour
             case 1:                             //¾ÆÀÌÅÛ »óÀÚ »ý¼º
                 goodCase = Random.Range(0, 2);
                 string itemBoxName = 0 == goodCase ? "PassiveItemBox" : "ActiveItemBox";
-                Managers.Resource.Instantiate("itemBoxName");
+                Managers.Resource.Instantiate(itemBoxName);
                 break;
 
             case 2:
                 _playerInputController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputController>();
-                GameObject curGun = GameObject.FindGameObjectWithTag("Gun");
-                Gun handGun = curGun.GetComponent<Gun>();
-                handGun.ChargingAmmunition();
+                GameObject curGun;
+                if ((curGun = GameObject.FindGameObjectWithTag("Gun")) != null)
+                {
+                    Gun handGun = curGun.GetComponent<Gun>();
+                    handGun.ChargingAmmunition();
+                }
                 break;
         }
     }
@@ -77,17 +80,21 @@ public class Altar : MonoBehaviour
 
             case 1:                                                     //¹«±â ÆÄ±«
                 _playerInputController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputController>();
-                curGun = GameObject.FindGameObjectWithTag("Gun");       
-                _playerInputController.UnEquipWeapon(curGun.GetComponent<Gun>());
-                Managers.Resource.Destroy(curGun);
+                if ((curGun = GameObject.FindGameObjectWithTag("Gun")) != null)
+                {
+                    _playerInputController.UnEquipWeapon(curGun.GetComponent<Gun>());
+                    Managers.Resource.Destroy(curGun);
+                }      
                 break;
 
             case 2:                                                     //Åº¾à ÀÒÀ½
                 float rnd = Random.Range(25, 101) / 100f;
                 _playerInputController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputController>();
-                curGun = GameObject.FindGameObjectWithTag("Gun");
-                Gun handGun = curGun.GetComponent<Gun>();
-                handGun.Lostmmunition(rnd);
+                if ((curGun = GameObject.FindGameObjectWithTag("Gun")) != null)
+                {
+                    Gun handGun = curGun.GetComponent<Gun>();
+                    handGun.Lostmmunition(rnd);
+                }
                 break;
         }
     }

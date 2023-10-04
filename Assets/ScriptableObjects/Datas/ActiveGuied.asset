@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: GuiedBuff
   type: 0
-  icon: {fileID: 21300000, guid: a6177199d2c2a5e46a1a2ac31e94c810, type: 3}
+  icon: {fileID: 21300000, guid: 9867e2715a85c6345a93f98353a7799d, type: 3}
   dropPrefab: {fileID: 0}
   stack: 0
   maxStackAmount: 1

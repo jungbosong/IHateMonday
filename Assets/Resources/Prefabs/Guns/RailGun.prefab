@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 5640136450946301009}
   m_Layer: 0
   m_Name: RailGun
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -561,7 +561,6 @@ MonoBehaviour:
   isEquip: 0
   isAutoFireReady: 1
   isReload: 0
-  target: {fileID: 0}
   _minShotCharzing: 2
   _maxShotCharzing: 2
   _minCharzingValaue: 0

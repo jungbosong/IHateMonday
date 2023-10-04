@@ -438,10 +438,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventoryUI: {fileID: 3886807055632993554, guid: be5c38277bc87654696fc86750a0c045, type: 3}
   _itemsList:
-  - {fileID: 259226517729880174, guid: ab81730b43ed4294bbb116761d0b4d0d, type: 3}
-  - {fileID: 7021484653838817672, guid: 06767a33f1e65e94590d1a4788c47c53, type: 3}
-  - {fileID: 3204187058191587984, guid: ffa6e141864351c4189fad940c36fa74, type: 3}
-  - {fileID: 1212845213816848761, guid: 3cf2d1ff878c4ac41922319db8c0db2e, type: 3}
+  - {fileID: 1833685758819190825, guid: ab81730b43ed4294bbb116761d0b4d0d, type: 3}
+  - {fileID: 4806213638854876489, guid: 06767a33f1e65e94590d1a4788c47c53, type: 3}
+  - {fileID: 6987671652052014359, guid: ffa6e141864351c4189fad940c36fa74, type: 3}
+  - {fileID: 4410010543345033420, guid: 3cf2d1ff878c4ac41922319db8c0db2e, type: 3}
   _dropPosition: {fileID: 3805093135235053609}
 --- !u!114 &2767553514369092569
 MonoBehaviour:
