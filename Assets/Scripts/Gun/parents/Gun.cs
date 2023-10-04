@@ -49,6 +49,8 @@ public abstract class Gun : MonoBehaviour
     [HideInInspector]public bool isReload = false;
     protected bool isLeftHand = true;
     protected Animator _animator;
+    protected bool isGuied = false;
+    protected int buffBullet = 10;
 
     protected GameObject _player;
     protected PlayerStatsHandler _stat;

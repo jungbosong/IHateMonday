@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class MagnumGun : SemiAutoGun
 {
     Coroutine _myCoroutine;
+    
     public override IEnumerator COFire()
     {
         isManualFireReady = false;
@@ -15,7 +16,17 @@ public class MagnumGun : SemiAutoGun
         {
             GameObject go = Managers.Resource.Instantiate("Bullets/MagnumBullet" , _shotPoint.position , _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy , _accuracy) , Vector3.forward));
             NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
-            bullet.Init(GetDamage(_damage) , _bulletSpeed , _bulletDistance , _knockBack , true , true);
+            isGuied = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsHandler>().CurrentStats.isGuied;
+            if (buffBullet > 0 && isGuied)
+            {
+                bullet.Init(GetDamage(_damage), _bulletSpeed, _bulletDistance, _knockBack, true, isGuied);
+                --buffBullet;
+            }
+            else
+            {
+                _player.GetComponent<UseItem>().OffGuied();
+                bullet.Init(GetDamage(_damage), _bulletSpeed, _bulletDistance, _knockBack, true, false);
+            }
         }
         _animator.Play("MagnumGun_Fire" , -1 , 0f);
         Managers.Sound.Play("MagnumShot");
