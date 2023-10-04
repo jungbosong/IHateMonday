@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 391277251169823361}
   - component: {fileID: 848231833316051729}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GunSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
