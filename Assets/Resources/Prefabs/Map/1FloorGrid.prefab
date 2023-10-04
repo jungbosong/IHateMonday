@@ -6125,7 +6125,7 @@ Transform:
   - {fileID: 696925659541479565}
   - {fileID: 6952564424242529599}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &8583065072259225228
 Grid:
@@ -6150,7 +6150,7 @@ GameObject:
   - component: {fileID: 5973690346066017729}
   - component: {fileID: 882037111677959388}
   - component: {fileID: 6746302873280250909}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54962,7 +54962,7 @@ GameObject:
   - component: {fileID: 1425150860207939557}
   - component: {fileID: 1639353299967989649}
   - component: {fileID: 3107570468870867478}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: backgroundDeco
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107602,7 +107602,7 @@ GameObject:
   - component: {fileID: 5618116555852590699}
   - component: {fileID: 5867764598743882943}
   - component: {fileID: 9219757492180289631}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

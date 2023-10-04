@@ -30,7 +30,7 @@ public class AKGun : AutoGun
         }
         
 
-        //Managers.Sound.Play("?");
+        Managers.Sound.Play("AKShot");
 
         --_magazine;
         --_ammunition;
