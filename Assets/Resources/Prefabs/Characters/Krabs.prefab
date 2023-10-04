@@ -204,8 +204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentStats:
-    currentHp: 5
-    currentMaxHp: 5
+    currentHp: 200
+    currentMaxHp: 200
     moveSpeed: 5
 --- !u!114 &7429977171390604484
 MonoBehaviour:
