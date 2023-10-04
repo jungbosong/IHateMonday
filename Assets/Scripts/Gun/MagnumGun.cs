@@ -11,12 +11,14 @@ public class MagnumGun : SemiAutoGun
         isManualFireReady = false;
         isAutoFireReady = false;
 
-        GameObject go = Managers.Resource.Instantiate("Bullets/MagnumBullet" , _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
-        NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
-        bullet.Init(GetDamage(_damage) , _bulletSpeed, _bulletDistance, _knockBack, true , true);
-
+        for (int i = 0 ; i < _bulletCount ; ++i)
+        {
+            GameObject go = Managers.Resource.Instantiate("Bullets/MagnumBullet" , _shotPoint.position , _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy , _accuracy) , Vector3.forward));
+            NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
+            bullet.Init(GetDamage(_damage) , _bulletSpeed , _bulletDistance , _knockBack , true , true);
+        }
         _animator.Play("MagnumGun_Fire" , -1 , 0f);
-        //Managers.Sound.Play("?");
+        Managers.Sound.Play("MagnumShot");
 
         --_magazine;
 

@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,13 +52,16 @@ public class Inventory : MonoBehaviour
         else
         {
             _controller.UnEquipWeapon(_handGun);
-            if (_subGun != null)
+            if (_subGun == null)
             {
-                Managers.Resource.Instantiate($"Items/{_subGun.name}Item", _dropPosition.position);
-                Managers.Resource.Destroy(_subGun);
+                _subGun = _handGun;
+            }
+            else
+            {
+                Managers.Resource.Instantiate($"Items/Gun/{_handGun.name}Item" , _dropPosition.position);
+                Managers.Resource.Destroy(_handGun);
             }
 
-            _subGun = _handGun;
             GameObject go = Managers.Resource.Instantiate($"Guns/{data.WeaponName}");
             _handGun = go.GetComponent<Gun>();
         }
@@ -87,7 +91,11 @@ public class Inventory : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _uiComponent = _inventoryUI.GetComponent<InventoryUI>();
         _controller.OnChangeWeaponEvent += SwapWeapon;
-       
+
+        GameObject go = Managers.Resource.Instantiate($"Guns/MagnumGun");
+        _handGun = go.GetComponent<Gun>();
+        _controller.EquipWeapon(_handGun);
+
     }
 
     private void Start()
@@ -161,7 +169,7 @@ public class Inventory : MonoBehaviour
     public void ChangeItem()
     {
         //������ ü���� Ű ��������
-        //itemsList[itemListIndex] ��� -> index ���� listLength �̻� => 0����
+        //itemsList[itemListIndex] ���?-> index ���� listLength �̻� => 0����
         _itemListIndex = (_itemListIndex + 1) % _itemsList.Count;
         _selectItem = _itemsList[_itemListIndex];
         UpdateInventoryUI();

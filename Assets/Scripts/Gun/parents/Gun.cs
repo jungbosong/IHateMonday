@@ -42,8 +42,8 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected float _knockBack;
     [SerializeField] protected float _accuracy;
     [SerializeField] protected float _autoFireDelay;
+    [SerializeField] protected int _bulletCount = 1;
 
-    
     [HideInInspector]public bool isEquip;
     [HideInInspector]public bool isAutoFireReady = true;
     [HideInInspector]public bool isReload = false;
@@ -52,9 +52,10 @@ public abstract class Gun : MonoBehaviour
 
     protected GameObject _player;
     protected PlayerStatsHandler _stat;
-
-    public int GetAmmunition() { return _ammunition; }
-    public int GetMAXAmmunition() { return _maxMagazine; }
+    public int GetMagazine() { return _magazine; } //현재 탄창에 장착되어있는 총알수
+    public int GetMaxMagazine() { return _maxMagazine; } //최대탄창
+    public int GetAmmunition() { return _ammunition; } //현재 가진 탄피 갯수
+    public int GetMaxAmmunition() { return _maxAmmunition; } // 최대 탄피 갯수
 
     protected virtual void Awake()
     {
@@ -65,6 +66,8 @@ public abstract class Gun : MonoBehaviour
 
         _player = GameObject.FindWithTag("Player");
         _stat = _player.GetComponent<PlayerStatsHandler>();
+
+
     }
     public GunType GetGunType()
     {

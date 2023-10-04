@@ -11,11 +11,15 @@ public class HealthSystem : MonoBehaviour
     private float _timeSinceLastChange = float.MaxValue;
 
     private CharacterStatsHandler _characterStatsHandler;
+    private PlayerStatsHandler _playerStatsHandler;
 
     public event Action OnDamage;
     public event Action OnHeal;
     public event Action OnDeath;
     public event Action OnInvincibilityEnd;
+
+    private GameObject _uiRoot;
+    private UI_DungeonScene _uiDungeonScene;
 
     public int CurrentHealth { get; private set; }  
     public int MaxHealth => _characterStatsHandler.CurrentStats.currentMaxHp;
@@ -23,6 +27,10 @@ public class HealthSystem : MonoBehaviour
     private void Awake()
     {
         _characterStatsHandler = GetComponent<CharacterStatsHandler>();
+        if (gameObject.CompareTag("Player"))
+        {
+            _playerStatsHandler = gameObject.GetComponent<PlayerStatsHandler>();
+        }
     }
 
     void Start()
@@ -54,7 +62,7 @@ public class HealthSystem : MonoBehaviour
         CurrentHealth = Mathf.Min(CurrentHealth, MaxHealth);
         CurrentHealth = Mathf.Max(CurrentHealth, 0);
 
-        Debug.Log("�¾Ҵ�! " + gameObject.name + ", CurrentHealth : " + CurrentHealth);
+        Debug.Log("맞았다! " + gameObject.name + ", CurrentHealth : " + CurrentHealth);
 
         if (change > 0)
         {
@@ -70,6 +78,17 @@ public class HealthSystem : MonoBehaviour
         if (CurrentHealth <= 0)
         {
             CallDeath();
+        }
+
+        if (gameObject.CompareTag("Player"))
+        {
+            PlayerStats playerStats = new PlayerStats { statsChangeType = StatsChangeType.Override };
+            playerStats.currentHp = CurrentHealth;
+            _playerStatsHandler.AddStatModifier(playerStats);
+
+            _uiRoot = Managers.UI.Root;
+            _uiDungeonScene = _uiRoot.transform.Find("UI_DungeonScene").GetComponent<UI_DungeonScene>();
+            _uiDungeonScene.UpdatePlayerStatUI();
         }
 
         return true;

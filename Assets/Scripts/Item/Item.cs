@@ -38,7 +38,7 @@ public class Item : MonoBehaviour
                 {
                     GameObject curGun = GameObject.FindGameObjectWithTag("Gun");
                     Gun handGun = curGun.GetComponent<Gun>();
-                    int amount = handGun.GetMAXAmmunition();
+                    int amount = handGun.GetMaxAmmunition();
                     int curAmount = handGun.GetAmmunition();
                     handGun.AddAmmunition(amount - curAmount);
                 }

@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7277371855122751261}
   - component: {fileID: 3787775725174745893}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GunSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 4732153860802832957}
   m_Layer: 0
   m_Name: ColtGun
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -174,6 +174,7 @@ MonoBehaviour:
   _knockBack: 10
   _accuracy: 8
   _autoFireDelay: 0.21
+  _bulletCount: 1
   isEquip: 0
   isAutoFireReady: 1
   isReload: 0

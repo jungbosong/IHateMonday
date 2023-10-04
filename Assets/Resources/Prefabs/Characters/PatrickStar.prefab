@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8375623829105086680}
   - component: {fileID: 6667551076041312936}
   - component: {fileID: 8467741005805114127}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 7783911954226176316}
   - component: {fileID: 719728718331339487}
   - component: {fileID: 3189907940103531033}
+  - component: {fileID: -6814083294205467515}
   m_Layer: 8
   m_Name: PatrickStar
   m_TagString: Enemy
@@ -359,3 +360,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundSO: {fileID: 11400000, guid: a21bebf7e11ed714d857229c3ca78bd3, type: 2}
+--- !u!114 &-6814083294205467515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8503380916326937616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf9db670c1df4bb2843b82560ce5409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 5b47ca1209db34047b14f65d2db913e4, type: 3}
+  size: {x: 30, y: 30}
+  rotateWithObject: 0
+  upAxis: {x: 0, y: 1, z: 0}
+  initialIconRotation: 0
+  clampIconInBorder: 1
+  clampDistance: 100

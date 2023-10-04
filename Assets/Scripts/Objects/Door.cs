@@ -17,6 +17,8 @@ public class Door : MonoBehaviour
     protected Animator _animator;
     protected Room _nearRoom;
 
+    //protected SpriteRenderer _minimapRenderer;
+
     [Header("DoorDefaultSetting")]
     [SerializeField] protected BoxCollider2D _doorCollider;
 
@@ -31,6 +33,9 @@ public class Door : MonoBehaviour
         SetNearRoom(transform.parent.GetComponent<Room>());
         _nearRoom.OnBattleStart += BattleStart;
         _nearRoom.OnBattleEnd += BattleEnd;
+
+        //_minimapRenderer = transform.GetChild(3).GetComponent<SpriteRenderer>();
+        //_minimapRenderer.color = Color.blue;
     }
     
     public void SetNearRoom(Room nearRoom)
@@ -44,6 +49,7 @@ public class Door : MonoBehaviour
             _isInBattle = true;
             _doorCollider.enabled = true;
             _animator.Play("Close" , -1 , 0);
+            //_minimapRenderer.color = Color.red;
             //_animator.Play("BattleStart" , -1 , 0);
         }
     }
@@ -53,6 +59,10 @@ public class Door : MonoBehaviour
         {
             _isInBattle = false;
             //_animator.Play("BattleEnd", -1 , 0);
+            //if(_isLocked)
+            //    _minimapRenderer.color = Color.red;
+            //else
+            //    _minimapRenderer.color = Color.blue;
         }
     }
     public void Lock()
@@ -61,6 +71,7 @@ public class Door : MonoBehaviour
         {
             _isLocked = true;
             transform.GetChild(0).gameObject.SetActive(true);
+            //_minimapRenderer.color = Color.red;
         }
     }
     public bool UnLock()
@@ -68,6 +79,7 @@ public class Door : MonoBehaviour
         if(_inventory.UseKey())
         {
             return true;
+            //_minimapRenderer.color = Color.blue;
         }
 
         return false;

@@ -17,6 +17,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] protected RuntimeAnimatorController _deadSpawnAnimatorController;
     [SerializeField] protected float _findMaxAngle;
     protected GameObject _target;
+
     public void Init(float damage, float bulletSpeed, float bulletDistance, float knockBack, bool isPlayerBullet, bool isGuided)
     {
         _damage = damage;
