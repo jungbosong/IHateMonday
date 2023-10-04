@@ -20,19 +20,19 @@ public class Item : MonoBehaviour
                 ////�÷��̾� ���� ��ȭ
                 if (itemData.consumables[0].type == ConsumableType.Hp)
                 {
-                    _changeStat.currentHp = (int)itemData.consumables[1].value;
+                    _changeStat.currentHp = (int)itemData.consumables[0].value;
                 }
                 else if (itemData.consumables[0].type == ConsumableType.Shield)
                 {
-                    _changeStat.shieldCount = (int)itemData.consumables[1].value;
+                    _changeStat.shieldCount = (int)itemData.consumables[0].value;
                 }
                 else if (itemData.consumables[0].type == ConsumableType.AttackPower)
                 {
-                    _changeStat.attackPowerCoefficient = itemData.consumables[1].value;
+                    _changeStat.attackPowerCoefficient = itemData.consumables[0].value;
                 }
                 else if (itemData.consumables[0].type == ConsumableType.AttackSpeed)
                 {
-                    _changeStat.attackSpeedCoefiicient = itemData.consumables[1].value;
+                    _changeStat.attackSpeedCoefiicient = itemData.consumables[0].value;
                 }
                 else if (itemData.consumables[0].type == ConsumableType.BulletAmount)
                 {
@@ -44,7 +44,7 @@ public class Item : MonoBehaviour
                 }
                 else if (itemData.consumables[0].type == ConsumableType.MoveSpeed)
                 {
-                    _changeStat.moveSpeedCoefficient = itemData.consumables[1].value;
+                    _changeStat.moveSpeedCoefficient = itemData.consumables[0].value;
                 }
 
                 PlayerStatsHandler _handler = other.GetComponent<PlayerStatsHandler>();
