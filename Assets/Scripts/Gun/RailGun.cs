@@ -100,6 +100,7 @@ public class RailGun : CharzingGun
         if (isReload || _magazine == 0)
             return;
 
+        Managers.Sound.Play("RailIntro");
         _isShooting = true;
         _shotCharzing = 0;
     }
@@ -127,7 +128,7 @@ public class RailGun : CharzingGun
             }
 
             //Managers.Sound.Play("?");
-
+            Managers.Sound.Play("RailShot");
             --_magazine;
             --_ammunition;
             _shotCharzing = 0;

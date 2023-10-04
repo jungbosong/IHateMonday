@@ -83,6 +83,7 @@ public class SwordGun : CharzingGun
 
             _isShooting = false;
         }
+        Managers.Sound.Play("SwordShot");
     }
 
     public override void OnRoll()

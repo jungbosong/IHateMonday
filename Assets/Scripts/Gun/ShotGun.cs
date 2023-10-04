@@ -22,7 +22,7 @@ public class ShotGun : SemiAutoGun
             bullet.Init(GetDamage(_damage) , _bulletSpeed , _bulletDistance , _knockBack , true , true);
         }
         _animator.Play("ShotGun_Fire" , -1 , 0f);
-        //Managers.Sound.Play("?");
+        Managers.Sound.Play("ShotgunShot");
 
         --_magazine;
 
