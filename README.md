@@ -62,7 +62,7 @@
 ||[몬스터 공격]()|
 ||[몬스터 죽음]()|
 ||[몬스터 공격]()|
-||[무기 스탯]()|
+|WeaponStatToBullet|[무기 스탯](https://github.com/jungbosong/IHateMonday/blob/9e1a61e933563b78c78c50482e5ebf70fc27dc25/Assets/Scripts/Gun/AKGun.cs#L21)|
 ||[무기 장착/해제]()|
 ||[무기 사용]()|
 ||[무기 전환]()|
