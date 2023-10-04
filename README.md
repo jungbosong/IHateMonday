@@ -1,15 +1,18 @@
-# ReadMe
 
-[https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=19&height=300&section=header&text=I%20HATE%20MONDAY&fontSize=90&fontColor=fff76b](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=19&height=300&section=header&text=I%20HATE%20MONDAY&fontSize=90&fontColor=fff76b)
+![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=19&height=300&section=header&text=I%20HATE%20MONDAY&fontSize=90&fontColor=fff76b)
 
 ## 목차
 
-| notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10#%EA%B2%8C%EC%9E%84-%EC%86%8C%EA%B0%9C |
-| --- |
-| notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10#%EA%B8%B0%EB%8A%A5%EB%B3%84-%EC%BD%94%EB%93%9C |
-| notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10#%EB%A7%8C%EB%93%A0-%EC%82%AC%EB%9E%8C%EB%93%A4 |
+| [🦑 게임 소개 🦑](#게임-소개) |
+| :---: |
+| [🧽 기능별 코드 보기 🧽](#기능별-코드) |
+| [🦀 만든 사람들 🦀](#만든-사람들) |
 
----
+<br>
+
+* * *
+
+<br>
 
 ## [🎮 YouTube](notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10)
 
@@ -19,7 +22,7 @@
 
 ## 게임 소개
 
-[⭐ 목차로 돌아가기 ⭐](notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10#%EB%AA%A9%EC%B0%A8)
+[⭐ 목차로 돌아가기 ⭐](#목차)
 
 - **게임 명: `월요일이 좋겠냐?`**
 - **영어 명: `I hate monday!`**
@@ -105,7 +108,7 @@
             
 
 ### 개발 기간 `2023.09.25 ~ 2023.10.04`
-
+[⭐ 목차로 돌아가기 ⭐](#목차)
 ![Untitled](ReadMeAsset/Untitled.png)
 
 - **`2023.09.25 (월)`**
@@ -127,7 +130,7 @@
 
 ## 기능별 코드
 
-[⭐ 목차로 돌아가기 ⭐](notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10#%EB%AA%A9%EC%B0%A8)
+[⭐ 목차로 돌아가기 ⭐](#목차)
 
 - **Start Scene**
 
@@ -139,12 +142,12 @@
 
 | Class | 기능 |
 | --- | --- |
-| PlayerStats | notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10 |
-| PlayerStatsHandler | notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10 |
-| PlayerInputCotroller | notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10 |
-| HealthSystem | notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10 |
-| CharacterMovement | notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10 |
-| CharacterAimRotation | notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10 |
+| PlayerStats |  |
+| PlayerStatsHandler |  |
+| PlayerInputCotroller |  |
+| HealthSystem |  |
+| CharacterMovement |  |
+| CharacterAimRotation |  |
 | UI_DungeonScene | https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/UI/Scene/UI_DungeonScene.cs#L79-L129 |
 | InventoryUI | https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Item/InventoryUI.cs#L22-L48 |
 | CharacterStats | https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Character/Entities/CharacterStats.cs#L9-L11 |
@@ -153,37 +156,37 @@
 | ShootEnemyController | https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Character/Controllers/ShootEnemyController.cs#L22-L53 |
 |  | https://github.com/jungbosong/IHateMonday/blob/480f81e6010e97388fd4bb0ee3286c0415e87343/Assets/Scripts/Character/Controllers/ShootEnemyController.cs#L34-L40 |
 | DisappearOnDeath | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Character/Entities/DisappearOnDeath.cs#L16-L34 |
-|  | notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10 |
-|  | notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10 |
-|  | notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10 |
-|  | notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10 |
+|  |  |
+|  |  |
+|  | |
+|  |  |
 | Wave | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Waves/Wave.cs#L58-L104 |
 |  | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Waves/Wave.cs#L113-L121 |
 | BossStage | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Waves/BossStage.cs#L59-L65 |
-|  | notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10 |
+|  | |
 | Item | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Item/Item.cs#L12-L62 |
 | UseItem
 Inventory | https://github.com/jungbosong/IHateMonday/blob/1785e7f7b3078f67823f1d224cca953f08512029/Assets/Scripts/Item/UseItem.cs#L5-L100 |
 | Inventory | https://github.com/jungbosong/IHateMonday/blob/1785e7f7b3078f67823f1d224cca953f08512029/Assets/Scripts/Item/Inventory.cs#L169-L176 |
 | Altar | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Item/Altar.cs#L5-L101 |
-|  | notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10 |
-|  | notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10 |
+| |   |
+|  | |
 | SoundManager
 SoundSO
-CharacterPlaySound | notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10 |
+CharacterPlaySound | |
 | Room | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Map/Room.cs#L19-L38 |
 |  | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Map/Room.cs#L47-L59 |
 
 - **DeadEndScene**    
     | Class | 기능 |
     | --- | --- |
-    | DeadScene | notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10 |
+    | DeadScene | |
 
 ---
 
 ## 만든 사람들
 
-[⭐ 목차로 돌아가기 ⭐](notion://www.notion.so/ReadMe-60dc474f1d0f4d9e998e6328300d0d10#%EB%AA%A9%EC%B0%A8)
+[⭐ 목차로 돌아가기 ⭐](#목차)
 
 <a href="[https://github.com/jungbosong/IHateMonday/graphs/contributors](https://github.com/jungbosong/IHateMonday/graphs/contributors)">
 <img src="[https://contrib.rocks/image?repo=jungbosong/IHateMonday](https://contrib.rocks/image?repo=jungbosong/IHateMonday)" />
