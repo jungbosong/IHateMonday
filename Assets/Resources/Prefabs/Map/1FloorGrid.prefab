@@ -107049,8 +107049,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   center: {x: 0, y: 0, z: 0}
-  width: 18
-  height: 14
+  width: 16
+  height: 12
   type: 2
   firstEntered: 0
 --- !u!19719996 &2130541499511378448
@@ -120181,8 +120181,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   center: {x: 0, y: 0, z: 0}
-  width: 50
-  height: 15
+  width: 48
+  height: 13
   type: 4
   firstEntered: 0
 --- !u!19719996 &5033442298690522249
@@ -125214,8 +125214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   center: {x: 0, y: 0, z: 0}
-  width: 26
-  height: 22
+  width: 24
+  height: 20
   type: 2
   firstEntered: 0
 --- !u!19719996 &8988380225024751697
@@ -128716,8 +128716,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   center: {x: 0, y: 0, z: 0}
-  width: 24
-  height: 17
+  width: 22
+  height: 15
   type: 2
   firstEntered: 0
 --- !u!19719996 &6145691405523209808
@@ -131378,8 +131378,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   center: {x: 0, y: 0, z: 0}
-  width: 29
-  height: 11
+  width: 27
+  height: 9
   type: 3
   firstEntered: 0
 --- !u!19719996 &5201011080380691707
