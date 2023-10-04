@@ -63,7 +63,7 @@
 ||[몬스터 죽음]()|
 ||[몬스터 공격]()|
 |Gun|[무기 스탯](https://github.com/jungbosong/IHateMonday/blob/9e1a61e933563b78c78c50482e5ebf70fc27dc25/Assets/Scripts/Gun/parents/Gun.cs#L31-L45)|
-|Gun|[무기 장착/해제]([https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Item/Inventory.cs#L50C1-L76)](https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Gun/parents/Gun.cs#L136-L176))|
+|Gun|[무기 장착/해제](https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Gun/parents/Gun.cs#L136-L176)|
 |Gun|[무기 사용](https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Gun/parents/Gun.cs#L17-L23)|
 |inventory|[무기 전환](https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Item/Inventory.cs#L78-L88)|
 ||[웨이브 시스템]()|
