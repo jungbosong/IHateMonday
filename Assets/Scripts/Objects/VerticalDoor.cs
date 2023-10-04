@@ -75,7 +75,7 @@ public class VerticalDoor : Door
             if (doorDistance > playerDistance)
             {
                 Debug.Log($"{_nearRoom.name}");
-                Managers.Game.StartWave(_nearRoom.transform.GetChild(2).transform.position, _nearRoom);
+                //Managers.Game.StartWave(_nearRoom.transform.GetChild(2).transform.position, _nearRoom);
                 _nearRoom.OnBattleStart?.Invoke();
             }
         }
