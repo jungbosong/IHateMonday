@@ -17,7 +17,7 @@ public class Door : MonoBehaviour
     protected Animator _animator;
     protected Room _nearRoom;
 
-    protected SpriteRenderer _minimapRenderer;
+    //protected SpriteRenderer _minimapRenderer;
 
     [Header("DoorDefaultSetting")]
     [SerializeField] protected BoxCollider2D _doorCollider;
