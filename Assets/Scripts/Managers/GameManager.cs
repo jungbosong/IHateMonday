@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // wave �������� ���
+    // wave 및 보스 스테이지 프리팹 경로
     const string WAVE_PREFAB_PATH = "Prefabs/Waves/Wave";
     const string BOSS_STAGE_PREFAB_PATH = "Prefabs/Waves/BossStage";
 
-    // ���� �������� ��ȣ
+    // 최종 스테이지 번호
     const int MAX_STAGE_NUM = 3;
 
     private int _curStage;
@@ -18,29 +19,29 @@ public class GameManager : MonoBehaviour
 
     // Player
     public GameObject player;
-    private PlayerStatsHandler _playerStatsHandler;
     private HealthSystem _healthSystem;
-
-    private UI_DungeonScene _dungeonUI;
 
     public void Init()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        SceneManager.activeSceneChanged += InitPlayer;
+    }
 
-        _playerStatsHandler = player.GetComponent<PlayerStatsHandler>();
-        _healthSystem = player.GetComponent<HealthSystem>();
-        _healthSystem.OnDeath += GameOver;
+    private void InitPlayer(Scene scene1, Scene scene2)
+    {
+        if (scene2.buildIndex == 1)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
 
-        //GameObject uiRoot = Managers.UI.Root;
-        //_dungeonUI = uiRoot.transform.Find("UI_DungeonScene").GetComponent<UI_DungeonScene>();
-        //_dungeonUI.UpdatePlayerStatUI(_playerStatsHandler.CurrentStats);
+            _healthSystem = player.GetComponent<HealthSystem>();
+            _healthSystem.OnDeath += GameOver;
+
+            _curStage = 1;
+        }
     }
 
     public void Start()
     {
-        _curStage = 1;
-
-        // ���̺� �׽�Ʈ�� �ڵ� 
+        // 웨이브 시스템 테스트용 코드
         //_currentRoom = new Room(new Vector3(2f, 2f, 0), 5f, 7f, RoomType.Wave);
         //StartWave(_currentRoom);
     }
