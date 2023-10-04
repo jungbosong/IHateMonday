@@ -13,6 +13,9 @@ public class RailGun : CharzingGun
 
     private int tagetLayer;
 
+    private bool _isGuied;
+    private int _buffBullet = 0;
+
     protected override void Awake()
     {
         base.Awake();
@@ -111,7 +114,17 @@ public class RailGun : CharzingGun
         {
             GameObject go = Managers.Resource.Instantiate("Bullets/RailBullet", _shotPoint.position, _shotPoint.rotation * Quaternion.AngleAxis(Random.Range(-_accuracy, _accuracy), Vector3.forward));
             NormalBullet bullet = go.GetOrAddComponent<NormalBullet>();
-            bullet.Init(GetDamage(_damage) , _bulletSpeed, _bulletDistance, _knockBack, true , true);
+            _isGuied = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsHandler>().CurrentStats.isGuied;
+            if (_buffBullet < 10)
+            {
+                bullet.Init(GetDamage(_damage), _bulletSpeed, _bulletDistance, _knockBack, true, _isGuied);
+                --_buffBullet;
+            }
+            else
+            {
+                _player.GetComponent<UseItem>().OffGuied();
+                bullet.Init(GetDamage(_damage), _bulletSpeed, _bulletDistance, _knockBack, true, _isGuied);
+            }
 
             //Managers.Sound.Play("?");
 
