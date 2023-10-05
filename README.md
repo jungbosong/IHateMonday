@@ -18,7 +18,7 @@
 
 [스파르타 내일배움캠프 B08조 시연영상](https://youtu.be/3XgtQlZwzNI)
 
-## [🐌 Team Notion](notion://www.notion.so/%5B%3Chttps://teamsparta.notion.site/08-814d16993a734e0b97c716e95ebf4c0e%3E%5D(%3Chttps://www.notion.so/08-391aea063ff54087832f702c116f9ab5%3E))
+## [🐌 Team Notion]([notion://www.notion.so/%5B%3Chttps://teamsparta.notion.site/08-814d16993a734e0b97c716e95ebf4c0e%3E%5D(%3Chttps://www.notion.so/08-391aea063ff54087832f702c116f9ab5%3E)](https://www.notion.so/3ae37e8e253641158e1560687137bdbd?pvs=4))
 
 ## 게임 소개
 
@@ -180,7 +180,7 @@ Inventory | https://github.com/jungbosong/IHateMonday/blob/1785e7f7b3078f67823f1
 - **DeadEndScene**    
     | Class | 기능 |
     | --- | --- |
-    | DeadScene | |
+    | DeadScene | https://github.com/jungbosong/IHateMonday/blob/c00ca7b7da7eeee838ae10b6ab999bca2df233d8/Assets/Scripts/Scene/DeadScene.cs#L8-L11 |
 
 ---
 
@@ -188,6 +188,6 @@ Inventory | https://github.com/jungbosong/IHateMonday/blob/1785e7f7b3078f67823f1
 
 [⭐ 목차로 돌아가기 ⭐](#목차)
 
-<a href="[https://github.com/jungbosong/IHateMonday/graphs/contributors](https://github.com/jungbosong/IHateMonday/graphs/contributors)">
-<img src="[https://contrib.rocks/image?repo=jungbosong/IHateMonday](https://contrib.rocks/image?repo=jungbosong/IHateMonday)" />
+<a href="https://github.com/jungbosong/IHateMonday/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=jungbosong/IHateMonday" />
 </a>
