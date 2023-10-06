@@ -156,24 +156,25 @@
 | ShootEnemyController | https://github.com/jungbosong/IHateMonday/blob/e031886f6ed9506de7a9d348f8f66d12d1fa795d/Assets/Scripts/Character/Controllers/ShootEnemyController.cs#L22-L53 |
 |  | https://github.com/jungbosong/IHateMonday/blob/480f81e6010e97388fd4bb0ee3286c0415e87343/Assets/Scripts/Character/Controllers/ShootEnemyController.cs#L34-L40 |
 | DisappearOnDeath | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Character/Entities/DisappearOnDeath.cs#L16-L34 |
-| Weapon |  |
-|  |  |
-|  | |
-|  |  |
+| Gun | https://github.com/jungbosong/IHateMonday/blob/83a0122b5a8cbb75ac304785f2121e854b2a3242/Assets/Scripts/Gun/parents/Gun.cs#L35-L45 |
+| Gun | https://github.com/jungbosong/IHateMonday/blob/83a0122b5a8cbb75ac304785f2121e854b2a3242/Assets/Scripts/Gun/parents/Gun.cs#L17-L23 |
+| Inventory | https://github.com/jungbosong/IHateMonday/blob/83a0122b5a8cbb75ac304785f2121e854b2a3242/Assets/Scripts/Item/Inventory.cs#L50-L76 |
+| Inventory | https://github.com/jungbosong/IHateMonday/blob/83a0122b5a8cbb75ac304785f2121e854b2a3242/Assets/Scripts/Item/Inventory.cs#L78-L88 |
 | Wave | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Waves/Wave.cs#L58-L104 |
 |  | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Waves/Wave.cs#L113-L121 |
 | BossStage | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Waves/BossStage.cs#L59-L65 |
-|  | |
+| Door | https://github.com/jungbosong/IHateMonday/blob/83a0122b5a8cbb75ac304785f2121e854b2a3242/Assets/Scripts/Objects/Door.cs#L26-L43 |
 | Item | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Item/Item.cs#L12-L62 |
 | UseItem
 Inventory | https://github.com/jungbosong/IHateMonday/blob/1785e7f7b3078f67823f1d224cca953f08512029/Assets/Scripts/Item/UseItem.cs#L5-L100 |
 | Inventory | https://github.com/jungbosong/IHateMonday/blob/1785e7f7b3078f67823f1d224cca953f08512029/Assets/Scripts/Item/Inventory.cs#L169-L176 |
 | Altar | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Item/Altar.cs#L5-L101 |
-| |   |
-|  | |
+| Gun/AKGun |  https://github.com/jungbosong/IHateMonday/blob/83a0122b5a8cbb75ac304785f2121e854b2a3242/Assets/Scripts/Gun/AKGun.cs#L9-L38 |
+| Inventory | https://github.com/jungbosong/IHateMonday/blob/83a0122b5a8cbb75ac304785f2121e854b2a3242/Assets/Scripts/Item/Inventory.cs#L35-L48 |
 | SoundManager | https://github.com/jungbosong/IHateMonday/blob/c00ca7b7da7eeee838ae10b6ab999bca2df233d8/Assets/Scripts/Managers/SoundManager.cs#L52-L83|
 | SoundSO | https://github.com/jungbosong/IHateMonday/blob/c00ca7b7da7eeee838ae10b6ab999bca2df233d8/Assets/ScriptableObjects/Scripts/SoundSO.cs#L8-L16 |
 | CharacterPlaySound | https://github.com/jungbosong/IHateMonday/blob/c00ca7b7da7eeee838ae10b6ab999bca2df233d8/Assets/Scripts/Character/Entities/CharacterPlaySound.cs#L20-L58 |
+| Door | https://github.com/jungbosong/IHateMonday/blob/83a0122b5a8cbb75ac304785f2121e854b2a3242/Assets/Scripts/Objects/Door.cs#L72-L117 |
 | Room | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Map/Room.cs#L19-L38 |
 |  | https://github.com/jungbosong/IHateMonday/blob/512019e53cc7c4686fcb69d974e9a7491fed2c35/Assets/Scripts/Map/Room.cs#L47-L59 |
 
